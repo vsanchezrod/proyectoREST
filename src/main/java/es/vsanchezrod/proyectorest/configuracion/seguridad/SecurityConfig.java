@@ -1,10 +1,14 @@
 package es.vsanchezrod.proyectorest.configuracion.seguridad;
 
+import java.util.Collections;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
+import org.springframework.core.Ordered;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -19,6 +23,9 @@ import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.filter.CorsFilter;
 
 @Configuration
 @EnableWebSecurity
@@ -83,5 +90,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		defaultTokenServices.setTokenStore(tokenStore());
 		defaultTokenServices.setSupportRefreshToken(true);
 		return defaultTokenServices;
+	}
+	
+	@Bean
+	public FilterRegistrationBean simpleCorsFilter() {
+		final UrlBasedCorsConfigurationSource urlBasedCorsConfigurationSource = new UrlBasedCorsConfigurationSource();
+		final CorsConfiguration corsConfiguration = new CorsConfiguration();
+		corsConfiguration.setAllowCredentials(true);
+		corsConfiguration.setAllowedOrigins(Collections.singletonList("*"));
+		corsConfiguration.setAllowedMethods(Collections.singletonList("*"));
+		corsConfiguration.setAllowedHeaders(Collections.singletonList("*"));
+		urlBasedCorsConfigurationSource.registerCorsConfiguration("/**", corsConfiguration);
+		final FilterRegistrationBean filterRegistrationBean = new FilterRegistrationBean(new CorsFilter(urlBasedCorsConfigurationSource));
+		filterRegistrationBean.setOrder(Ordered.HIGHEST_PRECEDENCE);
+		return filterRegistrationBean;
 	}
 }
