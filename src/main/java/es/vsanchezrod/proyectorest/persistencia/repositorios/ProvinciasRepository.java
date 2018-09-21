@@ -3,10 +3,20 @@ package es.vsanchezrod.proyectorest.persistencia.repositorios;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Repository;
+
 import es.vsanchezrod.proyectorest.persistencia.modelos.Provincia;
 
+@Repository
 public class ProvinciasRepository {
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(ProvinciasRepository.class);
+	
+	public ProvinciasRepository() {
+		LOGGER.info("Constructor: ProvinciasRepository");
+	}
 	
 	public List<Provincia> obtenerProvincias() {
 		
