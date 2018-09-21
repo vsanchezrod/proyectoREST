@@ -2,8 +2,8 @@ package es.vsanchezrod.proyectorest.servicios.vo;
 
 public class ProvinciaVO {
 
-	public int codigo;
-	public String nombre;
+	private int codigo;
+	private String nombre;
 	
 	public ProvinciaVO (int codigo, String nombre) {
 		this.codigo = codigo;
