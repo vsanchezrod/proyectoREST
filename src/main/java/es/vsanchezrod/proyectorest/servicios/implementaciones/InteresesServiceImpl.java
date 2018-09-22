@@ -37,8 +37,9 @@ public class InteresesServiceImpl implements InteresesService {
 
 	@Override
 	public List<InteresVO> obtenerIntereses() {
-		// TODO Auto-generated method stub
-		return null;
+		// Recupera de la base de datos una lista de intereses y la convierte a InteresVO
+		
+		return interesesConverter.convertirListaInteresesAListaInteresesVO((interesesRepository.findAll()));
 	}
 
 }

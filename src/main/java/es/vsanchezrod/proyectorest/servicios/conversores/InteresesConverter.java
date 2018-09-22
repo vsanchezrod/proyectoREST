@@ -1,5 +1,8 @@
 package es.vsanchezrod.proyectorest.servicios.conversores;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -19,6 +22,20 @@ public class InteresesConverter {
 
 	public Interes convertirInteresVOAInteres(InteresVO interesVO) {
 		return new Interes(interesVO.getId(), interesVO.getNombre(), interesVO.getDescripcion());
+	}
+	
+	public InteresVO convertirInteresAInteresVO(Interes interes) {
+		return new InteresVO(interes.getId(), interes.getNombre(), interes.getDescripcion());
+	}
+	
+	public List<InteresVO> convertirListaInteresesAListaInteresesVO(List<Interes> intereses) {
+		List<InteresVO> listaInteresesVO = new ArrayList<InteresVO>();
+		
+		for (Interes interes : intereses ) {
+			listaInteresesVO.add(convertirInteresAInteresVO(interes));
+		}
+		
+		return listaInteresesVO;
 	}
 	
 }
