@@ -1,48 +1,42 @@
 package es.vsanchezrod.proyectorest.persistencia.modelos;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
+@Document(collection= "Usuarios")
 public class Usuario {
 
-	private Long id;
+	@Id
+	private String id;
 	
-	private String nombreUsuario;
-
+	private String email;
+	
 	private String password;
 
 	private String nombre;
 
-	private String primerApellido;
-
-	private String segundoApellido;
+	private String apellido;
 
 	private List<Rol> roles;
 
-	public Usuario(String nombreUsuario, String password) {
-		super();
-		this.nombreUsuario = nombreUsuario;
-		this.password = password;
-		this.roles = new ArrayList<>();
-	}
-
-	public Long getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
-	public String getNombreUsuario() {
-		return nombreUsuario;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setNombreUsuario(String nombreUsuario) {
-		this.nombreUsuario = nombreUsuario;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getPassword() {
@@ -61,20 +55,12 @@ public class Usuario {
 		this.nombre = nombre;
 	}
 
-	public String getPrimerApellido() {
-		return primerApellido;
+	public String getApellido() {
+		return apellido;
 	}
 
-	public void setPrimerApellido(String primerApellido) {
-		this.primerApellido = primerApellido;
-	}
-
-	public String getSegundoApellido() {
-		return segundoApellido;
-	}
-
-	public void setSegundoApellido(String segundoApellido) {
-		this.segundoApellido = segundoApellido;
+	public void setApellido(String apellido) {
+		this.apellido = apellido;
 	}
 
 	public List<Rol> getRoles() {
@@ -83,31 +69,6 @@ public class Usuario {
 
 	public void setRoles(List<Rol> roles) {
 		this.roles = roles;
-	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((nombreUsuario == null) ? 0 : nombreUsuario.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Usuario other = (Usuario) obj;
-		if (nombreUsuario == null) {
-			if (other.nombreUsuario != null)
-				return false;
-		} else if (!nombreUsuario.equals(other.nombreUsuario))
-			return false;
-		return true;
 	}
 
 	@Override

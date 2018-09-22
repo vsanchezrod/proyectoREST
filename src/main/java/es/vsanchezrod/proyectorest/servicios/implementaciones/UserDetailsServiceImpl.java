@@ -12,16 +12,18 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import es.vsanchezrod.proyectorest.persistencia.modelos.Usuario;
+import es.vsanchezrod.proyectorest.persistencia.repositorios.UsuariosRepository;
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
+	
+	private UsuariosRepository usuariosRepository;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
     	
-		//final Usuario usuario = usuariosServicio.obtenerUsuarioPorNombreUsuario(username);
-		
-    	final Usuario usuario = new Usuario("john.doe", "$2a$10$zbiuPsYMxW28bvHC8GCLNuEoh.Ij15HZWCnjy1Ttpnv4PgJasDqPG");
+    	// username ==> usuario.email
+    	final Usuario usuario = usuariosRepository.findByEmail(username);
     	
         if(usuario == null) {
             throw new UsernameNotFoundException(String.format("El usuario '%s' no existe", username));
@@ -32,6 +34,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             authorities.add(new SimpleGrantedAuthority(rol.getNombre()));
         });
 
-        return new User(usuario.getNombreUsuario(), usuario.getPassword(), authorities);
+        return new User(usuario.getEmail(), usuario.getPassword(), authorities);
     }
 }
