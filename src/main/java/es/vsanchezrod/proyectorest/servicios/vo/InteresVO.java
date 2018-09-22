@@ -12,6 +12,8 @@ public class InteresVO {
 		this.descripcion = descripcion;
 	}
 	
+	public InteresVO() {}
+	
 	public String getId() {
 		return id;
 	}
