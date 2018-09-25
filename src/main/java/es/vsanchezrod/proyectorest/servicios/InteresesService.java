@@ -6,7 +6,7 @@ import es.vsanchezrod.proyectorest.servicios.vo.InteresVO;
 
 public interface InteresesService {
 	
-	void crearInteres(InteresVO interes);
+	void crearInteres(InteresVO interesVO);
 	
-	List<InteresVO> obtenerIntereses();
+	List<InteresVO> obtenerInteresesVO();
 }

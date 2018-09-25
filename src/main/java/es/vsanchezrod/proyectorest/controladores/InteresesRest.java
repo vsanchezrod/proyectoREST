@@ -30,7 +30,7 @@ public class InteresesRest {
 	@RequestMapping(value = "/public/intereses", method = RequestMethod.GET)
 	public List<InteresVO> obtenerIntereses () {
 		
-		return interesesService.obtenerIntereses();
+		return interesesService.obtenerInteresesVO();
 	}
 	
 	@RequestMapping(value = "/public/intereses", method = RequestMethod.POST)
