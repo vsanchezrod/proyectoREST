@@ -3,7 +3,13 @@ package es.vsanchezrod.proyectorest.persistencia.modelos;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.data.mongodb.core.mapping.Document;
+
+//Etiqueta de Spring que modifica el nombre de la colección de Mongodb
+@Document(collection = "Salidas")
 public class Salida extends Actividad {
+
+	public Salida() {}
 	
 	public Salida(String nombre, List<Categoria> categorias, String descripcion, 
 			String nivel, String distancia, Date fechaInicio, String imagen,
@@ -11,4 +17,5 @@ public class Salida extends Actividad {
 		
 		super(nombre, categorias, descripcion,nivel, distancia, fechaInicio, imagen, coordenadas, idUsuarioCreacion);
 	}
+	
 }

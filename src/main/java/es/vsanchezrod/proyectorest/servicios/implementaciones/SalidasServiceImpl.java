@@ -10,7 +10,6 @@ import es.vsanchezrod.proyectorest.servicios.SalidasService;
 import es.vsanchezrod.proyectorest.servicios.conversores.SalidasConverter;
 import es.vsanchezrod.proyectorest.servicios.vo.SalidaVO;
 
-
 @Service
 public class SalidasServiceImpl implements SalidasService{
 
