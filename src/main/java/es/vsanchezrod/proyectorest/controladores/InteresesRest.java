@@ -28,13 +28,14 @@ public class InteresesRest {
 	}
 	
 	@RequestMapping(value = "/public/intereses", method = RequestMethod.GET)
-	public List<InteresVO> obtenerIntereses () {
+	public List<InteresVO> obtenerInteresesVO () {
 		
 		return interesesService.obtenerInteresesVO();
 	}
 	
 	@RequestMapping(value = "/public/intereses", method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.CREATED)
+	// @ResponseStatus: para que de más información a parte del 200OK
 	// @RequestBody es para decirle que los datos van dentro del body de la petición HTTP
 	public void crearInteres(@RequestBody InteresVO interesVO) {
 		interesesService.crearInteres(interesVO);

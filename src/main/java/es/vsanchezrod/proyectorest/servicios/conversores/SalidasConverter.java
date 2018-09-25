@@ -1,8 +1,14 @@
 package es.vsanchezrod.proyectorest.servicios.conversores;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.stereotype.Component;
+
 import es.vsanchezrod.proyectorest.persistencia.modelos.Salida;
 import es.vsanchezrod.proyectorest.servicios.vo.SalidaVO;
 
+@Component
 public class SalidasConverter {
 
 	public Salida convertirSalidaVOASalida(SalidaVO salidaVO) {
@@ -31,5 +37,15 @@ public class SalidasConverter {
 				salida.getCoordenadas(),
 				salida.getIdUsuarioCreacion()
 		);
+	}
+	
+	public List<SalidaVO> convertirListaSalidasAListaSalidasVO(List<Salida> salidas) {
+		List<SalidaVO> listaSalidasVO = new ArrayList<SalidaVO>();
+		
+		for (Salida salida : salidas ) {
+			listaSalidasVO.add(convertirSalidaASalidaVO(salida));
+		}
+		
+		return listaSalidasVO;
 	}
 }
