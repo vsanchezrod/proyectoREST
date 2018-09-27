@@ -1,5 +1,8 @@
 package es.vsanchezrod.proyectorest.servicios.conversores;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.stereotype.Component;
 
 import es.vsanchezrod.proyectorest.persistencia.modelos.Opinion;
@@ -22,5 +25,17 @@ public class OpinionesConverter {
 						   opinion.getOrganizacionValoracion(), opinion.getAmbienteValoracion(),
 						   opinion.getRecorridoValoracion());
 
+	}
+	
+	public List<OpinionVO> convertirListaOpinionesAListaOpinionesVO(List<Opinion> listaOpiniones){
+		
+		List<OpinionVO> listaOpinionesVO = new ArrayList<OpinionVO>();
+		
+		for (Opinion opinion: listaOpiniones) {
+			listaOpinionesVO.add(convertirOpinionAOpinionVO(opinion));
+		}
+		
+		return listaOpinionesVO;
+		
 	}
 }

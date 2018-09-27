@@ -1,5 +1,7 @@
 package es.vsanchezrod.proyectorest.servicios.implementaciones;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +23,12 @@ public class OpinionesServiceImpl implements OpinionesService {
 	public void guardarOpinion(OpinionVO opinionVO) {
 		opinionesRepository.save(opinionesConverter.convertirOpinionVOAOpinion(opinionVO));
 		
+	}
+
+	@Override
+	public List<OpinionVO> obtenerOpiniones() {
+		
+		return opinionesConverter.convertirListaOpinionesAListaOpinionesVO(opinionesRepository.findAll());
 	}
 
 }

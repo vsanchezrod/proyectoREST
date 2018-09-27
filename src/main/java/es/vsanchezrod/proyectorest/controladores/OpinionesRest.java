@@ -1,5 +1,7 @@
 package es.vsanchezrod.proyectorest.controladores;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -22,6 +24,12 @@ public class OpinionesRest {
 	public void guardarOpinion(@RequestBody OpinionVO opinionVO) {
 	
 		opinionesService.guardarOpinion(opinionVO);
+	}
+	
+	@RequestMapping(value = "/public/opiniones", method = RequestMethod.GET)
+	public List<OpinionVO> obtenerOpiniones(){
+		
+		return opinionesService.obtenerOpiniones();
 	}
 	
 	
