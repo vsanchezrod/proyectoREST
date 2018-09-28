@@ -9,7 +9,9 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document(collection = "Salidas")
 public class Salida extends Actividad {
 
-	public Salida() {}
+	public Salida() {
+		super();
+	}
 	
 	public Salida(String nombre, List<Categoria> categorias, String descripcion, 
 			String nivel, String distancia, Date fechaInicio, String imagen,

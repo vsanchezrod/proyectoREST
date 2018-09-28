@@ -7,6 +7,10 @@ import es.vsanchezrod.proyectorest.persistencia.modelos.Categoria;
 
 public class SalidaVO extends ActividadVO{
 	
+	public SalidaVO() {
+		super();
+	}
+		
 	public SalidaVO(String nombre, List<Categoria> categorias, String descripcion, 
 			String nivel, String distancia, Date fechaInicio, String imagen,
 			List<String> coordenadas, String idUsuarioCreacion) {
