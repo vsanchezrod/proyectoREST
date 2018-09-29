@@ -5,11 +5,12 @@ import java.util.List;
 
 public class Actividad {
 
+	private String id;
 	private String nombre;
 	private List<Categoria> categorias;
 	private String descripcion;
-	private String nivel;
-	private String distancia;
+	private int nivel;
+	private int distancia;
 	private Date fechaInicio;
 	private String imagen;
 	private List<String> coordenadas;
@@ -19,7 +20,7 @@ public class Actividad {
 	
 	public Actividad(
 			String nombre, List<Categoria> categorias, String descripcion, 
-			String nivel, String distancia, Date fechaInicio, String imagen,
+			int nivel, int distancia, Date fechaInicio, String imagen,
 			List<String> coordenadas, String idUsuarioCreacion) {
 		
 		this.nombre = nombre;
@@ -57,19 +58,19 @@ public class Actividad {
 		this.descripcion = descripcion;
 	}
 
-	public String getNivel() {
+	public int getNivel() {
 		return nivel;
 	}
 
-	public void setNivel(String nivel) {
+	public void setNivel(int nivel) {
 		this.nivel = nivel;
 	}
 
-	public String getDistancia() {
+	public int getDistancia() {
 		return distancia;
 	}
 
-	public void setDistancia(String distancia) {
+	public void setDistancia(int distancia) {
 		this.distancia = distancia;
 	}
 

@@ -2,7 +2,7 @@ package es.vsanchezrod.proyectorest.servicios.vo;
 
 public class OpinionVO {
 
-	// private String id;
+	private String id;
 	private Object actividad;
 	private String titulo;
 	private String detalle;

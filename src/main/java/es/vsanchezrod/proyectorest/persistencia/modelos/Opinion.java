@@ -5,7 +5,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document(collection = "Opiniones")
 public class Opinion {
 
-	// private String id;
+	private String id;
 	private Object actividad;
 	private String titulo;
 	private String detalle;
