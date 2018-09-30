@@ -1,20 +1,15 @@
-package es.vsanchezrod.proyectorest.persistencia.modelos;
+package es.vsanchezrod.proyectorest.servicios.vo;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+public class CategoriaVO {
 
-@Document(collection = "Categorias")
-public class Categoria {
-
-	@Id
 	private String id;
 	private String nombre;
 	private String descripcion;
 	private String imagen;
 	
-	public Categoria() {}
+	public CategoriaVO() {}
 	
-	public Categoria(String id, String nombre, String descripcion, String imagen) {
+	public CategoriaVO(String id, String nombre, String descripcion, String imagen) {
 		this.id = id;
 		this.nombre = nombre;
 		this.descripcion = descripcion;
@@ -44,7 +39,7 @@ public class Categoria {
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
-	
+
 	public String getImagen() {
 		return imagen;
 	}
@@ -55,8 +50,8 @@ public class Categoria {
 
 	@Override
 	public String toString() {
-		return "Categoria [id=" + id + ", nombre=" + nombre + ", descripcion=" + descripcion + ", imagen=" + imagen
+		return "CategoriaVO [id=" + id + ", nombre=" + nombre + ", descripcion=" + descripcion + ", imagen=" + imagen
 				+ "]";
 	}
-
+	
 }

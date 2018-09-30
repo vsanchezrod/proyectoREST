@@ -32,14 +32,14 @@ public class InteresesServiceImpl implements InteresesService {
 	public void crearInteres(InteresVO interesVO) {
 		
 		// Guarda en la base de datos el InteresVO convertirdo en Interes
-		interesesRepository.save(interesesConverter.convertirInteresVOAInteres(interesVO));
+		this.interesesRepository.save(interesesConverter.convertirInteresVOAInteres(interesVO));
 	}
 
 	@Override
 	public List<InteresVO> obtenerInteresesVO() {
 		// Recupera de la base de datos una lista de intereses y la convierte a InteresVO
 		
-		return interesesConverter.convertirListaInteresesAListaInteresesVO((interesesRepository.findAll()));
+		return this.interesesConverter.convertirListaInteresesAListaInteresesVO((interesesRepository.findAll()));
 	}
 
 }

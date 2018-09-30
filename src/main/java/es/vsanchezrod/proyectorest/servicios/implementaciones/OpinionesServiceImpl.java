@@ -21,14 +21,14 @@ public class OpinionesServiceImpl implements OpinionesService {
 	
 	@Override
 	public void guardarOpinion(OpinionVO opinionVO) {
-		opinionesRepository.save(opinionesConverter.convertirOpinionVOAOpinion(opinionVO));
+		this.opinionesRepository.save(opinionesConverter.convertirOpinionVOAOpinion(opinionVO));
 		
 	}
 
 	@Override
 	public List<OpinionVO> obtenerOpiniones() {
 		
-		return opinionesConverter.convertirListaOpinionesAListaOpinionesVO(opinionesRepository.findAll());
+		return this.opinionesConverter.convertirListaOpinionesAListaOpinionesVO(opinionesRepository.findAll());
 	}
 
 }
