@@ -13,6 +13,7 @@ public class SalidasConverter {
 
 	public Salida convertirSalidaVOASalida(SalidaVO salidaVO) {
 		return new Salida(
+				salidaVO.getId(),
 				salidaVO.getNombre(),
 				salidaVO.getCategorias(),
 				salidaVO.getDescripcion(),
@@ -27,6 +28,7 @@ public class SalidasConverter {
 	
 	public SalidaVO convertirSalidaASalidaVO(Salida salida) {
 		return new SalidaVO(
+				salida.getId(),
 				salida.getNombre(),
 				salida.getCategorias(),
 				salida.getDescripcion(),

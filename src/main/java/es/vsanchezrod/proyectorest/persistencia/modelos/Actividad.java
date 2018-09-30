@@ -19,10 +19,11 @@ public class Actividad {
 	public Actividad() {}
 	
 	public Actividad(
-			String nombre, List<Categoria> categorias, String descripcion, 
+			String id, String nombre, List<Categoria> categorias, String descripcion, 
 			int nivel, int distancia, Date fechaInicio, String imagen,
 			List<String> coordenadas, String idUsuarioCreacion) {
 		
+		this.id = id;
 		this.nombre = nombre;
 		this.categorias = categorias;
 		this.descripcion = descripcion;
@@ -32,6 +33,15 @@ public class Actividad {
 		this.imagen = imagen;
 		this.coordenadas = coordenadas;
 		this.idUsuarioCreacion = idUsuarioCreacion;
+	}
+
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public String getNombre() {

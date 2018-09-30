@@ -1,10 +1,11 @@
 package es.vsanchezrod.proyectorest.servicios.vo;
 
 import java.util.Date;
+import java.util.List;
 
-import es.vsanchezrod.proyectorest.persistencia.modelos.Actividad;
+import es.vsanchezrod.proyectorest.persistencia.modelos.Categoria;
 
-public class ViajeVO extends Actividad {
+public class ViajeVO extends ActividadVO {
 
 	private Date fechaFin;
 	private int precio;
@@ -12,15 +13,18 @@ public class ViajeVO extends Actividad {
 	
 	public ViajeVO() {}
 	
-	public ViajeVO(Date fechaFin, int precio, int plazas) {
-		super();
+	public ViajeVO(String id, String nombre, List<Categoria> categorias, String descripcion, 
+			int nivel, int distancia, Date fechaInicio, String imagen,
+			List<String> coordenadas, String idUsuarioCreacion, Date fechaFin, int precio, int plazas) {
+		
+		super(id, nombre, categorias, descripcion, nivel, distancia, fechaInicio, imagen, coordenadas, idUsuarioCreacion);
 		this.fechaFin = fechaFin;
 		this.precio = precio;
 		this.plazas = plazas;
 	}
 
 	public Date getFechaFin() {
-		return fechaFin;
+		return fechaFin;	
 	}
 
 	public void setFechaFin(Date fechaFin) {

@@ -13,11 +13,11 @@ public class Salida extends Actividad {
 		super();
 	}
 	
-	public Salida(String nombre, List<Categoria> categorias, String descripcion, 
+	public Salida(String id, String nombre, List<Categoria> categorias, String descripcion, 
 			int nivel, int distancia, Date fechaInicio, String imagen,
 			List<String> coordenadas, String idUsuarioCreacion) {
 		
-		super(nombre, categorias, descripcion, nivel, distancia, fechaInicio, imagen, coordenadas, idUsuarioCreacion);
+		super(id, nombre, categorias, descripcion, nivel, distancia, fechaInicio, imagen, coordenadas, idUsuarioCreacion);
 	}
 	
 }
