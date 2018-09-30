@@ -1,7 +1,10 @@
 package es.vsanchezrod.proyectorest.persistencia.modelos;
 
+import org.springframework.data.annotation.Id;
+
 public class Categoria {
 
+	@Id
 	private String id;
 	private String nombre;
 	private String descripcion;

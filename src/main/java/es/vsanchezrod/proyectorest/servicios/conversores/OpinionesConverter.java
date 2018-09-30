@@ -13,17 +13,27 @@ public class OpinionesConverter {
 
 	public Opinion convertirOpinionVOAOpinion(OpinionVO opinionVO) {
 
-		return new Opinion(opinionVO.getActividad(), opinionVO.getTitulo(), opinionVO.getDetalle(),
-						   opinionVO.getOrganizacionValoracion(), opinionVO.getAmbienteValoracion(),
-						   opinionVO.getRecorridoValoracion());
+		return new Opinion(
+				opinionVO.getId(),
+				opinionVO.getActividad(),
+				opinionVO.getTitulo(),
+				opinionVO.getDetalle(),
+				opinionVO.getOrganizacionValoracion(),
+				opinionVO.getAmbienteValoracion(),
+				opinionVO.getRecorridoValoracion());
 
 	}
 	
 	public OpinionVO convertirOpinionAOpinionVO(Opinion opinion) {
 
-		return new OpinionVO(opinion.getActividad(), opinion.getTitulo(), opinion.getDetalle(),
-						   opinion.getOrganizacionValoracion(), opinion.getAmbienteValoracion(),
-						   opinion.getRecorridoValoracion());
+		return new OpinionVO(
+				opinion.getId(),
+				opinion.getActividad(), 
+				opinion.getTitulo(), 
+				opinion.getDetalle(),
+				opinion.getOrganizacionValoracion(),
+				opinion.getAmbienteValoracion(),
+				opinion.getRecorridoValoracion());
 
 	}
 	

@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import es.vsanchezrod.proyectorest.persistencia.modelos.Categoria;
+import es.vsanchezrod.proyectorest.persistencia.modelos.Coordenada;
 
 public class ActividadVO {
 
@@ -15,7 +16,7 @@ public class ActividadVO {
 	private int distancia;
 	private Date fechaInicio;
 	private String imagen;
-	private List<String> coordenadas;
+	private Coordenada coordenadas;
 	private String idUsuarioCreacion;
 		
 	public ActividadVO() {}
@@ -23,7 +24,7 @@ public class ActividadVO {
 	public ActividadVO(
 			String id, String nombre, List<Categoria> categorias, String descripcion, 
 			int nivel, int distancia, Date fechaInicio, String imagen,
-			List<String> coordenadas, String idUsuarioCreacion) {
+			Coordenada coordenadas, String idUsuarioCreacion) {
 		
 		this.id = id;
 		this.nombre = nombre;
@@ -101,11 +102,11 @@ public class ActividadVO {
 		this.imagen = imagen;
 	}
 
-	public List<String> getCoordenadas() {
+	public Coordenada getCoordenadas() {
 		return coordenadas;
 	}
 
-	public void setCoordenadas(List<String> coordenadas) {
+	public void setCoordenadas(Coordenada coordenadas) {
 		this.coordenadas = coordenadas;
 	}
 
@@ -116,11 +117,13 @@ public class ActividadVO {
 	public void setIdUsuarioCreacion(String idUsuarioCreacion) {
 		this.idUsuarioCreacion = idUsuarioCreacion;
 	}
-	
+
 	@Override
 	public String toString() {
-		return "ActividadVO [nombre=" + nombre + ", categorias=" + categorias + ", descripcion=" + descripcion
-				+ ", nivel=" + nivel + ", distancia=" + distancia + ", fechaInicio=" + fechaInicio + ", imagen="
-				+ imagen + ", coordenadas=" + coordenadas + ", idUsuarioCreacion=" + idUsuarioCreacion + "]";
+		return "ActividadVO [id=" + id + ", nombre=" + nombre + ", categorias=" + categorias + ", descripcion="
+				+ descripcion + ", nivel=" + nivel + ", distancia=" + distancia + ", fechaInicio=" + fechaInicio
+				+ ", imagen=" + imagen + ", coordenadas=" + coordenadas + ", idUsuarioCreacion=" + idUsuarioCreacion
+				+ "]";
 	}
+	
 }

@@ -18,13 +18,22 @@ public class Opinion {
 	
 	public Opinion() {}
 	
-	public Opinion(Object actividad, String titulo, String detalle, int organizacion, int ambiente, int recorrido) {
+	public Opinion(String id, Object actividad, String titulo, String detalle, int organizacion, int ambiente, int recorrido) {
+		this.id = id;
 		this.actividad = actividad;
 		this.titulo = titulo;
 		this.detalle = detalle;
 		this.organizacionValoracion = organizacion;
 		this.ambienteValoracion = ambiente;
 		this.recorridoValoracion = recorrido;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 	
 	public Object getActividad() {
@@ -66,11 +75,11 @@ public class Opinion {
 
 	@Override
 	public String toString() {
-		return "OpinionVO [actividad=" + actividad + ", titulo=" + titulo + ", detalle=" + detalle
+		return "Opinion [id=" + id + ", actividad=" + actividad + ", titulo=" + titulo + ", detalle=" + detalle
 				+ ", organizacionValoracion=" + organizacionValoracion + ", ambienteValoracion=" + ambienteValoracion
 				+ ", recorridoValoracion=" + recorridoValoracion + "]";
 	}
-	
+
 }
 
 

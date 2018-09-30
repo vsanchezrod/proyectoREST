@@ -3,8 +3,11 @@ package es.vsanchezrod.proyectorest.persistencia.modelos;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.data.annotation.Id;
+
 public class Actividad {
 
+	@Id
 	private String id;
 	private String nombre;
 	private List<Categoria> categorias;
@@ -13,7 +16,7 @@ public class Actividad {
 	private int distancia;
 	private Date fechaInicio;
 	private String imagen;
-	private List<String> coordenadas;
+	private Coordenada coordenadas;
 	private String idUsuarioCreacion;
 	
 	public Actividad() {}
@@ -21,7 +24,7 @@ public class Actividad {
 	public Actividad(
 			String id, String nombre, List<Categoria> categorias, String descripcion, 
 			int nivel, int distancia, Date fechaInicio, String imagen,
-			List<String> coordenadas, String idUsuarioCreacion) {
+			Coordenada coordenadas, String idUsuarioCreacion) {
 		
 		this.id = id;
 		this.nombre = nombre;
@@ -100,11 +103,11 @@ public class Actividad {
 		this.imagen = imagen;
 	}
 
-	public List<String> getCoordenadas() {
+	public Coordenada getCoordenadas() {
 		return coordenadas;
 	}
 
-	public void setCoordenadas(List<String> coordenadas) {
+	public void setCoordenadas(Coordenada coordenadas) {
 		this.coordenadas = coordenadas;
 	}
 
@@ -118,10 +121,10 @@ public class Actividad {
 
 	@Override
 	public String toString() {
-		return "Actividad [nombre=" + nombre + ", categorias=" + categorias + ", descripcion=" + descripcion
-				+ ", nivel=" + nivel + ", distancia=" + distancia + ", fechaInicio=" + fechaInicio + ", imagen="
-				+ imagen + ", coordenadas=" + coordenadas + ", idUsuarioCreacion=" + idUsuarioCreacion + "]";
+		return "Actividad [id=" + id + ", nombre=" + nombre + ", categorias=" + categorias + ", descripcion="
+				+ descripcion + ", nivel=" + nivel + ", distancia=" + distancia + ", fechaInicio=" + fechaInicio
+				+ ", imagen=" + imagen + ", coordenadas=" + coordenadas + ", idUsuarioCreacion=" + idUsuarioCreacion
+				+ "]";
 	}
-	
 	
 }

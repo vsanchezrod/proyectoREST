@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import es.vsanchezrod.proyectorest.persistencia.modelos.Categoria;
+import es.vsanchezrod.proyectorest.persistencia.modelos.Coordenada;
 
 public class SalidaVO extends ActividadVO {
 	
@@ -13,7 +14,7 @@ public class SalidaVO extends ActividadVO {
 		
 	public SalidaVO(String id, String nombre, List<Categoria> categorias, String descripcion, 
 			int nivel, int distancia, Date fechaInicio, String imagen,
-			List<String> coordenadas, String idUsuarioCreacion) {
+			Coordenada coordenadas, String idUsuarioCreacion) {
 		
 		super(id, nombre, categorias, descripcion, nivel, distancia, fechaInicio, imagen, coordenadas, idUsuarioCreacion);
 	}
