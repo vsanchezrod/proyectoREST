@@ -36,4 +36,16 @@ public class CategoriasConverter {
 		return listaCategoriasVO;
 	}
 	
+	public List<Categoria> convertirListaCategoriasVOAListaCategorias(List<CategoriaVO> listaCategoriasVO) {
+		
+		List<Categoria> listaCategorias = new ArrayList<Categoria>();
+		
+		for(CategoriaVO categoriaVO: listaCategoriasVO) {
+			
+			listaCategorias.add(convertirCategoriaVOACategoria(categoriaVO));
+		}
+		
+		return listaCategorias;
+	}
+	
 }

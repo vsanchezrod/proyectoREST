@@ -3,6 +3,7 @@ package es.vsanchezrod.proyectorest.servicios.conversores;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import es.vsanchezrod.proyectorest.persistencia.modelos.Salida;
@@ -11,11 +12,14 @@ import es.vsanchezrod.proyectorest.servicios.vo.SalidaVO;
 @Component
 public class SalidasConverter {
 
+	@Autowired
+	public CategoriasConverter categoriasConverter;
+	
 	public Salida convertirSalidaVOASalida(SalidaVO salidaVO) {
 		return new Salida(
 				salidaVO.getId(),
 				salidaVO.getNombre(),
-				salidaVO.getCategorias(),
+				this.categoriasConverter.convertirListaCategoriasVOAListaCategorias(salidaVO.getCategorias()),
 				salidaVO.getDescripcion(),
 				salidaVO.getNivel(),
 				salidaVO.getDistancia(),
@@ -30,7 +34,7 @@ public class SalidasConverter {
 		return new SalidaVO(
 				salida.getId(),
 				salida.getNombre(),
-				salida.getCategorias(),
+				this.categoriasConverter.convertirListaCategoriasAListaCategoriasVO(salida.getCategorias()),
 				salida.getDescripcion(),
 				salida.getNivel(),
 				salida.getDistancia(),

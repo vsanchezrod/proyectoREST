@@ -3,7 +3,6 @@ package es.vsanchezrod.proyectorest.servicios.vo;
 import java.util.Date;
 import java.util.List;
 
-import es.vsanchezrod.proyectorest.persistencia.modelos.Categoria;
 import es.vsanchezrod.proyectorest.persistencia.modelos.Coordenada;
 
 public class ViajeVO extends ActividadVO {
@@ -14,7 +13,7 @@ public class ViajeVO extends ActividadVO {
 	
 	public ViajeVO() {}
 	
-	public ViajeVO(String id, String nombre, List<Categoria> categorias, String descripcion, 
+	public ViajeVO(String id, String nombre, List<CategoriaVO> categorias, String descripcion, 
 			int nivel, int distancia, Date fechaInicio, String imagen,
 			Coordenada coordenadas, String idUsuarioCreacion, Date fechaFin, int precio, int plazas) {
 		

@@ -3,14 +3,13 @@ package es.vsanchezrod.proyectorest.servicios.vo;
 import java.util.Date;
 import java.util.List;
 
-import es.vsanchezrod.proyectorest.persistencia.modelos.Categoria;
 import es.vsanchezrod.proyectorest.persistencia.modelos.Coordenada;
 
 public class ActividadVO {
 
 	private String id;
 	private String nombre;
-	private List<Categoria> categorias;
+	private List<CategoriaVO> categorias;
 	private String descripcion;
 	private int nivel;
 	private int distancia;
@@ -22,7 +21,7 @@ public class ActividadVO {
 	public ActividadVO() {}
 	
 	public ActividadVO(
-			String id, String nombre, List<Categoria> categorias, String descripcion, 
+			String id, String nombre, List<CategoriaVO> categorias, String descripcion, 
 			int nivel, int distancia, Date fechaInicio, String imagen,
 			Coordenada coordenadas, String idUsuarioCreacion) {
 		
@@ -54,11 +53,11 @@ public class ActividadVO {
 		this.nombre = nombre;
 	}
 
-	public List<Categoria> getCategorias() {
+	public List<CategoriaVO> getCategorias() {
 		return categorias;
 	}
 
-	public void setCategorias(List<Categoria> categorias) {
+	public void setCategorias(List<CategoriaVO> categorias) {
 		this.categorias = categorias;
 	}
 
