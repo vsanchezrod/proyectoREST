@@ -10,4 +10,6 @@ public interface CategoriasService {
 	
 	List<CategoriaVO> obtenerCategoriasVO();
 	
+	void borrarCategoria(String id);
+	
 }

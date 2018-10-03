@@ -18,9 +18,12 @@ public class OpinionesConverter {
 				opinionVO.getActividad(),
 				opinionVO.getTitulo(),
 				opinionVO.getDetalle(),
+				opinionVO.getFecha(),
 				opinionVO.getOrganizacionValoracion(),
 				opinionVO.getAmbienteValoracion(),
-				opinionVO.getRecorridoValoracion());
+				opinionVO.getRecorridoValoracion(),
+				opinionVO.getUsuario()
+		);
 
 	}
 	
@@ -31,9 +34,12 @@ public class OpinionesConverter {
 				opinion.getActividad(), 
 				opinion.getTitulo(), 
 				opinion.getDetalle(),
+				opinion.getFecha(),
 				opinion.getOrganizacionValoracion(),
 				opinion.getAmbienteValoracion(),
-				opinion.getRecorridoValoracion());
+				opinion.getRecorridoValoracion(),
+				opinion.getUsuario()
+		);
 
 	}
 	

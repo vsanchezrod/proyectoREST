@@ -20,7 +20,7 @@ public class SalidasRest {
 	private SalidasService salidasService;
 
 	@RequestMapping(value = "/public/salidas", method = RequestMethod.GET)
-	public List<SalidaVO> obtenerSalidasVO () {
+	public List<SalidaVO> obtenerListaSalidasVO () {
 		
 		return salidasService.obteneroSalidasVO();
 	}
@@ -30,6 +30,7 @@ public class SalidasRest {
 	// @ResponseStatus: para que de más información a parte del 200OK
 	// @RequestBody: datos dentro del body de la petición HTTP
 	public void crearSalida(@RequestBody SalidaVO salidaVO) {
+		
 		salidasService.crearSalida(salidaVO);
 	}
 	

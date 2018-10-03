@@ -31,4 +31,8 @@ public class CategoriasRest {
 		
 	}
 	
+	@RequestMapping(value = "/public/categorias", method = RequestMethod.DELETE)
+	public void borrarCategoria(String id) {
+		this.categoriasService.borrarCategoria(id);
+	}
 }

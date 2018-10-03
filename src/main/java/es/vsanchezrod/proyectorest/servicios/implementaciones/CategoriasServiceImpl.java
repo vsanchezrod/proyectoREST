@@ -33,4 +33,9 @@ public class CategoriasServiceImpl implements CategoriasService {
 	
 	}
 
+	@Override
+	public void borrarCategoria(String id) {
+		this.categoriasRepository.delete(id);;
+	}
+
 }
