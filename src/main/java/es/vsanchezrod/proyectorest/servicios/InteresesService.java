@@ -8,5 +8,5 @@ public interface InteresesService {
 	
 	void crearInteres(InteresVO interesVO);
 	
-	List<InteresVO> obtenerInteresesVO();
+	List<InteresVO> obtenerListaInteresesVO();
 }

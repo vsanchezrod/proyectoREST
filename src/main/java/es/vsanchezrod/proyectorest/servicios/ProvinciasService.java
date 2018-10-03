@@ -6,6 +6,6 @@ import es.vsanchezrod.proyectorest.servicios.vo.ProvinciaVO;
 
 public interface ProvinciasService {
 	
-	List<ProvinciaVO> obtenerProvincias();
+	List<ProvinciaVO> obtenerListaProvincias();
 
 }

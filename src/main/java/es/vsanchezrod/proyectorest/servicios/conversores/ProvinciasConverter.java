@@ -23,6 +23,10 @@ public class ProvinciasConverter {
 		return new ProvinciaVO(provincia.getCodigo(), provincia.getNombre());
 	}
 	
+	public Provincia convertirProvinciaVOAProvincia(ProvinciaVO provinciaVO) {
+		return new Provincia(provinciaVO.getCodigo(), provinciaVO.getNombre());
+	}
+	
 	public List<ProvinciaVO> convertirListaProvinciaAListaProvinciaVO(List<Provincia> listaProvincia){
 		List<ProvinciaVO> listaProvinciasVO = new ArrayList<>();
 		
@@ -34,4 +38,5 @@ public class ProvinciasConverter {
 		
 		return listaProvinciasVO;
 	}
+
 }

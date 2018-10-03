@@ -21,7 +21,7 @@ public class CategoriasRest {
 	
 	@RequestMapping(value = "/public/categorias", method = RequestMethod.GET)
 	public List<CategoriaVO> obtenerCategorias() {
-		return this.categoriasService.obtenerCategoriasVO();
+		return this.categoriasService.obtenerListaCategoriasVO();
 	}
 	
 	@RequestMapping(value = "/public/categorias", method = RequestMethod.POST)

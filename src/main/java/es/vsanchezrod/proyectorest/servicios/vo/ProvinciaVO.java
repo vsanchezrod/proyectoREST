@@ -5,6 +5,8 @@ public class ProvinciaVO {
 	private int codigo;
 	private String nombre;
 	
+	public ProvinciaVO() {}
+	
 	public ProvinciaVO (int codigo, String nombre) {
 		this.codigo = codigo;
 		this.nombre = nombre;

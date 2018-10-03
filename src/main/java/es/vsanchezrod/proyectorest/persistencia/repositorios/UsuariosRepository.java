@@ -6,6 +6,6 @@ import es.vsanchezrod.proyectorest.persistencia.modelos.Usuario;
 
 public interface UsuariosRepository extends MongoRepository<Usuario, String>{
 
-	// Query para buscar usuarios por email (finy + Nombre de la propiedad)
+	// Query para buscar usuarios por email (finBy + Nombre de la propiedad)
 	Usuario findByEmail(String email);
 }

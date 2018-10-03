@@ -25,7 +25,7 @@ public class SalidasServiceImpl implements SalidasService{
 	}
 
 	@Override
-	public List<SalidaVO> obteneroSalidasVO() {
+	public List<SalidaVO> obtenerListaSalidasVO() {
 		
 		return salidasConverter.convertirListaSalidasAListaSalidasVO((salidasRepository.findAll()));
 	}

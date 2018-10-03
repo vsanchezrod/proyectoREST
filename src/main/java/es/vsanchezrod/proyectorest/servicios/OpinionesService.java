@@ -8,5 +8,5 @@ public interface OpinionesService {
 
 	void guardarOpinion(OpinionVO opinionVO);
 	
-	List<OpinionVO> obtenerOpiniones();
+	List<OpinionVO> obtenerListaOpinionesVO();
 }

@@ -8,5 +8,5 @@ public interface SalidasService {
 
 	void crearSalida(SalidaVO salidaVO);
 	
-	List<SalidaVO> obteneroSalidasVO();
+	List<SalidaVO> obtenerListaSalidasVO();
 }

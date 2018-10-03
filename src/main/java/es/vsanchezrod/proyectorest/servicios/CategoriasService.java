@@ -8,7 +8,7 @@ public interface CategoriasService {
 
 	void crearCategoria(CategoriaVO categoriaVO);
 	
-	List<CategoriaVO> obtenerCategoriasVO();
+	List<CategoriaVO> obtenerListaCategoriasVO();
 	
 	void borrarCategoria(String id);
 	

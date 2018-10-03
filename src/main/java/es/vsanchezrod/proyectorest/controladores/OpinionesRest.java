@@ -29,7 +29,7 @@ public class OpinionesRest {
 	@RequestMapping(value = "/public/opiniones", method = RequestMethod.GET)
 	public List<OpinionVO> obtenerOpiniones(){
 		
-		return opinionesService.obtenerOpiniones();
+		return opinionesService.obtenerListaOpinionesVO();
 	}
 	
 	

@@ -38,4 +38,14 @@ public class InteresesConverter {
 		return listaInteresesVO;
 	}
 	
+	public List<Interes> convertirListaInteresesVOAListaIntereses(List<InteresVO> interesesVO) {
+		List<Interes> listaIntereses = new ArrayList<Interes>();
+		
+		for (InteresVO interesVO : interesesVO ) {
+			listaIntereses.add(convertirInteresVOAInteres(interesVO));
+		}
+		
+		return listaIntereses;
+	}
+	
 }

@@ -29,7 +29,7 @@ public class ProvinciasServiceImpl implements ProvinciasService {
 	}
 	
 	@Override
-	public List<ProvinciaVO> obtenerProvincias() {
+	public List<ProvinciaVO> obtenerListaProvincias() {
 			
 		List<Provincia> listaProvincias = provinciasRepository.obtenerProvincias();
 		

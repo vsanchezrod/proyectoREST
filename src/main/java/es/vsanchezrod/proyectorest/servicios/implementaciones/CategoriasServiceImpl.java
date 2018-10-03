@@ -27,7 +27,7 @@ public class CategoriasServiceImpl implements CategoriasService {
 	}
 		
 	@Override
-	public List<CategoriaVO> obtenerCategoriasVO() {
+	public List<CategoriaVO> obtenerListaCategoriasVO() {
 		
 		return this.categoriasConverter.convertirListaCategoriasAListaCategoriasVO(this.categoriasRepository.findAll());
 	

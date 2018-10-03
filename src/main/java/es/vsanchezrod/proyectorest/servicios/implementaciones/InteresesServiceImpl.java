@@ -36,7 +36,7 @@ public class InteresesServiceImpl implements InteresesService {
 	}
 
 	@Override
-	public List<InteresVO> obtenerInteresesVO() {
+	public List<InteresVO> obtenerListaInteresesVO() {
 		// Recupera de la base de datos una lista de intereses y la convierte a InteresVO
 		
 		return this.interesesConverter.convertirListaInteresesAListaInteresesVO((interesesRepository.findAll()));

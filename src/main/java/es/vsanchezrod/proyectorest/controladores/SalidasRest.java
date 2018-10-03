@@ -22,7 +22,7 @@ public class SalidasRest {
 	@RequestMapping(value = "/public/salidas", method = RequestMethod.GET)
 	public List<SalidaVO> obtenerListaSalidasVO () {
 		
-		return salidasService.obteneroSalidasVO();
+		return salidasService.obtenerListaSalidasVO();
 	}
 
 	@RequestMapping(value = "/public/salidas", method = RequestMethod.POST)

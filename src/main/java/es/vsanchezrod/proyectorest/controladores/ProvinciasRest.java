@@ -27,6 +27,6 @@ public class ProvinciasRest {
 	@RequestMapping(value = "/public/provincias", method = RequestMethod.GET)
 	public List<ProvinciaVO> obtenerProvincias() {
 		
-		return provinciasService.obtenerProvincias();
+		return provinciasService.obtenerListaProvincias();
 	}
 }
