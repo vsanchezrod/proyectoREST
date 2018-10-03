@@ -2,6 +2,11 @@ package es.vsanchezrod.proyectorest.persistencia.modelos;
 
 import java.util.Date;
 
+import java.util.List;
+
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document(collection = "Viajes")
 public class Viaje extends Actividad {
 
 	private Date fechaFin;
@@ -12,8 +17,12 @@ public class Viaje extends Actividad {
 		super();
 	}
 	
-	public Viaje(Date fechaFin, int precio, int plazas) {
-		super();
+	public Viaje(String id, String nombre, List<Categoria> categorias, String descripcion, 
+			int nivel, int distancia, Date fechaInicio, String imagen,
+			Coordenada coordenadas, String idUsuarioCreacion, Date fechaFin, int precio, int plazas) {
+		
+		super(id, nombre, categorias, descripcion, nivel, distancia, fechaInicio, imagen,coordenadas, idUsuarioCreacion);
+		
 		this.fechaFin = fechaFin;
 		this.precio = precio;
 		this.plazas = plazas;
