@@ -21,6 +21,7 @@ public class Usuario {
 	private String sexo;
 	private Provincia provincia;
 	private String avatar;
+	private String info;
 	private List<Interes> intereses;
 	private boolean terminos;
 	private int valoracion;
@@ -29,7 +30,7 @@ public class Usuario {
 	public Usuario() {}
 	
 	public Usuario(String id, String nombre, String apellido, String email, String password, Date fechaNacimiento, String sexo, 
-				   Provincia provincia, String avatar, List<Interes> intereses, boolean terminos, int valoracion, List<Rol> roles) {
+				   Provincia provincia, String avatar, String info, List<Interes> intereses, boolean terminos, int valoracion, List<Rol> roles) {
 		
 		this.id = id;
 		this.nombre = nombre;
@@ -40,6 +41,7 @@ public class Usuario {
 		this.sexo = sexo;
 		this.provincia = provincia;
 		this.avatar = avatar;
+		this.info = info;
 		this.intereses = intereses;
 		this.terminos = terminos;
 		this.valoracion = valoracion;
@@ -119,6 +121,14 @@ public class Usuario {
 		this.avatar = avatar;
 	}
 
+	public String getInfo() {
+		return info;
+	}
+
+	public void setInfo(String info) {
+		this.info = info;
+	}
+	
 	public List<Interes> getIntereses() {
 		return intereses;
 	}

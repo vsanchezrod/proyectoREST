@@ -16,6 +16,7 @@ public class UsuarioVO {
 	private String sexo;
 	private ProvinciaVO provincia;
 	private String avatar;
+	private String info;
 	private List<InteresVO> intereses;
 	private boolean terminos;
 	private int valoracion;
@@ -24,7 +25,7 @@ public class UsuarioVO {
 	public UsuarioVO() {}
 	
 	public UsuarioVO(String id, String nombre, String apellido, String email, String password, Date fechaNacimiento, String sexo, 
-					 ProvinciaVO provincia, String avatar, List<InteresVO> intereses, boolean terminos, int valoracion, List<Rol> roles) {
+					 ProvinciaVO provincia, String avatar, String info, List<InteresVO> intereses, boolean terminos, int valoracion, List<Rol> roles) {
 		
 		this.id = id;
 		this.nombre = nombre;
@@ -35,6 +36,7 @@ public class UsuarioVO {
 		this.sexo = sexo;
 		this.provincia = provincia;
 		this.avatar = avatar;
+		this.info = info;
 		this.intereses = intereses;
 		this.terminos = terminos;
 		this.valoracion = valoracion;
@@ -114,6 +116,14 @@ public class UsuarioVO {
 		this.avatar = avatar;
 	}
 	
+	public String getInfo() {
+		return info;
+	}
+
+	public void setInfo(String info) {
+		this.info = info;
+	}
+	
 	public List<InteresVO> getIntereses() {
 		return intereses;
 	}
@@ -150,8 +160,8 @@ public class UsuarioVO {
 	public String toString() {
 		return "UsuarioVO [id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", email=" + email
 				+ ", password=" + password + ", fechaNacimiento=" + fechaNacimiento + ", sexo=" + sexo + ", provincia="
-				+ provincia + ", avatar=" + avatar + ", intereses=" + intereses + ", terminos=" + terminos
-				+ ", valoracion=" + valoracion + ", roles=" + roles + "]";
+				+ provincia + ", avatar=" + avatar + ", info=" + info + ", intereses=" + intereses + ", terminos="
+				+ terminos + ", valoracion=" + valoracion + ", roles=" + roles + "]";
 	}
 	
 }
