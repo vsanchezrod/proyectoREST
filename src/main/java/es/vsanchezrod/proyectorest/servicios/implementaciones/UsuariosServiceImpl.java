@@ -27,13 +27,12 @@ public class UsuariosServiceImpl implements UsuariosService {
 
 	@Override
 	public void crearUsuario(UsuarioVO usuarioVO) {
-		//this.usuariosRepository.save(this.usuariosConverter.convertirUsuarioVOAUsuario(usuarioVO));
+		this.usuariosRepository.save(this.usuariosConverter.convertirUsuarioVOAUsuario(usuarioVO));
 		
 	}
 	
 	public UsuarioVO buscarUsuarioPorNombre(String nombre) {
-		return null;
-		//return this.usuariosConverter.convertirUsuarioAUsuarioVO(this.usuariosRepository.findByNombre(nombre));
+		return this.usuariosConverter.convertirUsuarioAUsuarioVO(this.usuariosRepository.findByNombre(nombre));
 	}
 	
 
