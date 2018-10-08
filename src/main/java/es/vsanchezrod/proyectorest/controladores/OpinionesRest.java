@@ -23,13 +23,13 @@ public class OpinionesRest {
 	@ResponseStatus(HttpStatus.CREATED)
 	public void guardarOpinion(@RequestBody OpinionVO opinionVO) {
 	
-		opinionesService.guardarOpinion(opinionVO);
+		this.opinionesService.guardarOpinion(opinionVO);
 	}
 	
 	@RequestMapping(value = "/public/opiniones", method = RequestMethod.GET)
 	public List<OpinionVO> obtenerOpiniones(){
 		
-		return opinionesService.obtenerListaOpinionesVO();
+		return this.opinionesService.obtenerListaOpinionesVO();
 	}
 	
 	
