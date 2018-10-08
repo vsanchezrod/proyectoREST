@@ -41,19 +41,6 @@ public class ProvinciasRest {
 		
 		/*List<Provincia> provincias = new ArrayList<>();
 		
-		provincias.add(new Provincia (2, "Albacete"));
-		provincias.add(new Provincia (3, "Alicante/Alacant"));
-		provincias.add(new Provincia (4, "Almería"));
-		provincias.add(new Provincia (1, "Araba/Álava"));
-		provincias.add(new Provincia (33, "Asturias"));
-		provincias.add(new Provincia (5, "Ávila"));
-		provincias.add(new Provincia (6, "Badajoz"));
-		provincias.add(new Provincia (7, "Balears, Illes"));
-		provincias.add(new Provincia (8, "Barcelona"));
-		provincias.add(new Provincia (48, "Bizkaia"));
-		provincias.add(new Provincia (9, "Burgos"));
-		provincias.add(new Provincia (10, "Cáceres"));
-		provincias.add(new Provincia (11, "Cádiz"));
 		provincias.add(new Provincia (39, "Cantabria"));
 		provincias.add(new Provincia (12, "Castellón/Castelló"));
 		provincias.add(new Provincia (13, "Ciudad Real"));
