@@ -1,6 +1,5 @@
 package es.vsanchezrod.proyectorest.servicios.implementaciones;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,14 +21,14 @@ public class ViajesServiceImpl implements ViajesService {
 	
 	@Override
 	public List<ViajeVO> obtenerListaViajesVO() {
-		return new ArrayList<>();
-		//return this.viajesConverter.convertirListaViajessAListaViajesVO(this.viajesRepository.findAll());
+		
+		return this.viajesConverter.convertirListaViajessAListaViajesVO(this.viajesRepository.findAll());
 	}
 
 	@Override
 	public void crearViaje(ViajeVO viajeVO) {
 		
-		//this.viajesRepository.save(this.viajesConverter.convertirViajeVOAViaje(viajeVO));
+		this.viajesRepository.save(this.viajesConverter.convertirViajeVOAViaje(viajeVO));
 		
 	}
 

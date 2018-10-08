@@ -1,20 +1,19 @@
 package es.vsanchezrod.proyectorest.servicios.vo;
 
 import java.util.Date;
-import java.util.List;
 
-import es.vsanchezrod.proyectorest.persistencia.modelos.Coordenada;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 public class ViajeVO extends ActividadVO {
 
 	private Date fechaFin;
 	private int precio;
 	private int plazas;
-	private int plazasLibres;
 	
-	public ViajeVO() {}
-	
-	
+	public ViajeVO() {
+		super();
+	}
+		
 	public Date getFechaFin() {
 		return fechaFin;	
 	}
@@ -38,19 +37,10 @@ public class ViajeVO extends ActividadVO {
 	public void setPlazas(int plazas) {
 		this.plazas = plazas;
 	}
-		
-	public int getPlazasLibres() {
-		return plazasLibres;
-	}
-
-	public void setPlazasLibres(int plazasLibres) {
-		this.plazasLibres = plazasLibres;
-	}
 
 	@Override
 	public String toString() {
-		return "ViajeVO [fechaFin=" + fechaFin + ", precio=" + precio + ", plazas=" + plazas + ", plazasLibres="
-				+ plazasLibres + "]";
+		return ToStringBuilder.reflectionToString(this);
 	}
 
 }
