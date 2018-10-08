@@ -7,7 +7,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import es.vsanchezrod.proyectorest.persistencia.modelos.Provincia;
 import es.vsanchezrod.proyectorest.persistencia.repositorios.ProvinciasRepository;
 import es.vsanchezrod.proyectorest.servicios.ProvinciasService;
 import es.vsanchezrod.proyectorest.servicios.conversores.ProvinciasConverter;
@@ -31,9 +30,7 @@ public class ProvinciasServiceImpl implements ProvinciasService {
 	@Override
 	public List<ProvinciaVO> obtenerListaProvincias() {
 			
-		List<Provincia> listaProvincias = provinciasRepository.obtenerProvincias();
-		
-		return provinciasConverter.convertirListaProvinciaAListaProvinciaVO(listaProvincias);
+		return this.provinciasConverter.convertirListaProvinciaAListaProvinciaVO(this.provinciasRepository.findAll());
 	}
 	
 }

@@ -13,49 +13,56 @@ import es.vsanchezrod.proyectorest.servicios.vo.UsuarioVO;
 public class UsuariosConverter {
 	
 	@Autowired
-	private InteresesConverter interesesConverter;
+	private ProvinciasConverter provinciasConverter;
 	
 	@Autowired
-	private ProvinciasConverter provinciasConverter;
+	private ActividadCategoriasConverter actividadCategoriaConverter;
+	
+	@Autowired
+	private RolesConverter rolesConverter;
 
 	public Usuario convertirUsuarioVOAUsuario(UsuarioVO usuarioVO) {
-		return new Usuario(
-				usuarioVO.getId(),
-				usuarioVO.getNombre(),
-				usuarioVO.getApellido(),
-				usuarioVO.getEmail(),
-				usuarioVO.getPassword(),
-				usuarioVO.getFechaNacimiento(),
-				usuarioVO.getSexo(),
-				this.provinciasConverter.convertirProvinciaVOAProvincia(usuarioVO.getProvincia()),
-				usuarioVO.getAvatar(),
-				usuarioVO.getInfo(),
-				this.interesesConverter.convertirListaInteresesVOAListaIntereses(usuarioVO.getIntereses()),
-				usuarioVO.getTerminos(),
-				usuarioVO.getValoracion(),
-				usuarioVO.getRoles()
-		);
+		Usuario usuario = new Usuario();
+		
+		usuario.setId(usuarioVO.getId());
+		usuario.setNombre(usuarioVO.getNombre());
+		usuario.setApellido(usuarioVO.getApellido());
+		usuario.setEmail(usuarioVO.getEmail());
+		usuario.setPassword(usuarioVO.getPassword());
+		usuario.setFechaNacimiento(usuarioVO.getFechaNacimiento());
+		usuario.setSexo(usuarioVO.getSexo());
+		usuario.setProvincia(this.provinciasConverter.convertirProvinciaVOAProvincia(usuarioVO.getProvincia()));
+		usuario.setAvatar(usuarioVO.getAvatar());
+		usuario.setInfo(usuarioVO.getInfo());
+		usuario.setIntereses(this.actividadCategoriaConverter.convertirListaActividadCategoriasVOAListaActividadCategorias(usuarioVO.getIntereses()));
+		usuario.setTerminos(usuarioVO.getTerminos());
+		usuario.setValoracion(usuarioVO.getValoracion());
+		usuario.setRoles(this.rolesConverter.convertirListaRolVOAListaRol(usuarioVO.getRoles()));
+		
+		return usuario;
 	}
 	
 	public UsuarioVO convertirUsuarioAUsuarioVO(Usuario usuario) {
+	UsuarioVO usuarioVO = new UsuarioVO();
 		
-		return new UsuarioVO(
-				usuario.getId(),
-				usuario.getNombre(),
-				usuario.getApellido(),
-				usuario.getEmail(),
-				usuario.getPassword(),
-				usuario.getFechaNacimiento(),
-				usuario.getSexo(),
-				this.provinciasConverter.convertirProvinciaAProvinciaVO(usuario.getProvincia()),
-				usuario.getAvatar(),
-				usuario.getInfo(),
-				this.interesesConverter.convertirListaInteresesAListaInteresesVO(usuario.getIntereses()),
-				usuario.getTerminos(),
-				usuario.getValoracion(),
-				usuario.getRoles()
-		);
+		usuarioVO.setId(usuario.getId());
+		usuarioVO.setNombre(usuario.getNombre());
+		usuarioVO.setApellido(usuario.getApellido());
+		usuarioVO.setEmail(usuario.getEmail());
+		usuarioVO.setPassword(usuario.getPassword());
+		usuarioVO.setFechaNacimiento(usuario.getFechaNacimiento());
+		usuarioVO.setSexo(usuario.getSexo());
+		usuarioVO.setProvincia(this.provinciasConverter.convertirProvinciaAProvinciaVO(usuario.getProvincia()));
+		usuarioVO.setAvatar(usuario.getAvatar());
+		usuarioVO.setInfo(usuario.getInfo());
+		usuarioVO.setIntereses(this.actividadCategoriaConverter.convertirListaActividadCategoriasAListaActividadCategoriasVO(usuario.getIntereses()));	
+		usuarioVO.setTerminos(usuario.getTerminos());
+		usuarioVO.setValoracion(usuario.getValoracion());
+		usuarioVO.setRoles(this.rolesConverter.convertirListaRolAListaRolVO(usuario.getRoles()));
 		
+			
+		return usuarioVO;
+
 	}
 	
 	public List<UsuarioVO> convertirListaUsuariosAListaUsuariosVO(List<Usuario> usuarios) {

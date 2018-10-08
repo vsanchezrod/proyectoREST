@@ -1,32 +1,19 @@
-package es.vsanchezrod.proyectorest.persistencia.modelos;
+package es.vsanchezrod.proyectorest.servicios.vo;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "Provincias")
-public class Provincia {
+public class ActividadCategoriaVO {
 
-	@Id
 	private String id;
-	private int codigo;
 	private String nombre;
-		
+	
 	public String getId() {
 		return id;
 	}
 
 	public void setId(String id) {
 		this.id = id;
-	}
-
-	public int getCodigo() {
-		return codigo;
-	}
-
-	public void setCodigo(int codigo) {
-		this.codigo = codigo;
 	}
 
 	public String getNombre() {

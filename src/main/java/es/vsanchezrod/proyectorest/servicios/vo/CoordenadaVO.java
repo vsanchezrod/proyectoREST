@@ -5,11 +5,6 @@ public class CoordenadaVO {
 	private int latitud;
 	private int longitud;
 	
-	public CoordenadaVO (int latitud, int longitud) {
-		this.latitud = latitud;
-		this.longitud = longitud;
-	}
-
 	public int getLatitud() {
 		return latitud;
 	}

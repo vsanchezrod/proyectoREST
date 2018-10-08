@@ -2,33 +2,24 @@ package es.vsanchezrod.proyectorest.servicios.vo;
 
 import java.util.Date;
 
-import es.vsanchezrod.proyectorest.persistencia.modelos.Usuario;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 
 public class OpinionVO {
 
 	private String id;
-	private Object actividad;
+	private OpinionActividadVO actividad; // id, nombre act y lista categorias
 	private String titulo;
 	private String detalle;
 	private Date fecha;
 	private int organizacionValoracion;
 	private int ambienteValoracion;
-	private int recorridoValoracion;
-	private Usuario usuario;
+	private int recorridoValoracion;	
+	private OpinionUsuarioVO usuario; // id, nombre y avatar
 
-	public OpinionVO() {}
-	
-	public OpinionVO(String id, Object actividad, String titulo, String detalle,Date fecha, int organizacion, int ambiente, int recorrido, Usuario usuario) {
-		
-		this.id = id;
-		this.actividad = actividad;
-		this.titulo = titulo;
-		this.detalle = detalle;
-		this.fecha = new Date();
-		this.organizacionValoracion = organizacion;
-		this.ambienteValoracion = ambiente;
-		this.recorridoValoracion = recorrido;
-		this.usuario = usuario;
+	public OpinionVO() {
+		this.actividad = new OpinionActividadVO();
+		this.usuario = new OpinionUsuarioVO();
 	}
 	
 	public String getId() {
@@ -39,30 +30,30 @@ public class OpinionVO {
 		this.id = id;
 	}
 
-	public Object getActividad() {
+	public OpinionActividadVO getActividad() {
 		return actividad;
 	}
-	
-	public void setActividad(Object actividad) {
+
+	public void setActividad(OpinionActividadVO actividad) {
 		this.actividad = actividad;
 	}
-	
+
 	public String getTitulo() {
 		return titulo;
 	}
-	
+
 	public void setTitulo(String titulo) {
 		this.titulo = titulo;
 	}
-	
+
 	public String getDetalle() {
 		return detalle;
 	}
-	
+
 	public void setDetalle(String detalle) {
 		this.detalle = detalle;
 	}
-	
+
 	public Date getFecha() {
 		return fecha;
 	}
@@ -70,23 +61,23 @@ public class OpinionVO {
 	public void setFecha(Date fecha) {
 		this.fecha = fecha;
 	}
-	
+
 	public int getOrganizacionValoracion() {
 		return organizacionValoracion;
 	}
-	
+
 	public void setOrganizacionValoracion(int organizacionValoracion) {
 		this.organizacionValoracion = organizacionValoracion;
 	}
-	
+
 	public int getAmbienteValoracion() {
 		return ambienteValoracion;
 	}
-	
+
 	public void setAmbienteValoracion(int ambienteValoracion) {
 		this.ambienteValoracion = ambienteValoracion;
 	}
-	
+
 	public int getRecorridoValoracion() {
 		return recorridoValoracion;
 	}
@@ -95,19 +86,16 @@ public class OpinionVO {
 		this.recorridoValoracion = recorridoValoracion;
 	}
 
-	public Usuario getUsuario() {
+	public OpinionUsuarioVO getOpinionUsuario() {
 		return usuario;
 	}
 
-	public void setUsuario(Usuario usuario) {
+	public void setOpinionUsuario(OpinionUsuarioVO usuario) {
 		this.usuario = usuario;
 	}
 
 	@Override
 	public String toString() {
-		return "OpinionVO [id=" + id + ", actividad=" + actividad + ", titulo=" + titulo + ", detalle=" + detalle
-				+ ", fecha=" + fecha + ", organizacionValoracion=" + organizacionValoracion + ", ambienteValoracion="
-				+ ambienteValoracion + ", recorridoValoracion=" + recorridoValoracion + ", usuario=" + usuario + "]";
+		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
 	}
-	
 }

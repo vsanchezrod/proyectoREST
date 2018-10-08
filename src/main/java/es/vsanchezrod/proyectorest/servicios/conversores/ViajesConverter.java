@@ -11,7 +11,7 @@ import es.vsanchezrod.proyectorest.servicios.vo.ViajeVO;
 
 @Component
 public class ViajesConverter {
-	
+	/*
 	@Autowired
 	private CategoriasConverter categoriasConverter;
 
@@ -60,6 +60,5 @@ public class ViajesConverter {
 		
 		return listaViajesVO;
 	}
-	
-	
+*/	
 }

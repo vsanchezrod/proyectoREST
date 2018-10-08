@@ -20,11 +20,25 @@ public class ProvinciasConverter {
 	}
 		
 	public ProvinciaVO convertirProvinciaAProvinciaVO(Provincia provincia) {
-		return new ProvinciaVO(provincia.getCodigo(), provincia.getNombre());
+		
+		ProvinciaVO provinciaVO = new ProvinciaVO();
+		
+		provinciaVO.setId(provincia.getId());
+		provinciaVO.setCodigo(provincia.getCodigo());
+		provinciaVO.setNombre(provincia.getNombre());
+		
+		return provinciaVO;
 	}
 	
 	public Provincia convertirProvinciaVOAProvincia(ProvinciaVO provinciaVO) {
-		return new Provincia(provinciaVO.getCodigo(), provinciaVO.getNombre());
+		
+		Provincia provincia = new Provincia();
+		
+		provincia.setId(provinciaVO.getId());
+		provincia.setCodigo(provinciaVO.getCodigo());
+		provincia.setNombre(provinciaVO.getNombre());
+		
+		return provincia;
 	}
 	
 	public List<ProvinciaVO> convertirListaProvinciaAListaProvinciaVO(List<Provincia> listaProvincia){

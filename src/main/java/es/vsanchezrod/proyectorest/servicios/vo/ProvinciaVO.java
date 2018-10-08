@@ -1,15 +1,20 @@
 package es.vsanchezrod.proyectorest.servicios.vo;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
 public class ProvinciaVO {
 
+	private String id;
 	private int codigo;
 	private String nombre;
 	
-	public ProvinciaVO() {}
-	
-	public ProvinciaVO (int codigo, String nombre) {
-		this.codigo = codigo;
-		this.nombre = nombre;
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public int getCodigo() {
@@ -30,7 +35,7 @@ public class ProvinciaVO {
 
 	@Override
 	public String toString() {
-		return "ProvinciaVO [codigo=" + codigo + ", nombre=" + nombre + "]";
+		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
 	}
 	
 	

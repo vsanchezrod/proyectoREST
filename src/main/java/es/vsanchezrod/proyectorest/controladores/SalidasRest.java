@@ -15,7 +15,7 @@ import es.vsanchezrod.proyectorest.servicios.vo.SalidaVO;
 
 @RestController
 public class SalidasRest {
-
+/*
 	@Autowired
 	private SalidasService salidasService;
 
@@ -33,5 +33,5 @@ public class SalidasRest {
 		
 		salidasService.crearSalida(salidaVO);
 	}
-	
+	*/
 }

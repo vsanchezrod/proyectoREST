@@ -1,20 +1,14 @@
 package es.vsanchezrod.proyectorest.servicios.vo;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
 public class CategoriaVO {
 
 	private String id;
 	private String nombre;
 	private String descripcion;
 	private String imagen;
-	
-	public CategoriaVO() {}
-	
-	public CategoriaVO(String id, String nombre, String descripcion, String imagen) {
-		this.id = id;
-		this.nombre = nombre;
-		this.descripcion = descripcion;
-		this.imagen = imagen;
-	}
 
 	public String getId() {
 		return id;
@@ -50,8 +44,7 @@ public class CategoriaVO {
 
 	@Override
 	public String toString() {
-		return "CategoriaVO [id=" + id + ", nombre=" + nombre + ", descripcion=" + descripcion + ", imagen=" + imagen
-				+ "]";
+		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
 	}
 	
 }

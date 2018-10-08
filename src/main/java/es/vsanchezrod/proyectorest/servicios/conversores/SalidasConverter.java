@@ -6,12 +6,12 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import es.vsanchezrod.proyectorest.persistencia.modelos.Salida;
+//import es.vsanchezrod.proyectorest.persistencia.modelos.Salida;
 import es.vsanchezrod.proyectorest.servicios.vo.SalidaVO;
 
 @Component
 public class SalidasConverter {
-
+/*
 	@Autowired
 	public CategoriasConverter categoriasConverter;
 	
@@ -54,4 +54,5 @@ public class SalidasConverter {
 		
 		return listaSalidasVO;
 	}
+	*/
 }

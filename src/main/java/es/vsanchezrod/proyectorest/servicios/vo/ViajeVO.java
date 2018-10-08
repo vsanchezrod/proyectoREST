@@ -10,19 +10,11 @@ public class ViajeVO extends ActividadVO {
 	private Date fechaFin;
 	private int precio;
 	private int plazas;
+	private int plazasLibres;
 	
 	public ViajeVO() {}
 	
-	public ViajeVO(String id, String nombre, List<CategoriaVO> categorias, String descripcion, 
-			int nivel, int distancia, Date fechaInicio, String imagen,
-			Coordenada coordenadas, String idUsuarioCreacion, Date fechaFin, int precio, int plazas) {
-		
-		super(id, nombre, categorias, descripcion, nivel, distancia, fechaInicio, imagen, coordenadas, idUsuarioCreacion);
-		this.fechaFin = fechaFin;
-		this.precio = precio;
-		this.plazas = plazas;
-	}
-
+	
 	public Date getFechaFin() {
 		return fechaFin;	
 	}
@@ -46,11 +38,19 @@ public class ViajeVO extends ActividadVO {
 	public void setPlazas(int plazas) {
 		this.plazas = plazas;
 	}
+		
+	public int getPlazasLibres() {
+		return plazasLibres;
+	}
+
+	public void setPlazasLibres(int plazasLibres) {
+		this.plazasLibres = plazasLibres;
+	}
 
 	@Override
 	public String toString() {
-		return "ViajeVO [fechaFin=" + fechaFin + ", precio=" + precio + ", plazas=" + plazas + "]";
+		return "ViajeVO [fechaFin=" + fechaFin + ", precio=" + precio + ", plazas=" + plazas + ", plazasLibres="
+				+ plazasLibres + "]";
 	}
-	
-		
+
 }

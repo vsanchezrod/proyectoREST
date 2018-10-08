@@ -1,7 +1,11 @@
 package es.vsanchezrod.proyectorest.servicios.vo;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 
 import es.vsanchezrod.proyectorest.persistencia.modelos.Coordenada;
 
@@ -9,32 +13,20 @@ public class ActividadVO {
 
 	private String id;
 	private String nombre;
-	private List<CategoriaVO> categorias;
+	private List<ActividadCategoriaVO> categorias; // id y nombre
 	private String descripcion;
 	private int nivel;
 	private int distancia;
 	private Date fechaInicio;
 	private String imagen;
 	private Coordenada coordenadas;
-	private String idUsuarioCreacion;
+	private String idUsuarioCreacion;  // solo la id
+	private List<String> listaParticipantes; // id de los usuarios
+	private int puntuacion;
 		
-	public ActividadVO() {}
-	
-	public ActividadVO(
-			String id, String nombre, List<CategoriaVO> categorias, String descripcion, 
-			int nivel, int distancia, Date fechaInicio, String imagen,
-			Coordenada coordenadas, String idUsuarioCreacion) {
-		
-		this.id = id;
-		this.nombre = nombre;
-		this.categorias = categorias;
-		this.descripcion = descripcion;
-		this.nivel = nivel;
-		this.distancia = distancia;
-		this.fechaInicio = fechaInicio;
-		this.imagen = imagen;
-		this.coordenadas = coordenadas;
-		this.idUsuarioCreacion = idUsuarioCreacion;
+	public ActividadVO () {
+		this.categorias = new ArrayList<>();
+		this.listaParticipantes = new ArrayList<>();
 	}
 
 	public String getId() {
@@ -53,11 +45,11 @@ public class ActividadVO {
 		this.nombre = nombre;
 	}
 
-	public List<CategoriaVO> getCategorias() {
+	public List<ActividadCategoriaVO> getCategorias() {
 		return categorias;
 	}
 
-	public void setCategorias(List<CategoriaVO> categorias) {
+	public void setCategorias(List<ActividadCategoriaVO> categorias) {
 		this.categorias = categorias;
 	}
 
@@ -117,12 +109,25 @@ public class ActividadVO {
 		this.idUsuarioCreacion = idUsuarioCreacion;
 	}
 
+	public List<String> getListaParticipantes() {
+		return listaParticipantes;
+	}
+
+	public void setListaParticipantes(List<String> listaParticipantes) {
+		this.listaParticipantes = listaParticipantes;
+	}
+
+	public int getPuntuacion() {
+		return puntuacion;
+	}
+
+	public void setPuntuacion(int puntuacion) {
+		this.puntuacion = puntuacion;
+	}
+	
 	@Override
 	public String toString() {
-		return "ActividadVO [id=" + id + ", nombre=" + nombre + ", categorias=" + categorias + ", descripcion="
-				+ descripcion + ", nivel=" + nivel + ", distancia=" + distancia + ", fechaInicio=" + fechaInicio
-				+ ", imagen=" + imagen + ", coordenadas=" + coordenadas + ", idUsuarioCreacion=" + idUsuarioCreacion
-				+ "]";
+		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
 	}
 	
 }

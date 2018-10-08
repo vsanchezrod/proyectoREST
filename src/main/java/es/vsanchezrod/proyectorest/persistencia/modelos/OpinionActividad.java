@@ -1,45 +1,50 @@
 package es.vsanchezrod.proyectorest.persistencia.modelos;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "Provincias")
-public class Provincia {
+public class OpinionActividad {
 
-	@Id
 	private String id;
-	private int codigo;
 	private String nombre;
-		
+	private List<ActividadCategoria> categorias;
+	
+	public OpinionActividad() {
+		this.categorias = new ArrayList<>();
+	}
+	
 	public String getId() {
 		return id;
 	}
-
+	
 	public void setId(String id) {
 		this.id = id;
 	}
-
-	public int getCodigo() {
-		return codigo;
-	}
-
-	public void setCodigo(int codigo) {
-		this.codigo = codigo;
-	}
-
+	
 	public String getNombre() {
 		return nombre;
 	}
-
+	
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
+	}
+	
+	public List<ActividadCategoria> getCategorias() {
+		return categorias;
+	}
+	
+	public void setCategorias(List<ActividadCategoria> categorias) {
+		this.categorias = categorias;
 	}
 
 	@Override
 	public String toString() {
 		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
 	}
+	
+	
 	
 }

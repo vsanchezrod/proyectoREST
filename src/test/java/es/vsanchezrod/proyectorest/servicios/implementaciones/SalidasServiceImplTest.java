@@ -7,13 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import es.vsanchezrod.proyectorest.persistencia.modelos.Salida;
-import es.vsanchezrod.proyectorest.persistencia.repositorios.SalidasRepository;
+//import es.vsanchezrod.proyectorest.persistencia.modelos.Salida;
+//import es.vsanchezrod.proyectorest.persistencia.repositorios.SalidasRepository;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class SalidasServiceImplTest {
-	
+	/*
 	@Autowired
 	private SalidasRepository salidasRepository;
 
@@ -26,6 +26,6 @@ public class SalidasServiceImplTest {
 		
 		salidasRepository.save(salida);
 			
-	}
+	}*/
 
 }

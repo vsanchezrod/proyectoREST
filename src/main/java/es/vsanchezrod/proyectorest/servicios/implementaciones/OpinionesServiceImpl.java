@@ -27,7 +27,6 @@ public class OpinionesServiceImpl implements OpinionesService {
 
 	@Override
 	public List<OpinionVO> obtenerListaOpinionesVO() {
-		
 		return this.opinionesConverter.convertirListaOpinionesAListaOpinionesVO(opinionesRepository.findAll());
 	}
 

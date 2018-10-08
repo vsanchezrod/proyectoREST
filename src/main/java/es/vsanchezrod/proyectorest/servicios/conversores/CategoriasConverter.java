@@ -14,16 +14,30 @@ public class CategoriasConverter {
 	
 	public CategoriaVO convertirCategoriaACategoriaVO(Categoria categoria) {
 		
-		return new CategoriaVO(categoria.getId(), categoria.getNombre(), categoria.getDescripcion(), categoria.getImagen());
+		CategoriaVO categoriaVO = new CategoriaVO();
+		
+		categoriaVO.setId(categoria.getId());
+		categoriaVO.setNombre(categoria.getNombre());
+		categoriaVO.setDescripcion(categoria.getDescripcion());
+		categoriaVO.setImagen(categoria.getImagen());
+				
+		return categoriaVO;
+		
 	}
 	
 	public Categoria convertirCategoriaVOACategoria(CategoriaVO categoriaVO) {
 		
-		return new Categoria(categoriaVO.getId(), categoriaVO.getNombre(), categoriaVO.getDescripcion(), categoriaVO.getImagen());
+		Categoria categoria = new Categoria();
+			
+		categoria.setId(categoriaVO.getId());
+		categoria.setNombre(categoriaVO.getNombre());
+		categoria.setDescripcion(categoriaVO.getDescripcion());
+		categoria.setImagen(categoriaVO.getImagen());
+					
+		return categoria;
+		
 	}
-	
-	
-	
+		
 	public List<CategoriaVO> convertirListaCategoriasAListaCategoriasVO(List<Categoria> listaCategorias){
 	
 		List<CategoriaVO> listaCategoriasVO = new ArrayList<CategoriaVO>();
@@ -47,5 +61,5 @@ public class CategoriasConverter {
 		
 		return listaCategorias;
 	}
-	
+
 }

@@ -1,5 +1,7 @@
 package es.vsanchezrod.proyectorest.persistencia.modelos;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -12,15 +14,6 @@ public class Categoria {
 	private String descripcion;
 	private String imagen;
 	
-	public Categoria() {}
-	
-	public Categoria(String id, String nombre, String descripcion, String imagen) {
-		this.id = id;
-		this.nombre = nombre;
-		this.descripcion = descripcion;
-		this.imagen = imagen;
-	}
-
 	public String getId() {
 		return id;
 	}
@@ -55,8 +48,7 @@ public class Categoria {
 
 	@Override
 	public String toString() {
-		return "Categoria [id=" + id + ", nombre=" + nombre + ", descripcion=" + descripcion + ", imagen=" + imagen
-				+ "]";
+		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
 	}
 
 }

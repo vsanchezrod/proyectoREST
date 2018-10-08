@@ -2,17 +2,21 @@ package es.vsanchezrod.proyectorest.persistencia.modelos;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
+import org.springframework.data.annotation.Id;
 
 public class Rol {
 
+	@Id
+	private String id;
 	private String nombre;
-
 	private String description;
+	
+	public String getId() {
+		return id;
+	}
 
-	public Rol(String nombre, String description) {
-		super();
-		this.nombre = nombre;
-		this.description = description;
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public String getNombre() {
@@ -29,31 +33,6 @@ public class Rol {
 
 	public void setDescription(String description) {
 		this.description = description;
-	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Rol other = (Rol) obj;
-		if (nombre == null) {
-			if (other.nombre != null)
-				return false;
-		} else if (!nombre.equals(other.nombre))
-			return false;
-		return true;
 	}
 
 	@Override

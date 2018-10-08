@@ -32,7 +32,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             throw new UsernameNotFoundException(String.format("El usuario '%s' no existe", username));
         }
 		List<Rol> roles = new ArrayList<>();
-		Rol rolU = new Rol("Rol1", "lalalal");
+		Rol rolU = new Rol();
 		roles.add(rolU);
 		
         usuario.setRoles(roles);

@@ -7,15 +7,32 @@ import es.vsanchezrod.proyectorest.persistencia.modelos.Coordenada;
 
 public class SalidaVO extends ActividadVO {
 	
+	private int puntuacion;
+	private int participantes;
+	
 	public SalidaVO() {
 		super();
 	}
 		
-	public SalidaVO(String id, String nombre, List<CategoriaVO> categorias, String descripcion, 
-			int nivel, int distancia, Date fechaInicio, String imagen,
-			Coordenada coordenadas, String idUsuarioCreacion) {
-		
-		super(id, nombre, categorias, descripcion, nivel, distancia, fechaInicio, imagen, coordenadas, idUsuarioCreacion);
+	public int getPuntuacion() {
+		return puntuacion;
 	}
 
+	public void setPuntuacion(int puntuacion) {
+		this.puntuacion = puntuacion;
+	}
+	
+	public int getParticipantes() {
+		return participantes;
+	}
+
+	public void setParticipantes(int participantes) {
+		this.participantes = participantes;
+	}
+
+	@Override
+	public String toString() {
+		return "SalidaVO [puntuacion=" + puntuacion + ", participantes=" + participantes + "]";
+	}
+		
 }

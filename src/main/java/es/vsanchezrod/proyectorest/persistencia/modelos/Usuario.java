@@ -1,5 +1,6 @@
 package es.vsanchezrod.proyectorest.persistencia.modelos;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -22,33 +23,16 @@ public class Usuario {
 	private Provincia provincia;
 	private String avatar;
 	private String info;
-	private List<Interes> intereses;
+	private List<ActividadCategoria> intereses;  // id y nombre
 	private boolean terminos;
 	private int valoracion;
-	private List<Rol> roles;
+	private List<Rol> roles; // ROL
 
-	public Usuario() {}
-	
-	public Usuario(String id, String nombre, String apellido, String email, String password, Date fechaNacimiento, String sexo, 
-				   Provincia provincia, String avatar, String info, List<Interes> intereses, boolean terminos, int valoracion, List<Rol> roles) {
-		
-		this.id = id;
-		this.nombre = nombre;
-		this.apellido = apellido;
-		this.email = email;
-		this.password = password;
-		this.fechaNacimiento = fechaNacimiento;
-		this.sexo = sexo;
-		this.provincia = provincia;
-		this.avatar = avatar;
-		this.info = info;
-		this.intereses = intereses;
-		this.terminos = terminos;
-		this.valoracion = valoracion;
-		this.roles = roles;
-				
+	public Usuario() {
+		this.intereses = new ArrayList<>();
+		this.roles = new ArrayList<>();
 	}
-
+		
 	public String getId() {
 		return id;
 	}
@@ -128,12 +112,12 @@ public class Usuario {
 	public void setInfo(String info) {
 		this.info = info;
 	}
-	
-	public List<Interes> getIntereses() {
+
+	public List<ActividadCategoria> getIntereses() {
 		return intereses;
 	}
 
-	public void setIntereses(List<Interes> intereses) {
+	public void setIntereses(List<ActividadCategoria> intereses) {
 		this.intereses = intereses;
 	}
 
