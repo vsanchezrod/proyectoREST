@@ -17,7 +17,8 @@ public class Mensaje {
 	private Date fecha;
 	private String asunto;
 	private String mensaje;
-	
+	private boolean leido;
+
 	public String getId() {
 		return id;
 	}
@@ -66,6 +67,15 @@ public class Mensaje {
 		this.mensaje = mensaje;
 	}
 	
+	
+	public boolean getLeido() {
+		return leido;
+	}
+
+	public void setLeido(boolean leido) {
+		this.leido = leido;
+	}
+
 	@Override
 	public String toString() {
 		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);

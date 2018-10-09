@@ -19,13 +19,13 @@ public class MensajesRest {
 	@RequestMapping(value = "/public/mensajes", method = RequestMethod.GET)
 	public List<MensajeVO> obtenerMensajes(){
 		
-		return mensajesService.obtenerMensajesVO();
+		return this.mensajesService.obtenerMensajesVO();
 	}
 	
 	@RequestMapping(value = "/public/mensajes", method = RequestMethod.POST)
 	public void enviarMensajes(MensajeVO mensajeVO){
 		
-		mensajesService.crearMensaje(mensajeVO);
+		this.mensajesService.crearMensaje(mensajeVO);
 	}
 	
 }

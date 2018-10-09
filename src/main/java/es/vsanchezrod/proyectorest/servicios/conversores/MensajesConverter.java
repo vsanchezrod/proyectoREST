@@ -21,6 +21,7 @@ public class MensajesConverter {
 		mensaje.setFecha(mensajeVO.getFecha());
 		mensaje.setAsunto(mensajeVO.getAsunto());
 		mensaje.setMensaje(mensajeVO.getMensaje());
+		mensaje.setLeido(mensajeVO.getLeido());
 		
 		return mensaje;
 	}
@@ -35,6 +36,7 @@ public class MensajesConverter {
 		mensajeVO.setFecha(mensaje.getFecha());
 		mensajeVO.setAsunto(mensaje.getAsunto());
 		mensajeVO.setMensaje(mensaje.getMensaje());
+		mensajeVO.setLeido(mensaje.getLeido());
 		
 		return mensajeVO;
 	}

@@ -12,4 +12,7 @@ public interface UsuariosRepository extends MongoRepository<Usuario, String>{
 	// Query para buscar usuarios por nombre (finBy + Nombre de la propiedad)
 	Usuario findByNombre(String nombre);
 	
+	// Query para buscar usuario por id (finBy + Nombre de la propiedad)
+	Usuario findById(String id);
+	
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import es.vsanchezrod.proyectorest.persistencia.modelos.Usuario;
 import es.vsanchezrod.proyectorest.persistencia.repositorios.UsuariosRepository;
 import es.vsanchezrod.proyectorest.servicios.UsuariosService;
 import es.vsanchezrod.proyectorest.servicios.conversores.UsuariosConverter;
@@ -31,8 +32,14 @@ public class UsuariosServiceImpl implements UsuariosService {
 		
 	}
 	
-	public UsuarioVO buscarUsuarioPorNombre(String nombre) {
+	/*public UsuarioVO buscarUsuarioPorNombre(String nombre) {
 		return this.usuariosConverter.convertirUsuarioAUsuarioVO(this.usuariosRepository.findByNombre(nombre));
+	}*/
+
+	@Override
+	public UsuarioVO obtenerUsuarioVO(String id) {
+		Usuario usuario = this.usuariosRepository.findById(id);
+		return this.usuariosConverter.convertirUsuarioAUsuarioVO(usuario);
 	}
 	
 
