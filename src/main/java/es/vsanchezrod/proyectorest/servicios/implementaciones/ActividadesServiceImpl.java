@@ -21,14 +21,22 @@ public class ActividadesServiceImpl implements ActividadesService {
 		
 	@Override
 	public void crearActividad(ActividadVO actividadVO) {
-		this.actividadesRepository.save(this.actividadesConverter.convertirActividadVOAActividad(actividadVO));
+		
+		actividadesRepository.save(this.actividadesConverter.convertirActividadVOAActividad(actividadVO));
 		
 	}
 
 	@Override
 	public List<ActividadVO> obtenerListaActividadesVO() {
 		
-		return this.actividadesConverter.convetirListaActividadesAListaActividadesVO(this.actividadesRepository.findAll());
+		return actividadesConverter.convetirListaActividadesAListaActividadesVO(this.actividadesRepository.findAll());
+	}
+
+	@Override
+	public void borrarActividad(String id) {
+		
+		actividadesRepository.delete(id);
+		
 	}
 
 }

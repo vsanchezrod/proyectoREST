@@ -22,20 +22,21 @@ public class CategoriasServiceImpl implements CategoriasService {
 	@Override
 	public void crearCategoria(CategoriaVO categoriaVO) {
 		
-		this.categoriasRepository.save(this.categoriasConverter.convertirCategoriaVOACategoria(categoriaVO));
+		categoriasRepository.save(this.categoriasConverter.convertirCategoriaVOACategoria(categoriaVO));
 		
 	}
 		
 	@Override
 	public List<CategoriaVO> obtenerListaCategoriasVO() {
 		
-		return this.categoriasConverter.convertirListaCategoriasAListaCategoriasVO(this.categoriasRepository.findAll());
+		return categoriasConverter.convertirListaCategoriasAListaCategoriasVO(this.categoriasRepository.findAll());
 	
 	}
 
 	@Override
 	public void borrarCategoria(String id) {
-		this.categoriasRepository.delete(id);;
+		
+		categoriasRepository.delete(id);;
 	}
 
 }

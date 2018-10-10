@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -21,18 +22,21 @@ public class CategoriasRest {
 	
 	@RequestMapping(value = "/public/categorias", method = RequestMethod.GET)
 	public List<CategoriaVO> obtenerCategorias() {
-		return this.categoriasService.obtenerListaCategoriasVO();
+		
+		return categoriasService.obtenerListaCategoriasVO();
 	}
 	
 	@RequestMapping(value = "/public/categorias", method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.CREATED)
 	public void crearCategorias(@RequestBody CategoriaVO categoriaVO) {
-		this.categoriasService.crearCategoria(categoriaVO);
+		
+		categoriasService.crearCategoria(categoriaVO);
 		
 	}
 	
-	@RequestMapping(value = "/public/categorias", method = RequestMethod.DELETE)
-	public void borrarCategoria(String id) {
-		this.categoriasService.borrarCategoria(id);
+	@RequestMapping(value = "/public/categorias/{id}", method = RequestMethod.DELETE)
+	public void borrarCategoria(@PathVariable("id") String id) {
+		
+		categoriasService.borrarCategoria(id);
 	}
 }

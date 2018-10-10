@@ -33,6 +33,9 @@ public class ActividadesRest {
 		actividadesService.crearActividad(actividadVO);
 	}
 	
-	
-	
+	@RequestMapping(value = "public/actividades/{id}", method = RequestMethod.DELETE)
+	public void borrarActividad(@PathVariable("id") String id) {
+		
+		actividadesService.borrarActividad(id);
+	}
 }
