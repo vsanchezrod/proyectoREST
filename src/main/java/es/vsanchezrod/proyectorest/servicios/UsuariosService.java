@@ -10,6 +10,8 @@ public interface UsuariosService {
 	
 	void crearUsuario(UsuarioVO usuario);
 	
-	UsuarioVO obtenerUsuarioVO(String id);
+	UsuarioVO obtenerUsuarioVOPorId(String id);
 	
+	UsuarioVO obtenerUsuarioVOPorNombre(String nombre);
 }
+

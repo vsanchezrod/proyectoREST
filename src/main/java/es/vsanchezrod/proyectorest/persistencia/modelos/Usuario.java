@@ -27,6 +27,7 @@ public class Usuario {
 	private boolean terminos;
 	private int valoracion;
 	private List<Rol> roles; // ROL
+	private List<String> amigos; // id
 
 	public Usuario() {
 		this.intereses = new ArrayList<>();
@@ -143,6 +144,14 @@ public class Usuario {
 
 	public void setRoles(List<Rol> roles) {
 		this.roles = roles;
+	}
+	
+	public List<String> getAmigos() {
+		return amigos;
+	}
+
+	public void setAmigos(List<String> amigos) {
+		this.amigos = amigos;
 	}
 
 	@Override

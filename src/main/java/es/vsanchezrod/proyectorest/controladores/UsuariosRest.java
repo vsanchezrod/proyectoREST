@@ -23,20 +23,25 @@ public class UsuariosRest {
 	@RequestMapping(value = "/public/usuarios", method = RequestMethod.GET)
 	public List<UsuarioVO> obtenerListaUsuarios() {
 		
-		return this.usuariosService.obtenerListaUsuariosVO();
+		return usuariosService.obtenerListaUsuariosVO();
 	}
 	
-	@RequestMapping(value = "/public/usuarios/{id}", method = RequestMethod.GET)
-	public UsuarioVO obtenerUsuario(@PathVariable("id") String id) {
+	/*@RequestMapping(value = "/public/usuarios/{id}", method = RequestMethod.GET)
+	public UsuarioVO obtenerUsuarioPorId(@PathVariable("id") String id) {
 		
-		return this.usuariosService.obtenerUsuarioVO(id);
+		return usuariosService.obtenerUsuarioVOPorId(id);
+	}*/
+	
+	@RequestMapping(value = "/public/usuarios/{nombre}", method = RequestMethod.GET)
+	public UsuarioVO obtenerUsuarioPorNombre(@PathVariable("nombre") String nombre) {
+		return this.usuariosService.obtenerUsuarioVOPorNombre(nombre);
 	}
 	
 	@RequestMapping(value = "/public/usuarios",  method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.CREATED)
 	public void crearUsuarioVO(@RequestBody UsuarioVO usuarioVO) {
 		
-		this.usuariosService.crearUsuario(usuarioVO);
+		usuariosService.crearUsuario(usuarioVO);
 	}
 	
 	

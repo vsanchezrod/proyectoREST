@@ -38,6 +38,7 @@ public class UsuariosConverter {
 		usuario.setTerminos(usuarioVO.getTerminos());
 		usuario.setValoracion(usuarioVO.getValoracion());
 		usuario.setRoles(this.rolesConverter.convertirListaRolVOAListaRol(usuarioVO.getRoles()));
+		usuario.setAmigos(usuarioVO.getAmigos());
 		
 		return usuario;
 	}
@@ -59,7 +60,7 @@ public class UsuariosConverter {
 		usuarioVO.setTerminos(usuario.getTerminos());
 		usuarioVO.setValoracion(usuario.getValoracion());
 		usuarioVO.setRoles(this.rolesConverter.convertirListaRolAListaRolVO(usuario.getRoles()));
-		
+		usuarioVO.setAmigos(usuario.getAmigos());
 			
 		return usuarioVO;
 

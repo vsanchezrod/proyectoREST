@@ -23,6 +23,7 @@ public class UsuarioVO {
 	private boolean terminos;
 	private int valoracion;
 	private List<RolVO> roles; // ROL
+	private List<String> amigos; // id
 	
 	public UsuarioVO() {
 		this.intereses = new ArrayList<>();
@@ -141,6 +142,15 @@ public class UsuarioVO {
 		this.roles = roles;
 	}
 	
+	public List<String> getAmigos() {
+		return amigos;
+	}
+
+	public void setAmigos(List<String> amigos) {
+		this.amigos = amigos;
+	}
+
+	@Override
 	public String toString() {
 		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
 	}

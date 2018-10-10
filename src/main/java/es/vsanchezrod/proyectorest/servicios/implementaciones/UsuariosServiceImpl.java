@@ -32,13 +32,15 @@ public class UsuariosServiceImpl implements UsuariosService {
 		
 	}
 	
-	/*public UsuarioVO buscarUsuarioPorNombre(String nombre) {
-		return this.usuariosConverter.convertirUsuarioAUsuarioVO(this.usuariosRepository.findByNombre(nombre));
-	}*/
+	@Override
+	public UsuarioVO obtenerUsuarioVOPorId(String id) {
+		Usuario usuario = this.usuariosRepository.findById(id);
+		return this.usuariosConverter.convertirUsuarioAUsuarioVO(usuario);
+	}
 
 	@Override
-	public UsuarioVO obtenerUsuarioVO(String id) {
-		Usuario usuario = this.usuariosRepository.findById(id);
+	public UsuarioVO obtenerUsuarioVOPorNombre(String nombre) {
+		Usuario usuario = this.usuariosRepository.findByNombre(nombre);
 		return this.usuariosConverter.convertirUsuarioAUsuarioVO(usuario);
 	}
 	
