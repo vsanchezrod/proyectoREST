@@ -26,7 +26,7 @@ public class Usuario {
 	private List<ActividadCategoria> intereses;  // id y nombre
 	private boolean terminos;
 	private int valoracion;
-	private List<Rol> roles; // ROL
+	private List<String> roles; // ROL
 	private List<String> amigos; // id
 
 	public Usuario() {
@@ -138,11 +138,11 @@ public class Usuario {
 		this.valoracion = valoracion;
 	}
 
-	public List<Rol> getRoles() {
+	public List<String> getRoles() {
 		return roles;
 	}
 
-	public void setRoles(List<Rol> roles) {
+	public void setRoles(List<String> roles) {
 		this.roles = roles;
 	}
 	

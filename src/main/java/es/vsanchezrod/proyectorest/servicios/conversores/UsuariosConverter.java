@@ -17,9 +17,6 @@ public class UsuariosConverter {
 	
 	@Autowired
 	private ActividadCategoriasConverter actividadCategoriaConverter;
-	
-	@Autowired
-	private RolesConverter rolesConverter;
 
 	public Usuario convertirUsuarioVOAUsuario(UsuarioVO usuarioVO) {
 		Usuario usuario = new Usuario();
@@ -31,13 +28,13 @@ public class UsuariosConverter {
 		usuario.setPassword(usuarioVO.getPassword());
 		usuario.setFechaNacimiento(usuarioVO.getFechaNacimiento());
 		usuario.setSexo(usuarioVO.getSexo());
-		usuario.setProvincia(this.provinciasConverter.convertirProvinciaVOAProvincia(usuarioVO.getProvincia()));
+		usuario.setProvincia(provinciasConverter.convertirProvinciaVOAProvincia(usuarioVO.getProvincia()));
 		usuario.setAvatar(usuarioVO.getAvatar());
 		usuario.setInfo(usuarioVO.getInfo());
-		usuario.setIntereses(this.actividadCategoriaConverter.convertirListaActividadCategoriasVOAListaActividadCategorias(usuarioVO.getIntereses()));
+		usuario.setIntereses(actividadCategoriaConverter.convertirListaActividadCategoriasVOAListaActividadCategorias(usuarioVO.getIntereses()));
 		usuario.setTerminos(usuarioVO.getTerminos());
 		usuario.setValoracion(usuarioVO.getValoracion());
-		usuario.setRoles(this.rolesConverter.convertirListaRolVOAListaRol(usuarioVO.getRoles()));
+		usuario.setRoles(usuarioVO.getRoles());
 		usuario.setAmigos(usuarioVO.getAmigos());
 		
 		return usuario;
@@ -53,13 +50,13 @@ public class UsuariosConverter {
 		usuarioVO.setPassword(usuario.getPassword());
 		usuarioVO.setFechaNacimiento(usuario.getFechaNacimiento());
 		usuarioVO.setSexo(usuario.getSexo());
-		usuarioVO.setProvincia(this.provinciasConverter.convertirProvinciaAProvinciaVO(usuario.getProvincia()));
+		usuarioVO.setProvincia(provinciasConverter.convertirProvinciaAProvinciaVO(usuario.getProvincia()));
 		usuarioVO.setAvatar(usuario.getAvatar());
 		usuarioVO.setInfo(usuario.getInfo());
-		usuarioVO.setIntereses(this.actividadCategoriaConverter.convertirListaActividadCategoriasAListaActividadCategoriasVO(usuario.getIntereses()));	
+		usuarioVO.setIntereses(actividadCategoriaConverter.convertirListaActividadCategoriasAListaActividadCategoriasVO(usuario.getIntereses()));	
 		usuarioVO.setTerminos(usuario.getTerminos());
 		usuarioVO.setValoracion(usuario.getValoracion());
-		usuarioVO.setRoles(this.rolesConverter.convertirListaRolAListaRolVO(usuario.getRoles()));
+		usuarioVO.setRoles(usuario.getRoles());
 		usuarioVO.setAmigos(usuario.getAmigos());
 			
 		return usuarioVO;

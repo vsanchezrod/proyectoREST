@@ -22,7 +22,7 @@ public class UsuarioVO {
 	private List<ActividadCategoriaVO> intereses;  // id y nombre
 	private boolean terminos;
 	private int valoracion;
-	private List<RolVO> roles; // ROL
+	private List<String> roles; 
 	private List<String> amigos; // id
 	
 	public UsuarioVO() {
@@ -134,11 +134,11 @@ public class UsuarioVO {
 		this.valoracion = valoracion;
 	}
 
-	public List<RolVO> getRoles() {
+	public List<String> getRoles() {
 		return roles;
 	}
 
-	public void setRoles(List<RolVO> roles) {
+	public void setRoles(List<String> roles) {
 		this.roles = roles;
 	}
 	

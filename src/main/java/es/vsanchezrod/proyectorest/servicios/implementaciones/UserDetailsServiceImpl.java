@@ -12,7 +12,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import es.vsanchezrod.proyectorest.persistencia.modelos.Rol;
 import es.vsanchezrod.proyectorest.persistencia.modelos.Usuario;
 import es.vsanchezrod.proyectorest.persistencia.repositorios.UsuariosRepository;
 
@@ -26,22 +25,18 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
     	
     	// username ==> usuario.email
-    	final Usuario usuario = usuariosRepository.findByEmail(username);
-    	    	
+    	final Usuario usuario = usuariosRepository.findByEmail(username);    	    	
         if(usuario == null) {
             throw new UsernameNotFoundException(String.format("El usuario '%s' no existe", username));
         }
-		List<Rol> roles = new ArrayList<>();
-		Rol rolU = new Rol();
-		roles.add(rolU);
-		
-        usuario.setRoles(roles);
         
         final List<GrantedAuthority> authorities = new ArrayList<>();
-        usuario.getRoles().forEach(rol -> {
-            authorities.add(new SimpleGrantedAuthority(rol.getNombre()));
-        });
+        if(usuario.getRoles() != null) {   	
+        	for(String rol: usuario.getRoles()) {
+        		authorities.add(new SimpleGrantedAuthority(rol));
+        	}       	
+        }
 
-        return new User(usuario.getEmail(), usuario.getPassword(), authorities);
+        return new User(usuario.getId(), usuario.getPassword(), authorities);
     }
 }
