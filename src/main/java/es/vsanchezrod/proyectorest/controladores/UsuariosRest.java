@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -26,16 +27,18 @@ public class UsuariosRest {
 		return usuariosService.obtenerListaUsuariosVO();
 	}
 	
-	/*@RequestMapping(value = "/public/usuarios/{id}", method = RequestMethod.GET)
+	// PATH PARAM
+	@RequestMapping(value = "/public/usuarios/{id}", method = RequestMethod.GET)
 	public UsuarioVO obtenerUsuarioPorId(@PathVariable("id") String id) {
 		
 		return usuariosService.obtenerUsuarioVOPorId(id);
-	}*/
-	
-	@RequestMapping(value = "/public/usuarios/{nombre}", method = RequestMethod.GET)
-	public UsuarioVO obtenerUsuarioPorNombre(@PathVariable("nombre") String nombre) {
-		return this.usuariosService.obtenerUsuarioVOPorNombre(nombre);
 	}
+	
+	// QUERY PARAM
+	/*@RequestMapping(value = "/public/usuarios", method = RequestMethod.GET)
+	public UsuarioVO obtenerUsuarioPorNombre(@RequestParam("nombre") String nombre) {
+		return usuariosService.obtenerUsuarioVOPorNombre(nombre);
+	}*/
 	
 	@RequestMapping(value = "/public/usuarios",  method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.CREATED)
