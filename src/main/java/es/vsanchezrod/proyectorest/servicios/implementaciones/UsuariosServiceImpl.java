@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import es.vsanchezrod.proyectorest.persistencia.modelos.Rol;
 import es.vsanchezrod.proyectorest.persistencia.modelos.Usuario;
 import es.vsanchezrod.proyectorest.persistencia.repositorios.UsuariosRepository;
 import es.vsanchezrod.proyectorest.servicios.UsuariosService;

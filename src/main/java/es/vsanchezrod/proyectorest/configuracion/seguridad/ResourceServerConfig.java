@@ -30,6 +30,6 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
                 .and()
                 .authorizeRequests()
                 .antMatchers("/public/**", "/monitor/").permitAll()
-                .antMatchers("**/Monitor/**" ).authenticated();
+                .antMatchers("**" ).authenticated();
     }
 }
