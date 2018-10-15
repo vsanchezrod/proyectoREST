@@ -47,7 +47,6 @@ public class UsuariosConverter {
 		usuarioVO.setNombre(usuario.getNombre());
 		usuarioVO.setApellido(usuario.getApellido());
 		usuarioVO.setEmail(usuario.getEmail());
-		usuarioVO.setPassword(usuario.getPassword());
 		usuarioVO.setFechaNacimiento(usuario.getFechaNacimiento());
 		usuarioVO.setSexo(usuario.getSexo());
 		usuarioVO.setProvincia(provinciasConverter.convertirProvinciaAProvinciaVO(usuario.getProvincia()));
