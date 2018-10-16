@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,22 +21,23 @@ public class ActividadesRest {
 	@Autowired
 	private ActividadesService actividadesService;
 
-	@RequestMapping(value = "public/actividades", method = RequestMethod.GET)
+	@RequestMapping(value = "/public/actividades", method = RequestMethod.GET)
 	public List<ActividadVO> obtenerListaActividadesVO(){
 		
 		return actividadesService.obtenerListaActividadesVO();
 	}
 	
-	@RequestMapping(value = "public/actividades", method = RequestMethod.POST)
+	@RequestMapping(value = "/public/actividades", method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.CREATED)
 	public void crearActividadVO(@RequestBody ActividadVO actividadVO) {
 		
 		actividadesService.crearActividad(actividadVO);
 	}
 	
-	@RequestMapping(value = "public/actividades/{id}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/actividades/{id}", method = RequestMethod.DELETE)
+	@PreAuthorize("hasAuthority('administrador')")
+	@ResponseStatus(HttpStatus.OK)
 	public void borrarActividad(@PathVariable("id") String id) {
-		
 		actividadesService.borrarActividad(id);
 	}
 }

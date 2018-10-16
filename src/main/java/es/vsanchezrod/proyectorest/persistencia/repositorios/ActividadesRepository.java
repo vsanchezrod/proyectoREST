@@ -6,4 +6,5 @@ import es.vsanchezrod.proyectorest.persistencia.modelos.Actividad;
 
 public interface ActividadesRepository extends MongoRepository<Actividad, String> {
 
+	void deleteById(String id);
 }
