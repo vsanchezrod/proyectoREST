@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,7 +27,8 @@ public class CategoriasRest {
 		return categoriasService.obtenerListaCategoriasVO();
 	}
 	
-	@RequestMapping(value = "/public/categorias", method = RequestMethod.POST)
+	@RequestMapping(value = "/categorias", method = RequestMethod.POST)
+	@PreAuthorize("hasAuthority('administrador')")
 	@ResponseStatus(HttpStatus.CREATED)
 	public void crearCategorias(@RequestBody CategoriaVO categoriaVO) {
 		
@@ -34,7 +36,9 @@ public class CategoriasRest {
 		
 	}
 	
-	@RequestMapping(value = "/public/categorias/{id}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/categorias/{id}", method = RequestMethod.DELETE)
+	@PreAuthorize("hasAuthority('administrador')")
+	@ResponseStatus(HttpStatus.OK)
 	public void borrarCategoria(@PathVariable("id") String id) {
 		
 		categoriasService.borrarCategoria(id);

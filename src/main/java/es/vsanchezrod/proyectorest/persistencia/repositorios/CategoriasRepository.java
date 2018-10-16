@@ -6,4 +6,5 @@ import es.vsanchezrod.proyectorest.persistencia.modelos.Categoria;
 
 public interface CategoriasRepository extends MongoRepository<Categoria, String>{
 
+	void deleteById(String id);
 }
