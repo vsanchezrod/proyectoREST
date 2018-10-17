@@ -27,8 +27,9 @@ public class ActividadesRest {
 		return actividadesService.obtenerListaActividadesVO();
 	}
 	
-	@RequestMapping(value = "/public/actividades", method = RequestMethod.POST)
+	@RequestMapping(value = "/actividades", method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.CREATED)
+	@PreAuthorize("hasAuthority('usuario')")
 	public void crearActividadVO(@RequestBody ActividadVO actividadVO) {
 		
 		actividadesService.crearActividad(actividadVO);
