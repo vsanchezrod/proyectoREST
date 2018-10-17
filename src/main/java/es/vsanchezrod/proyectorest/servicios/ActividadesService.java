@@ -11,4 +11,6 @@ public interface ActividadesService {
 	List<ActividadVO> obtenerListaActividadesVO();
 	
 	void borrarActividad(String id);
+	
+	List<ActividadVO> obtenerListaActividadesVOCreadasPorUsuario(String id);
 }

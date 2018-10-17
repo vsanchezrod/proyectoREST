@@ -22,7 +22,6 @@ public class ActividadesServiceImpl implements ActividadesService {
 	@Override
 	public void crearActividad(ActividadVO actividadVO) {
 		actividadesRepository.save(actividadesConverter.convertirActividadVOAActividad(actividadVO));
-		
 	}
 
 	@Override
@@ -33,6 +32,13 @@ public class ActividadesServiceImpl implements ActividadesService {
 	@Override
 	public void borrarActividad(String id) {
 		actividadesRepository.deleteById(id);
+	}
+
+	@Override
+	public List<ActividadVO> obtenerListaActividadesVOCreadasPorUsuario(String id) {
+
+		return actividadesConverter.convetirListaActividadesAListaActividadesVO(
+				actividadesRepository.findByIdUsuarioCreacion(id));
 	}
 
 }
