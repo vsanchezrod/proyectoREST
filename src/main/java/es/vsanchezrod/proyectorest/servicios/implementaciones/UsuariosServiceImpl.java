@@ -53,6 +53,9 @@ public class UsuariosServiceImpl implements UsuariosService {
 		Usuario usuario = usuariosRepository.findByNombre(nombre);
 		return usuariosConverter.convertirUsuarioAUsuarioVO(usuario);
 	}
-	
 
+	@Override
+	public void borrarAmigoDeUsuario(String idUsuario, String idAmigo) {
+		// TODO	IMPLEMENTAR FUNCIÓN QUE BORRE EL AMIGO DE LA LISTA
+	}
 }

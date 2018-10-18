@@ -6,8 +6,10 @@ import es.vsanchezrod.proyectorest.servicios.vo.MensajeVO;
 
 public interface MensajesService {
 
-	List<MensajeVO> obtenerMensajesVO();
+	List<MensajeVO> obtenerMensajesVO(String id);
 	
 	void crearMensaje(MensajeVO mensajeVO);
+	
+	void borrarMensaje(String id);
 		
 }

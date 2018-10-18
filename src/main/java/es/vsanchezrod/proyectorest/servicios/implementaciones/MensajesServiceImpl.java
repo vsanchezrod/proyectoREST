@@ -20,16 +20,18 @@ public class MensajesServiceImpl implements MensajesService {
 	private MensajesRepository mensajesRepository;
 	
 	@Override
-	public List<MensajeVO> obtenerMensajesVO() {
-		
-		return this.mensajesConverter.convertirListaMensajesAListaMensajesVO(this.mensajesRepository.findAll());
+	public List<MensajeVO> obtenerMensajesVO(String id) {
+		return mensajesConverter.convertirListaMensajesAListaMensajesVO(mensajesRepository.findByidUsuarioReceptor(id));
 	}
 
 	@Override
 	public void crearMensaje(MensajeVO mensajeVO) {
-		
-		this.mensajesRepository.save(this.mensajesConverter.convertirMensajeVOAMensaje(mensajeVO));
-		
+		mensajesRepository.save(mensajesConverter.convertirMensajeVOAMensaje(mensajeVO));
+	}
+
+	@Override
+	public void borrarMensaje(String id) {
+		mensajesRepository.deleteById(id);
 	}
 
 }

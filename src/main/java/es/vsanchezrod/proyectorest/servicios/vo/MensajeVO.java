@@ -15,6 +15,10 @@ public class MensajeVO {
 	private String mensaje;
 	private boolean leido;
 	
+	public MensajeVO () {
+		this.leido = false;
+	}
+	
 	public String getId() {
 		return id;
 	}

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -47,6 +48,13 @@ public class UsuariosRest {
 	public void crearUsuarioVO(@RequestBody UsuarioVO usuarioVO) {
 		
 		usuariosService.crearUsuario(usuarioVO);
+	}
+	
+	@RequestMapping(value = "usuario/{id}", method = RequestMethod.DELETE)
+	@ResponseStatus(HttpStatus.OK)
+	@PreAuthorize("hasAuthority('usuario')")
+	public void borrarAmigo(@PathVariable("idUsuario") String idUsuario, @RequestParam("idAmigo") String idAmigo) {
+		// TODO MIRAR COMO ES ESTO
 	}
 	
 	

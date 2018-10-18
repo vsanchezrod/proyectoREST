@@ -19,6 +19,10 @@ public class Mensaje {
 	private String mensaje;
 	private boolean leido;
 
+	public Mensaje () {
+		this.leido = false;
+	}
+	
 	public String getId() {
 		return id;
 	}
