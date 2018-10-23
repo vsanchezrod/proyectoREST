@@ -21,15 +21,17 @@ public class ViajesServiceImpl implements ViajesService {
 	
 	@Override
 	public List<ViajeVO> obtenerListaViajesVO() {
-		
 		return this.viajesConverter.convertirListaViajessAListaViajesVO(this.viajesRepository.findAll());
 	}
 
 	@Override
 	public void crearViaje(ViajeVO viajeVO) {
-		
 		this.viajesRepository.save(this.viajesConverter.convertirViajeVOAViaje(viajeVO));
-		
+	}
+
+	@Override
+	public long obtenerNumeroViajes() {
+		return viajesRepository.count();
 	}
 
 }

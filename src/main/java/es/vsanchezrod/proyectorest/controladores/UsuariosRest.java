@@ -22,12 +22,12 @@ public class UsuariosRest {
 	@Autowired
 	private UsuariosService usuariosService;
 
-	@RequestMapping(value = "/usuarios", method = RequestMethod.GET)
+	/*@RequestMapping(value = "/usuarios", method = RequestMethod.GET)
 	@PreAuthorize("hasAuthority('administrador') OR hasAuthority('usuario')")
 	public List<UsuarioVO> obtenerListaUsuarios() {
 		
 		return usuariosService.obtenerListaUsuariosVO();
-	}
+	}*/
 	
 	// PATH PARAM
 	@RequestMapping(value = "/public/usuarios/{id}", method = RequestMethod.GET)
@@ -56,6 +56,12 @@ public class UsuariosRest {
 		// TODO MIRAR COMO ES ESTO
 	}
 	
+	@RequestMapping(value = "/usuarios", method = RequestMethod.GET)
+	@PreAuthorize("hasAuthority('administrador')")
+	public long obtenerNumeroUsuarios() {
+		
+		return usuariosService.obtenerNumeroUsuarios();
+	}
 	
 	
 	

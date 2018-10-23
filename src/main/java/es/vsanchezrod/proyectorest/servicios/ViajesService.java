@@ -9,4 +9,6 @@ public interface ViajesService {
 	List<ViajeVO> obtenerListaViajesVO ();
 	
 	void crearViaje (ViajeVO viaje);	
+	
+	long obtenerNumeroViajes();
 }

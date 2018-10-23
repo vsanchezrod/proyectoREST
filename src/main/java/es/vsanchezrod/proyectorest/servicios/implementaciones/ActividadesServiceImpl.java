@@ -41,4 +41,10 @@ public class ActividadesServiceImpl implements ActividadesService {
 				actividadesRepository.findByIdUsuarioCreacion(id));
 	}
 
+	@Override
+	public long obtenerNumeroActividades() {
+		
+		return actividadesRepository.count();
+	}
+
 }

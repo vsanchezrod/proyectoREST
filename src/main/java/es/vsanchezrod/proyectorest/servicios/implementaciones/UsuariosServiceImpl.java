@@ -58,4 +58,10 @@ public class UsuariosServiceImpl implements UsuariosService {
 	public void borrarAmigoDeUsuario(String idUsuario, String idAmigo) {
 		// TODO	IMPLEMENTAR FUNCIÓN QUE BORRE EL AMIGO DE LA LISTA
 	}
+
+	@Override
+	public long obtenerNumeroUsuarios() {
+	
+		return usuariosRepository.count();
+	}
 }

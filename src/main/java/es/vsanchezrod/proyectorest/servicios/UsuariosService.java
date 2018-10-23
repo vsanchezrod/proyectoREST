@@ -15,5 +15,7 @@ public interface UsuariosService {
 	UsuarioVO obtenerUsuarioVOPorNombre(String nombre);
 	
 	void borrarAmigoDeUsuario(String idUsuario, String idAmigo);
+	
+	long obtenerNumeroUsuarios();
 }
 

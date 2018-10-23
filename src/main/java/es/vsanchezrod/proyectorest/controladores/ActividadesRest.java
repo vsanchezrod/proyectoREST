@@ -43,11 +43,17 @@ public class ActividadesRest {
 		actividadesService.borrarActividad(id);
 	}
 	
-	@RequestMapping(value = "/actividades", method = RequestMethod.GET)
+	/*@RequestMapping(value = "/actividades", method = RequestMethod.GET)
 	@PreAuthorize("hasAuthority('usuario') OR hasAuthority('administrador')")
 	public List<ActividadVO> obtenerListaActividadesCreadasPorUsuario(@RequestParam("id") String idUsuarioCreacion) {
 		return actividadesService.obtenerListaActividadesVOCreadasPorUsuario(idUsuarioCreacion);
-	}
+	}*/
 	
+	@RequestMapping(value = "/actividades", method = RequestMethod.GET)
+	@PreAuthorize("hasAuthority('administrador')")
+	public long obtenerNumeroActividades() {
+		
+		return actividadesService.obtenerNumeroActividades();
+	}
 }
 
