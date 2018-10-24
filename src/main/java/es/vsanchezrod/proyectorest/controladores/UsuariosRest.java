@@ -32,7 +32,6 @@ public class UsuariosRest {
 	// PATH PARAM
 	@RequestMapping(value = "/public/usuarios/{id}", method = RequestMethod.GET)
 	public UsuarioVO obtenerUsuarioPorId(@PathVariable("id") String id) {
-		
 		return usuariosService.obtenerUsuarioVOPorId(id);
 	}
 	
