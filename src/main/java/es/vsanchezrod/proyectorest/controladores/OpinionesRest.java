@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -19,17 +20,18 @@ public class OpinionesRest {
 	@Autowired
 	private OpinionesService opinionesService; 
 	
-	@RequestMapping(value = "/public/opiniones", method = RequestMethod.POST)
+	@RequestMapping(value = "/opiniones", method = RequestMethod.POST)
+	@PreAuthorize("hasAuthority('usuario')")
 	@ResponseStatus(HttpStatus.CREATED)
 	public void guardarOpinion(@RequestBody OpinionVO opinionVO) {
 	
-		this.opinionesService.guardarOpinion(opinionVO);
+		opinionesService.guardarOpinion(opinionVO);
 	}
 	
 	@RequestMapping(value = "/public/opiniones", method = RequestMethod.GET)
 	public List<OpinionVO> obtenerOpiniones(){
 		
-		return this.opinionesService.obtenerListaOpinionesVO();
+		return opinionesService.obtenerListaOpinionesVO();
 	}
 	
 	

@@ -19,11 +19,10 @@ public class Opinion {
 	private int organizacionValoracion;
 	private int ambienteValoracion;
 	private int recorridoValoracion;	
-	private OpinionUsuario usuario; // id, nombre y avatar
+	private String usuarioOpinion; 
 	
 	public Opinion() {
 		this.actividad = new OpinionActividad();
-		this.usuario = new OpinionUsuario();
 	}
 
 	public String getId() {
@@ -90,12 +89,12 @@ public class Opinion {
 		this.recorridoValoracion = recorridoValoracion;
 	}
 
-	public OpinionUsuario getOpinionUsuario() {
-		return usuario;
+	public String getUsuarioOpinion() {
+		return usuarioOpinion;
 	}
 
-	public void setOpinionUsuario(OpinionUsuario usuario) {
-		this.usuario = usuario;
+	public void setUsuarioOpinion(String usuarioOpinion) {
+		this.usuarioOpinion = usuarioOpinion;
 	}
 
 	@Override

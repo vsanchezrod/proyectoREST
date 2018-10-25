@@ -15,9 +15,6 @@ public class OpinionesConverter {
 	@Autowired
 	private OpinionActividadesConverter opinionActividadesConverter;
 	
-	@Autowired
-	private OpinionUsuariosConverter opinionUsuariosConverter;
-
 	public Opinion convertirOpinionVOAOpinion(OpinionVO opinionVO) {
 
 		Opinion opinion = new Opinion();
@@ -30,7 +27,7 @@ public class OpinionesConverter {
 		opinion.setOrganizacionValoracion(opinionVO.getOrganizacionValoracion());
 		opinion.setAmbienteValoracion(opinionVO.getAmbienteValoracion());
 		opinion.setRecorridoValoracion(opinionVO.getRecorridoValoracion());
-		opinion.setOpinionUsuario(this.opinionUsuariosConverter.convertirOpinionUsuarioVOAOpinionUsuario(opinionVO.getOpinionUsuario()));
+		opinion.setUsuarioOpinion(opinionVO.getUsuarioOpinion());
 	
 		return opinion;
 
@@ -48,7 +45,7 @@ public class OpinionesConverter {
 		opinionVO.setOrganizacionValoracion(opinion.getOrganizacionValoracion());
 		opinionVO.setAmbienteValoracion(opinion.getAmbienteValoracion());
 		opinionVO.setRecorridoValoracion(opinion.getRecorridoValoracion());
-		opinionVO.setOpinionUsuario(this.opinionUsuariosConverter.convertirOpinionUsuarioAOpinionUsuarioVO(opinion.getOpinionUsuario()));
+		opinionVO.setUsuarioOpinion(opinion.getUsuarioOpinion());
 			
 		return opinionVO;
 
