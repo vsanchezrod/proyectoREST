@@ -21,13 +21,18 @@ public class OpinionesServiceImpl implements OpinionesService {
 	
 	@Override
 	public void guardarOpinion(OpinionVO opinionVO) {
-		this.opinionesRepository.save(opinionesConverter.convertirOpinionVOAOpinion(opinionVO));
+		opinionesRepository.save(opinionesConverter.convertirOpinionVOAOpinion(opinionVO));
 		
 	}
 
 	@Override
 	public List<OpinionVO> obtenerListaOpinionesVO() {
-		return this.opinionesConverter.convertirListaOpinionesAListaOpinionesVO(opinionesRepository.findAll());
+		return opinionesConverter.convertirListaOpinionesAListaOpinionesVO(opinionesRepository.findTop5ByOrderByFechaDesc());
+	}
+
+	@Override
+	public void borrarOpinion(String id) {
+		opinionesRepository.deleteById(id);
 	}
 
 }

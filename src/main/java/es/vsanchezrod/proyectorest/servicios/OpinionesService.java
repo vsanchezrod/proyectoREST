@@ -9,4 +9,6 @@ public interface OpinionesService {
 	void guardarOpinion(OpinionVO opinionVO);
 	
 	List<OpinionVO> obtenerListaOpinionesVO();
+	
+	void borrarOpinion(String id);
 }
