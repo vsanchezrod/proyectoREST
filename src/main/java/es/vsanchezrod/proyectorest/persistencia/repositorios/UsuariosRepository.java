@@ -9,7 +9,7 @@ public interface UsuariosRepository extends MongoRepository<Usuario, String>{
 	// Query para buscar usuarios por email (findBy + Nombre de la propiedad)
 	Usuario findByEmail(String email);
 	
-	Usuario findByNombre(String nombre);
+	Usuario findByNombreIgnoreCase(String nombre);
 	
 	Usuario findById(String id);
 	

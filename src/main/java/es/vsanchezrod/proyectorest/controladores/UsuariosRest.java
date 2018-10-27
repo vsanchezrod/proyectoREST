@@ -36,10 +36,11 @@ public class UsuariosRest {
 	}
 	
 	// QUERY PARAM
-	/*@RequestMapping(value = "/public/usuarios", method = RequestMethod.GET)
+	@RequestMapping(value = "/usuarios", method = RequestMethod.GET)
+	@PreAuthorize("hasAuthority('usuario') OR hasAuthority('administrador')")
 	public UsuarioVO obtenerUsuarioPorNombre(@RequestParam("nombre") String nombre) {
 		return usuariosService.obtenerUsuarioVOPorNombre(nombre);
-	}*/
+	}
 	
 	@RequestMapping(value = "/public/usuarios",  method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.CREATED)
@@ -55,12 +56,12 @@ public class UsuariosRest {
 		// TODO MIRAR COMO ES ESTO
 	}
 	
-	@RequestMapping(value = "/usuarios", method = RequestMethod.GET)
+	/*@RequestMapping(value = "/usuarios", method = RequestMethod.GET)
 	@PreAuthorize("hasAuthority('administrador')")
 	public long obtenerNumeroUsuarios() {
 		
 		return usuariosService.obtenerNumeroUsuarios();
-	}
+	}*/
 	
 	
 	

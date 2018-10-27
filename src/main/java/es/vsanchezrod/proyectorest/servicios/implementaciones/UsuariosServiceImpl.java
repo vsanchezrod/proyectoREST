@@ -50,7 +50,7 @@ public class UsuariosServiceImpl implements UsuariosService {
 
 	@Override
 	public UsuarioVO obtenerUsuarioVOPorNombre(String nombre) {
-		Usuario usuario = usuariosRepository.findByNombre(nombre);
+		Usuario usuario = usuariosRepository.findByNombreIgnoreCase(nombre);
 		return usuariosConverter.convertirUsuarioAUsuarioVO(usuario);
 	}
 
