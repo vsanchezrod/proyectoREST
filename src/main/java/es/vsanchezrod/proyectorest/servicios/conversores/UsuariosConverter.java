@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.text.WordUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -75,12 +76,13 @@ public class UsuariosConverter {
 	
 	public void actualizarModeloUsuario(Usuario usuario, UsuarioVO usuarioVO) {
 		
+	
 		if(StringUtils.isNotBlank(usuarioVO.getNombre())) {
 			usuario.setNombre(usuarioVO.getNombre());
 		}
 		
 		if(StringUtils.isNotBlank(usuarioVO.getApellido())) {
-			usuario.setApellido(usuarioVO.getApellido());
+			usuario.setApellido(WordUtils.capitalizeFully(StringUtils.trim(usuarioVO.getApellido())));
 		}
 		
 	}

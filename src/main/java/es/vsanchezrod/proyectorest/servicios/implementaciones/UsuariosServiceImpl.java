@@ -3,8 +3,10 @@ package es.vsanchezrod.proyectorest.servicios.implementaciones;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpClientErrorException;
 
 import es.vsanchezrod.proyectorest.persistencia.modelos.Usuario;
 import es.vsanchezrod.proyectorest.persistencia.repositorios.UsuariosRepository;
@@ -63,7 +65,10 @@ public class UsuariosServiceImpl implements UsuariosService {
 
 	@Override
 	public void actualizarUsuario(String id, UsuarioVO usuarioVO) {
-		Usuario usuario = usuariosRepository.findById(id);
+		final Usuario usuario = usuariosRepository.findById(id);
+		if (usuario == null) {
+			throw new HttpClientErrorException(HttpStatus.NOT_FOUND, "El usuario no existe.");
+		}
 		usuariosConverter.actualizarModeloUsuario(usuario, usuarioVO);
 		usuariosRepository.save(usuario);
 	}
