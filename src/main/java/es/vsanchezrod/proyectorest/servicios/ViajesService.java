@@ -2,6 +2,7 @@ package es.vsanchezrod.proyectorest.servicios;
 
 import java.util.List;
 
+import es.vsanchezrod.proyectorest.servicios.vo.TotalVO;
 import es.vsanchezrod.proyectorest.servicios.vo.ViajeVO;
 
 public interface ViajesService {
@@ -10,5 +11,5 @@ public interface ViajesService {
 	
 	void crearViaje (ViajeVO viaje);	
 	
-	long obtenerNumeroViajes();
+	TotalVO obtenerNumeroViajes();
 }

@@ -10,6 +10,7 @@ import es.vsanchezrod.proyectorest.persistencia.modelos.Usuario;
 import es.vsanchezrod.proyectorest.persistencia.repositorios.UsuariosRepository;
 import es.vsanchezrod.proyectorest.servicios.UsuariosService;
 import es.vsanchezrod.proyectorest.servicios.conversores.UsuariosConverter;
+import es.vsanchezrod.proyectorest.servicios.vo.TotalVO;
 import es.vsanchezrod.proyectorest.servicios.vo.UsuarioVO;
 
 @Service
@@ -23,12 +24,6 @@ public class UsuariosServiceImpl implements UsuariosService {
 	
 	@Autowired
 	private PasswordEncoder passwordEncoder;
-	
-	@Override
-	public List<UsuarioVO> obtenerListaUsuariosVO() {
-		return usuariosConverter.convertirListaUsuariosAListaUsuariosVO(usuariosRepository.findAll());
-
-	}
 
 	@Override
 	public void crearUsuario(UsuarioVO usuarioVO) {
@@ -49,9 +44,9 @@ public class UsuariosServiceImpl implements UsuariosService {
 	}
 
 	@Override
-	public UsuarioVO obtenerUsuarioVOPorNombre(String nombre) {
-		Usuario usuario = usuariosRepository.findByNombreIgnoreCase(nombre);
-		return usuariosConverter.convertirUsuarioAUsuarioVO(usuario);
+	public List<UsuarioVO> obtenerUsuarios(String nombre) {
+		List<Usuario> usuarios = usuariosRepository.findByNombreIgnoreCase(nombre);
+		return usuariosConverter.convertirListaUsuariosAListaUsuariosVO(usuarios);
 	}
 
 	@Override
@@ -60,8 +55,9 @@ public class UsuariosServiceImpl implements UsuariosService {
 	}
 
 	@Override
-	public long obtenerNumeroUsuarios() {
-	
-		return usuariosRepository.count();
+	public TotalVO obtenerNumeroUsuarios() {
+		final TotalVO totalVO = new TotalVO();
+		totalVO.setTotal(usuariosRepository.count());
+		return totalVO;
 	}
 }

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import es.vsanchezrod.proyectorest.servicios.UsuariosService;
+import es.vsanchezrod.proyectorest.servicios.vo.TotalVO;
 import es.vsanchezrod.proyectorest.servicios.vo.UsuarioVO;
 
 @RestController
@@ -21,13 +22,6 @@ public class UsuariosRest {
 	
 	@Autowired
 	private UsuariosService usuariosService;
-
-	/*@RequestMapping(value = "/usuarios", method = RequestMethod.GET)
-	@PreAuthorize("hasAuthority('administrador') OR hasAuthority('usuario')")
-	public List<UsuarioVO> obtenerListaUsuarios() {
-		
-		return usuariosService.obtenerListaUsuariosVO();
-	}*/
 	
 	// PATH PARAM
 	@RequestMapping(value = "/public/usuarios/{id}", method = RequestMethod.GET)
@@ -38,8 +32,8 @@ public class UsuariosRest {
 	// QUERY PARAM
 	@RequestMapping(value = "/usuarios", method = RequestMethod.GET)
 	@PreAuthorize("hasAuthority('usuario') OR hasAuthority('administrador')")
-	public UsuarioVO obtenerUsuarioPorNombre(@RequestParam("nombre") String nombre) {
-		return usuariosService.obtenerUsuarioVOPorNombre(nombre);
+	public List<UsuarioVO> obtenerUsuarios(@RequestParam("nombre") String nombre) {
+		return usuariosService.obtenerUsuarios(nombre);
 	}
 	
 	@RequestMapping(value = "/public/usuarios",  method = RequestMethod.POST)
@@ -56,12 +50,11 @@ public class UsuariosRest {
 		// TODO MIRAR COMO ES ESTO
 	}
 	
-	/*@RequestMapping(value = "/usuarios", method = RequestMethod.GET)
+	@RequestMapping(value = "/usuarios/numero", method = RequestMethod.GET)
 	@PreAuthorize("hasAuthority('administrador')")
-	public long obtenerNumeroUsuarios() {
-		
+	public TotalVO obtenerNumeroUsuarios() {
 		return usuariosService.obtenerNumeroUsuarios();
-	}*/
+	}
 	
 	
 	

@@ -3,6 +3,7 @@ package es.vsanchezrod.proyectorest.servicios;
 import java.util.List;
 
 import es.vsanchezrod.proyectorest.servicios.vo.ActividadVO;
+import es.vsanchezrod.proyectorest.servicios.vo.TotalVO;
 
 public interface ActividadesService {
 
@@ -14,5 +15,5 @@ public interface ActividadesService {
 	
 	List<ActividadVO> obtenerListaActividadesVOCreadasPorUsuario(String id);
 	
-	long obtenerNumeroActividades();
+	TotalVO obtenerNumeroActividades();
 }

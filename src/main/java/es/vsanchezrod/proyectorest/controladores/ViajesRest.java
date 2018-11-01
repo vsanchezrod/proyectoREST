@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import es.vsanchezrod.proyectorest.servicios.ViajesService;
+import es.vsanchezrod.proyectorest.servicios.vo.TotalVO;
 import es.vsanchezrod.proyectorest.servicios.vo.ViajeVO;
 
 @RestController
@@ -21,21 +22,17 @@ public class ViajesRest {
 	
 	@RequestMapping(value = "/public/viajes", method = RequestMethod.GET)
 	public List<ViajeVO> obtenerListaViajesVO() {
-		
 		return this.viajesService.obtenerListaViajesVO();
-	
 	}
 	
 	@RequestMapping(value = "/public/viajes", method = RequestMethod.POST)
 	public void crearViaje(@RequestBody ViajeVO viajeVO) {
-		
 		this.viajesService.crearViaje(viajeVO);
 	}
 	
-	@RequestMapping(value = "/viajes", method = RequestMethod.GET)
+	@RequestMapping(value = "/viajes/numero", method = RequestMethod.GET)
 	@PreAuthorize("hasAuthority('administrador')")
-	public long obtenerNumeroViajes() {
-		
+	public TotalVO obtenerNumeroViajes() {
 		return viajesService.obtenerNumeroViajes();
 	}
 }

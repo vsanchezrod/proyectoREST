@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import es.vsanchezrod.proyectorest.servicios.OpinionesService;
 import es.vsanchezrod.proyectorest.servicios.vo.OpinionVO;
+import es.vsanchezrod.proyectorest.servicios.vo.TotalVO;
 
 @RestController
 public class OpinionesRest {
@@ -31,7 +32,6 @@ public class OpinionesRest {
 	
 	@RequestMapping(value = "/public/opiniones", method = RequestMethod.GET)
 	public List<OpinionVO> obtenerOpiniones(){
-		
 		return opinionesService.obtenerListaOpinionesVO();
 	}
 	
@@ -41,5 +41,10 @@ public class OpinionesRest {
 		opinionesService.borrarOpinion(id);
 	}
 	
+	@RequestMapping(value = "/opiniones/numero", method = RequestMethod.GET)
+	@PreAuthorize("hasAuthority('administrador')")
+	public TotalVO obtenerNumeroUsuarios() {
+		return opinionesService.obtenerNumeroOpiniones();
+	}
 	
 }

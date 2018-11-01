@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import es.vsanchezrod.proyectorest.persistencia.repositorios.ViajesRepository;
 import es.vsanchezrod.proyectorest.servicios.ViajesService;
 import es.vsanchezrod.proyectorest.servicios.conversores.ViajesConverter;
+import es.vsanchezrod.proyectorest.servicios.vo.TotalVO;
 import es.vsanchezrod.proyectorest.servicios.vo.ViajeVO;
 
 @Service
@@ -30,8 +31,10 @@ public class ViajesServiceImpl implements ViajesService {
 	}
 
 	@Override
-	public long obtenerNumeroViajes() {
-		return viajesRepository.count();
+	public TotalVO obtenerNumeroViajes() {
+		final TotalVO totalVO = new TotalVO();
+		totalVO.setTotal(viajesRepository.count());
+		return totalVO;
 	}
 
 }

@@ -9,6 +9,7 @@ import es.vsanchezrod.proyectorest.persistencia.repositorios.ActividadesReposito
 import es.vsanchezrod.proyectorest.servicios.ActividadesService;
 import es.vsanchezrod.proyectorest.servicios.conversores.ActividadesConverter;
 import es.vsanchezrod.proyectorest.servicios.vo.ActividadVO;
+import es.vsanchezrod.proyectorest.servicios.vo.TotalVO;
 
 @Service
 public class ActividadesServiceImpl implements ActividadesService {
@@ -42,9 +43,12 @@ public class ActividadesServiceImpl implements ActividadesService {
 	}
 
 	@Override
-	public long obtenerNumeroActividades() {
+	public TotalVO obtenerNumeroActividades() {
 		
-		return actividadesRepository.count();
+		final TotalVO totalVO = new TotalVO();
+		totalVO.setTotal(actividadesRepository.count());
+		return totalVO;
+		
 	}
 
 }

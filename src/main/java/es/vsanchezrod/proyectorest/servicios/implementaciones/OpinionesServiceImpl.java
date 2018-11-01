@@ -9,6 +9,7 @@ import es.vsanchezrod.proyectorest.persistencia.repositorios.OpinionesRepository
 import es.vsanchezrod.proyectorest.servicios.OpinionesService;
 import es.vsanchezrod.proyectorest.servicios.conversores.OpinionesConverter;
 import es.vsanchezrod.proyectorest.servicios.vo.OpinionVO;
+import es.vsanchezrod.proyectorest.servicios.vo.TotalVO;
 
 @Service
 public class OpinionesServiceImpl implements OpinionesService {
@@ -35,4 +36,12 @@ public class OpinionesServiceImpl implements OpinionesService {
 		opinionesRepository.deleteById(id);
 	}
 
+	@Override
+	public TotalVO obtenerNumeroOpiniones() {
+		final TotalVO totalVO = new TotalVO();
+		totalVO.setTotal(opinionesRepository.count());
+		return totalVO;
+	}
+
+	
 }

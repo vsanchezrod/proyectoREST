@@ -1,4 +1,4 @@
-package es.vsanchezrod.proyectorest.controladores;
+	package es.vsanchezrod.proyectorest.controladores;
 
 import java.util.List;
 
@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import es.vsanchezrod.proyectorest.servicios.ActividadesService;
 import es.vsanchezrod.proyectorest.servicios.vo.ActividadVO;
+import es.vsanchezrod.proyectorest.servicios.vo.TotalVO;
 
 @RestController
 public class ActividadesRest {
@@ -49,11 +50,10 @@ public class ActividadesRest {
 		return actividadesService.obtenerListaActividadesVOCreadasPorUsuario(idUsuarioCreacion);
 	}
 	
-	/*@RequestMapping(value = "/actividades", method = RequestMethod.GET)
+	@RequestMapping(value = "/actividades/numero", method = RequestMethod.GET)
 	@PreAuthorize("hasAuthority('administrador')")
-	public long obtenerNumeroActividades() {
-		
+	public TotalVO obtenerNumeroActividades() {
 		return actividadesService.obtenerNumeroActividades();
-	}*/
+	}
 }
 
