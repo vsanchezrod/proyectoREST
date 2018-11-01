@@ -3,6 +3,7 @@ package es.vsanchezrod.proyectorest.servicios.conversores;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -65,11 +66,22 @@ public class UsuariosConverter {
 	public List<UsuarioVO> convertirListaUsuariosAListaUsuariosVO(List<Usuario> usuarios) {
 		List<UsuarioVO> listaUsuariosVO = new ArrayList<UsuarioVO>();
 		
-		for (Usuario usuario : usuarios ) {
+		for(Usuario usuario : usuarios ) {
 			listaUsuariosVO.add(convertirUsuarioAUsuarioVO(usuario));
 		}
 		
 		return listaUsuariosVO;
 	}
 	
+	public void actualizarModeloUsuario(Usuario usuario, UsuarioVO usuarioVO) {
+		
+		if(StringUtils.isNotBlank(usuarioVO.getNombre())) {
+			usuario.setNombre(usuarioVO.getNombre());
+		}
+		
+		if(StringUtils.isNotBlank(usuarioVO.getApellido())) {
+			usuario.setApellido(usuarioVO.getApellido());
+		}
+		
+	}
 }

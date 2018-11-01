@@ -32,6 +32,7 @@ public class UsuariosRest {
 	// QUERY PARAM
 	@RequestMapping(value = "/usuarios", method = RequestMethod.GET)
 	@PreAuthorize("hasAuthority('usuario') OR hasAuthority('administrador')")
+	@ResponseStatus(HttpStatus.OK)
 	public List<UsuarioVO> obtenerUsuarios(@RequestParam("nombre") String nombre) {
 		return usuariosService.obtenerUsuarios(nombre);
 	}
@@ -39,14 +40,13 @@ public class UsuariosRest {
 	@RequestMapping(value = "/public/usuarios",  method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.CREATED)
 	public void crearUsuarioVO(@RequestBody UsuarioVO usuarioVO) {
-		
 		usuariosService.crearUsuario(usuarioVO);
 	}
 	
-	@RequestMapping(value = "usuario/{id}", method = RequestMethod.DELETE)
-	@ResponseStatus(HttpStatus.OK)
+	@RequestMapping(value = "usuarios/{idUsuario}/amigos/{idAmigo}", method = RequestMethod.DELETE)
+	@ResponseStatus(HttpStatus.NO_CONTENT)
 	@PreAuthorize("hasAuthority('usuario')")
-	public void borrarAmigo(@PathVariable("idUsuario") String idUsuario, @RequestParam("idAmigo") String idAmigo) {
+	public void borrarAmigo(@PathVariable("idUsuario") String idUsuario, @PathVariable("idAmigo") String idAmigo) {
 		// TODO MIRAR COMO ES ESTO
 	}
 	
@@ -54,6 +54,13 @@ public class UsuariosRest {
 	@PreAuthorize("hasAuthority('administrador')")
 	public TotalVO obtenerNumeroUsuarios() {
 		return usuariosService.obtenerNumeroUsuarios();
+	}
+	
+	@RequestMapping(value = "/usuarios/{id}", method = RequestMethod.PATCH)
+	@PreAuthorize("hasAuthority('usuario') OR hasAuthority('administrador')")
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	public void actualizarUsuario(@PathVariable("id") String id, @RequestBody UsuarioVO usuarioVO ) {
+		usuariosService.actualizarUsuario(id, usuarioVO);
 	}
 	
 	

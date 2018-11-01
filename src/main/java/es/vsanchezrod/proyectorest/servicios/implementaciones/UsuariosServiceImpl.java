@@ -60,4 +60,11 @@ public class UsuariosServiceImpl implements UsuariosService {
 		totalVO.setTotal(usuariosRepository.count());
 		return totalVO;
 	}
+
+	@Override
+	public void actualizarUsuario(String id, UsuarioVO usuarioVO) {
+		Usuario usuario = usuariosRepository.findById(id);
+		usuariosConverter.actualizarModeloUsuario(usuario, usuarioVO);
+		usuariosRepository.save(usuario);
+	}
 }
