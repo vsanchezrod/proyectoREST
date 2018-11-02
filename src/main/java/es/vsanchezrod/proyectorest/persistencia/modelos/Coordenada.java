@@ -5,8 +5,6 @@ public class Coordenada {
 	private int latitud;
 	private int longitud;
 	
-	public Coordenada() {}
-	
 	public int getLatitud() {
 		return latitud;
 	}

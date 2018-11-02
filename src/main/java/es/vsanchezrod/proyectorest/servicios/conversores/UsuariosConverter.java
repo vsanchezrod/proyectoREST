@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.text.WordUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import es.vsanchezrod.proyectorest.persistencia.modelos.Usuario;
@@ -19,6 +20,9 @@ public class UsuariosConverter {
 	
 	@Autowired
 	private ActividadCategoriasConverter actividadCategoriaConverter;
+	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 
 	public Usuario convertirUsuarioVOAUsuario(UsuarioVO usuarioVO) {
 		Usuario usuario = new Usuario();
@@ -75,15 +79,41 @@ public class UsuariosConverter {
 	}
 	
 	public void actualizarModeloUsuario(Usuario usuario, UsuarioVO usuarioVO) {
-		
-	
+			
 		if(StringUtils.isNotBlank(usuarioVO.getNombre())) {
-			usuario.setNombre(usuarioVO.getNombre());
+			final String nombre = WordUtils.capitalizeFully(StringUtils.trim(usuarioVO.getNombre()));
+			usuario.setNombre(nombre);
 		}
 		
 		if(StringUtils.isNotBlank(usuarioVO.getApellido())) {
-			usuario.setApellido(WordUtils.capitalizeFully(StringUtils.trim(usuarioVO.getApellido())));
+			final String apellido = WordUtils.capitalizeFully(StringUtils.trim(usuarioVO.getApellido()));
+			usuario.setApellido(apellido);
 		}
 		
+		if(usuarioVO.getFechaNacimiento() != null) {
+			usuario.setFechaNacimiento(usuarioVO.getFechaNacimiento());
+		}
+		
+		if(usuarioVO.getProvincia() != null) {
+			usuario.setProvincia(provinciasConverter.convertirProvinciaVOAProvincia(usuarioVO.getProvincia()));
+		}
+		
+		if(StringUtils.isNotBlank(usuarioVO.getInfo())) {
+			final String info = StringUtils.trim(usuarioVO.getInfo());
+			usuario.setInfo(info);
+		}
+		
+		if (StringUtils.isNotBlank(usuarioVO.getPassword())) {
+			usuario.setPassword(passwordEncoder.encode(StringUtils.trim(usuarioVO.getPassword())));
+		}
+		
+		if (StringUtils.isNotBlank(usuarioVO.getSexo())) {
+			usuario.setSexo(usuarioVO.getSexo());
+		}
+	
+		if(StringUtils.isNotBlank(usuarioVO.getAvatar())) {
+			usuario.setAvatar(usuarioVO.getAvatar());
+		}
+				
 	}
 }
