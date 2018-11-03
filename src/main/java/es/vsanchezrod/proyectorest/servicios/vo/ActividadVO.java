@@ -15,14 +15,14 @@ public class ActividadVO {
 	private String nombre;
 	private List<ActividadCategoriaVO> categorias; // id y nombre
 	private String descripcion;
-	private int nivel;
-	private int distancia;
+	private Integer nivel;
+	private Integer distancia;
 	private Date fechaInicio;
 	private String imagen;
 	private Coordenada coordenadas;
 	private String idUsuarioCreacion;  // solo la id
 	private List<String> listaParticipantes; // id de los usuarios
-	private int puntuacion;
+	private Integer puntuacion;
 		
 	public ActividadVO () {
 		this.categorias = new ArrayList<>();
@@ -61,11 +61,11 @@ public class ActividadVO {
 		this.descripcion = descripcion;
 	}
 
-	public int getNivel() {
+	public Integer getNivel() {
 		return nivel;
 	}
 
-	public void setNivel(int nivel) {
+	public void setNivel(Integer nivel) {
 		this.nivel = nivel;
 	}
 
@@ -73,7 +73,7 @@ public class ActividadVO {
 		return distancia;
 	}
 
-	public void setDistancia(int distancia) {
+	public void setDistancia(Integer distancia) {
 		this.distancia = distancia;
 	}
 
@@ -117,11 +117,11 @@ public class ActividadVO {
 		this.listaParticipantes = listaParticipantes;
 	}
 
-	public int getPuntuacion() {
+	public Integer getPuntuacion() {
 		return puntuacion;
 	}
 
-	public void setPuntuacion(int puntuacion) {
+	public void setPuntuacion(Integer puntuacion) {
 		this.puntuacion = puntuacion;
 	}
 	

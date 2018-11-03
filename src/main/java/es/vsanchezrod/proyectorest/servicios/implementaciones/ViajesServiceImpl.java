@@ -1,10 +1,15 @@
 package es.vsanchezrod.proyectorest.servicios.implementaciones;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
+import org.apache.commons.lang3.BooleanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import es.vsanchezrod.proyectorest.persistencia.modelos.Viaje;
 import es.vsanchezrod.proyectorest.persistencia.repositorios.ViajesRepository;
 import es.vsanchezrod.proyectorest.servicios.ViajesService;
 import es.vsanchezrod.proyectorest.servicios.conversores.ViajesConverter;
@@ -21,8 +26,17 @@ public class ViajesServiceImpl implements ViajesService {
 	private ViajesRepository viajesRepository;
 	
 	@Override
-	public List<ViajeVO> obtenerListaViajesVO() {
-		return this.viajesConverter.convertirListaViajessAListaViajesVO(this.viajesRepository.findAll());
+	public List<ViajeVO> obtenerListaViajes(Map<String, String> queryParams) {
+		
+		List<Viaje> listaViajes = new ArrayList<>();
+		
+		if(queryParams.containsKey("realizadas") && (BooleanUtils.toBoolean(queryParams.get("realizadas")) == true)) {
+			listaViajes = viajesRepository.findByFechaInicioLessThanOrderByFechaInicioDesc(new Date());
+		}
+		else {
+			listaViajes = viajesRepository.findByFechaInicioGreaterThanOrderByFechaInicioAsc(new Date());
+		}
+		return this.viajesConverter.convertirListaViajessAListaViajesVO(listaViajes);
 	}
 
 	@Override

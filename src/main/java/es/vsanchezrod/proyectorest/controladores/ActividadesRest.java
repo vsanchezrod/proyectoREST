@@ -1,6 +1,7 @@
 	package es.vsanchezrod.proyectorest.controladores;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,16 +25,14 @@ public class ActividadesRest {
 	private ActividadesService actividadesService;
 
 	@RequestMapping(value = "/public/actividades", method = RequestMethod.GET)
-	public List<ActividadVO> obtenerListaActividadesVO(){
-		
-		return actividadesService.obtenerListaActividadesVO();
+	public List<ActividadVO> obtenerListaActividades(@RequestParam Map<String, String> queryParams){
+		return actividadesService.obtenerListaActividades(queryParams);
 	}
 	
 	@RequestMapping(value = "/actividades", method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.CREATED)
 	@PreAuthorize("hasAuthority('usuario')")
 	public void crearActividadVO(@RequestBody ActividadVO actividadVO) {
-		
 		actividadesService.crearActividad(actividadVO);
 	}
 	
@@ -46,8 +45,10 @@ public class ActividadesRest {
 	
 	@RequestMapping(value = "/actividades", method = RequestMethod.GET)
 	@PreAuthorize("hasAuthority('usuario') OR hasAuthority('administrador')")
-	public List<ActividadVO> obtenerListaActividadesCreadasPorUsuario(@RequestParam("id") String idUsuarioCreacion) {
-		return actividadesService.obtenerListaActividadesVOCreadasPorUsuario(idUsuarioCreacion);
+	public List<ActividadVO> obtenerListaActividadesConQueryParam(@RequestParam Map<String, String> queryParams) {
+		
+		// Se delega a la capa de negocio el valorar que queryParam recibe
+		return actividadesService.obtenerListaActividadesConQueryParam(queryParams);
 	}
 	
 	@RequestMapping(value = "/actividades/numero", method = RequestMethod.GET)
@@ -55,5 +56,6 @@ public class ActividadesRest {
 	public TotalVO obtenerNumeroActividades() {
 		return actividadesService.obtenerNumeroActividades();
 	}
+	
 }
 

@@ -29,7 +29,7 @@ public class UsuariosRest {
 		return usuariosService.obtenerUsuarioVOPorId(id);
 	}
 	
-	// QUERY PARAM
+	// Si recibe QUERY PARAM da la lista filtrada, sino la lista entera
 	@RequestMapping(value = "/usuarios", method = RequestMethod.GET)
 	@PreAuthorize("hasAuthority('usuario') OR hasAuthority('administrador')")
 	@ResponseStatus(HttpStatus.OK)
@@ -43,7 +43,7 @@ public class UsuariosRest {
 		usuariosService.crearUsuario(usuarioVO);
 	}
 	
-	@RequestMapping(value = "usuarios/{idUsuario}/amigos/{idAmigo}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/usuarios/{idUsuario}/amigos/{idAmigo}", method = RequestMethod.DELETE)
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	@PreAuthorize("hasAuthority('usuario')")
 	public void borrarAmigo(@PathVariable("idUsuario") String idUsuario, @PathVariable("idAmigo") String idAmigo) {

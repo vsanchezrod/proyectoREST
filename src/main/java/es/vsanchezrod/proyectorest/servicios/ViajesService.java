@@ -1,13 +1,14 @@
 package es.vsanchezrod.proyectorest.servicios;
 
 import java.util.List;
+import java.util.Map;
 
 import es.vsanchezrod.proyectorest.servicios.vo.TotalVO;
 import es.vsanchezrod.proyectorest.servicios.vo.ViajeVO;
 
 public interface ViajesService {
 
-	List<ViajeVO> obtenerListaViajesVO ();
+	List<ViajeVO> obtenerListaViajes(Map<String, String> queryParams);
 	
 	void crearViaje (ViajeVO viaje);	
 	
