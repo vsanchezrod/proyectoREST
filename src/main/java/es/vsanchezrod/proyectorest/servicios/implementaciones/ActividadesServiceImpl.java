@@ -8,7 +8,10 @@ import java.util.Map;
 import org.apache.commons.lang3.BooleanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Service;
+
+import com.mongodb.BasicDBList;
 
 import es.vsanchezrod.proyectorest.persistencia.modelos.Actividad;
 import es.vsanchezrod.proyectorest.persistencia.repositorios.ActividadesRepository;
@@ -70,6 +73,11 @@ public class ActividadesServiceImpl implements ActividadesService {
 	}
 	
 	private Example<Actividad> identificarCriteriosDeFiltrado(Map<String, String> queryParams) {
+		
+		final ExampleMatcher actividadMatcher = ExampleMatcher.matching()
+				.withIgnoreNullValues()
+			    .withMatcher("listaParticipantes", match -> match.transform(source -> ((BasicDBList) source).iterator().next()).caseSensitive());
+		
 		final Actividad actividadQuery = new Actividad();
 		
 		// Como son lista vacías y se inicializan a [], es necesario establecer como valor null para que no sean parámetros de filtrado de datos
@@ -83,12 +91,14 @@ public class ActividadesServiceImpl implements ActividadesService {
 		if(queryParams.containsKey("participante")) {
 			List<String> listaParticipantes = new ArrayList<>();
 			listaParticipantes.add(queryParams.get("participante"));
-		
-			
 			actividadQuery.setListaParticipantes(listaParticipantes);
 		}
 		
-		final Example<Actividad> exampleActividad = Example.of(actividadQuery);
+		if(queryParams.containsKey("categorias")) {
+			
+		}
+		
+		final Example<Actividad> exampleActividad = Example.of(actividadQuery, actividadMatcher);
 		return exampleActividad;
 	}
 
