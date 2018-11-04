@@ -5,15 +5,15 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 
 public class ActividadCategoria {
 
-	private String id;
+	private String categoriaId;
 	private String nombre;
 	
-	public String getId() {
-		return id;
+	public String getCategoriaId() {
+		return categoriaId;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public void setCategoriaId(String categoriaId) {
+		this.categoriaId = categoriaId;
 	}
 
 	public String getNombre() {

@@ -16,7 +16,7 @@ public class ActividadCategoriasConverter {
 		
 		ActividadCategoriaVO actividadCategoriaVO = new ActividadCategoriaVO();
 		
-		actividadCategoriaVO.setId(categoria.getId());
+		actividadCategoriaVO.setId(categoria.getCategoriaId());
 		actividadCategoriaVO.setNombre(categoria.getNombre());
 		
 		return actividadCategoriaVO;
@@ -26,7 +26,7 @@ public class ActividadCategoriasConverter {
 		
 		ActividadCategoria actividadCategoria = new ActividadCategoria();
 		
-		actividadCategoria.setId(categoriaVO.getId());
+		actividadCategoria.setCategoriaId(categoriaVO.getId());
 		actividadCategoria.setNombre(categoriaVO.getNombre());
 		
 		return actividadCategoria;

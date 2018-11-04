@@ -31,19 +31,37 @@ public class ActividadesServiceImpl implements ActividadesService {
 		
 	@Override
 	public void crearActividad(ActividadVO actividadVO) {
-		actividadesRepository.save(actividadesConverter.convertirActividadVOAActividad(actividadVO));
+		
+		final Actividad actividad = actividadesConverter.convertirActividadVOAActividad(actividadVO);
+		actividadesRepository.save(actividad);
 	}
 
 	@Override
 	public List<ActividadVO> obtenerListaActividades(Map<String, String> queryParams) {
 		List<Actividad> listaActividades = new ArrayList<>();
+				
+		if(queryParams.containsKey("categoria")) {
+			final String idCategoria = queryParams.get("categoria");
+			listaActividades = actividadesRepository.findByCategoriasCategoriaId(idCategoria);
+		}
+				
+		if(queryParams.containsKey("realizadas")) {
+			
+			if (BooleanUtils.toBoolean(queryParams.get("realizadas")) == true) {
+				listaActividades = actividadesRepository.findByFechaInicioLessThanOrderByFechaInicioDesc(new Date());
+			
+			}
+			
+			if (BooleanUtils.toBoolean(queryParams.get("realizadas")) == false) {
+				listaActividades = actividadesRepository.findByFechaInicioGreaterThanOrderByFechaInicioAsc(new Date());
+			}
+			
+			if (listaActividades.isEmpty()) {
+				listaActividades = actividadesRepository.findAll();
+			}
+		}
 		
-		if(queryParams.containsKey("realizadas") && (BooleanUtils.toBoolean(queryParams.get("realizadas")) == true)) {
-			listaActividades = actividadesRepository.findByFechaInicioLessThanOrderByFechaInicioDesc(new Date());
-		}
-		else {
-			listaActividades = actividadesRepository.findByFechaInicioGreaterThanOrderByFechaInicioAsc(new Date());
-		}
+		
 		return actividadesConverter.convetirListaActividadesAListaActividadesVO(listaActividades);
 	}
 
@@ -57,8 +75,9 @@ public class ActividadesServiceImpl implements ActividadesService {
 		
 		// Identificar criterios de filtrado
 		final Example<Actividad> exampleActividad = identificarCriteriosDeFiltrado(queryParams);
-		
 		final List<Actividad> listaActividades = actividadesRepository.findAll(exampleActividad);
+		
+		
 		return actividadesConverter.convetirListaActividadesAListaActividadesVO(listaActividades);
 		
 	}
@@ -75,8 +94,7 @@ public class ActividadesServiceImpl implements ActividadesService {
 	private Example<Actividad> identificarCriteriosDeFiltrado(Map<String, String> queryParams) {
 		
 		final ExampleMatcher actividadMatcher = ExampleMatcher.matching()
-				.withIgnoreNullValues()
-			    .withMatcher("listaParticipantes", match -> match.transform(source -> ((BasicDBList) source).iterator().next()).caseSensitive());
+				.withIgnoreNullValues();
 		
 		final Actividad actividadQuery = new Actividad();
 		
@@ -89,13 +107,10 @@ public class ActividadesServiceImpl implements ActividadesService {
 		}
 		
 		if(queryParams.containsKey("participante")) {
-			List<String> listaParticipantes = new ArrayList<>();
+			actividadMatcher.withMatcher("listaParticipantes", match -> match.transform(source -> ((BasicDBList) source).iterator().next()).caseSensitive());
+			final List<String> listaParticipantes = new ArrayList<>();
 			listaParticipantes.add(queryParams.get("participante"));
 			actividadQuery.setListaParticipantes(listaParticipantes);
-		}
-		
-		if(queryParams.containsKey("categorias")) {
-			
 		}
 		
 		final Example<Actividad> exampleActividad = Example.of(actividadQuery, actividadMatcher);
