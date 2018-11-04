@@ -19,4 +19,8 @@ public interface ActividadesRepository extends MongoRepository<Actividad, String
 	
 	List<Actividad> findByCategoriasCategoriaId(String idCategoria);
 		
+	List<Actividad> findByListaParticipantesAndFechaInicioLessThanOrderByFechaInicioDesc(String idParticipante, Date fecha);
+	
+	List<Actividad> findByListaParticipantesAndFechaInicioGreaterThanOrderByFechaInicioAsc(String idParticipante, Date fecha);
+		
 }

@@ -40,6 +40,8 @@ public class UsuariosConverter {
 		usuario.setIntereses(actividadCategoriaConverter.convertirListaActividadCategoriasVOAListaActividadCategorias(usuarioVO.getIntereses()));
 		usuario.setTerminos(usuarioVO.getTerminos());
 		usuario.setValoracion(usuarioVO.getValoracion());
+		usuario.setValoracionTotal(usuarioVO.getValoracionTotal());
+		usuario.setNumeroValoraciones(usuarioVO.getNumeroValoraciones());
 		usuario.setRoles(usuarioVO.getRoles());
 		usuario.setAmigos(usuarioVO.getAmigos());
 		
@@ -61,6 +63,8 @@ public class UsuariosConverter {
 		usuarioVO.setIntereses(actividadCategoriaConverter.convertirListaActividadCategoriasAListaActividadCategoriasVO(usuario.getIntereses()));	
 		usuarioVO.setTerminos(usuario.getTerminos());
 		usuarioVO.setValoracion(usuario.getValoracion());
+		usuarioVO.setValoracionTotal(usuario.getValoracionTotal());
+		usuarioVO.setNumeroValoraciones(usuario.getNumeroValoraciones());
 		usuarioVO.setRoles(usuario.getRoles());
 		usuarioVO.setAmigos(usuario.getAmigos());
 			

@@ -26,7 +26,6 @@ public class OpinionesRest {
 	@PreAuthorize("hasAuthority('usuario')")
 	@ResponseStatus(HttpStatus.CREATED)
 	public void guardarOpinion(@RequestBody OpinionVO opinionVO) {
-	
 		opinionesService.guardarOpinion(opinionVO);
 	}
 	

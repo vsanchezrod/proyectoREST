@@ -25,7 +25,9 @@ public class Usuario {
 	private String info;
 	private List<ActividadCategoria> intereses;  // id y nombre
 	private boolean terminos;
-	private int valoracion;
+	private Double valoracion;
+	private Integer valoracionTotal;
+	private Integer numeroValoraciones;
 	private List<String> roles; // ROL
 	private List<String> amigos; // id
 
@@ -130,12 +132,28 @@ public class Usuario {
 		this.terminos = terminos;
 	}
 
-	public int getValoracion() {
+	public Double getValoracion() {
 		return valoracion;
 	}
 
-	public void setValoracion(int valoracion) {
+	public void setValoracion(Double valoracion) {
 		this.valoracion = valoracion;
+	}
+	
+	public Integer getValoracionTotal() {
+		return valoracionTotal;
+	}
+
+	public void setValoracionTotal(Integer valoracionTotal) {
+		this.valoracionTotal = valoracionTotal;
+	}
+
+	public Integer getNumeroValoraciones() {
+		return numeroValoraciones;
+	}
+
+	public void setNumeroValoraciones(Integer numeroValoraciones) {
+		this.numeroValoraciones = numeroValoraciones;
 	}
 
 	public List<String> getRoles() {

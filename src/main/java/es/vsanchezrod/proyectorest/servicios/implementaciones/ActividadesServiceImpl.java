@@ -49,7 +49,6 @@ public class ActividadesServiceImpl implements ActividadesService {
 			
 			if (BooleanUtils.toBoolean(queryParams.get("realizadas")) == true) {
 				listaActividades = actividadesRepository.findByFechaInicioLessThanOrderByFechaInicioDesc(new Date());
-			
 			}
 			
 			if (BooleanUtils.toBoolean(queryParams.get("realizadas")) == false) {
@@ -61,7 +60,10 @@ public class ActividadesServiceImpl implements ActividadesService {
 			}
 		}
 		
-		
+		if(queryParams.isEmpty()) {
+			listaActividades = actividadesRepository.findAll();
+		}
+				
 		return actividadesConverter.convetirListaActividadesAListaActividadesVO(listaActividades);
 	}
 
@@ -73,11 +75,24 @@ public class ActividadesServiceImpl implements ActividadesService {
 	@Override
 	public List<ActividadVO> obtenerListaActividadesConQueryParam(Map<String, String> queryParams) {
 		
-		// Identificar criterios de filtrado
-		final Example<Actividad> exampleActividad = identificarCriteriosDeFiltrado(queryParams);
-		final List<Actividad> listaActividades = actividadesRepository.findAll(exampleActividad);
+		List<Actividad> listaActividades = new ArrayList<>();
+		if(queryParams.containsKey("participante") && queryParams.containsKey("realizadas")) {
+			
+			if (BooleanUtils.toBoolean(queryParams.get("realizadas")) == true) {
+				listaActividades = actividadesRepository.findByListaParticipantesAndFechaInicioLessThanOrderByFechaInicioDesc(queryParams.get("participante"), new Date());
+			}
+			
+			if (BooleanUtils.toBoolean(queryParams.get("realizadas")) == false) {
+				listaActividades = actividadesRepository.findByListaParticipantesAndFechaInicioGreaterThanOrderByFechaInicioAsc(queryParams.get("participante"), new Date());
+			}
+		}
 		
-		
+		else {
+			// Identificar criterios de filtrado
+			final Example<Actividad> exampleActividad = identificarCriteriosDeFiltrado(queryParams);
+			listaActividades = actividadesRepository.findAll(exampleActividad);
+		}
+			
 		return actividadesConverter.convetirListaActividadesAListaActividadesVO(listaActividades);
 		
 	}
