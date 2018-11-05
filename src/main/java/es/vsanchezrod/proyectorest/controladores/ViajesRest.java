@@ -4,11 +4,14 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import es.vsanchezrod.proyectorest.servicios.ViajesService;
@@ -24,17 +27,32 @@ public class ViajesRest {
 	
 	@RequestMapping(value = "/public/viajes", method = RequestMethod.GET)
 	public List<ViajeVO> obtenerListaViajes(@RequestParam Map<String, String> queryParams) {
-		return this.viajesService.obtenerListaViajes(queryParams);
+		return viajesService.obtenerListaViajes(queryParams);
 	}
 	
 	@RequestMapping(value = "/public/viajes", method = RequestMethod.POST)
 	public void crearViaje(@RequestBody ViajeVO viajeVO) {
-		this.viajesService.crearViaje(viajeVO);
+		viajesService.crearViaje(viajeVO);
 	}
 	
 	@RequestMapping(value = "/viajes/numero", method = RequestMethod.GET)
 	@PreAuthorize("hasAuthority('administrador')")
 	public TotalVO obtenerNumeroViajes() {
 		return viajesService.obtenerNumeroViajes();
+	}
+	
+	@RequestMapping(value = "/viajes", method = RequestMethod.GET)
+	@PreAuthorize("hasAuthority('usuario') OR hasAuthority('administrador')")
+	public List<ViajeVO> obtenerListaActividadesConQueryParam(@RequestParam Map<String, String> queryParams) {
+		
+		// Se delega a la capa de negocio el valorar que queryParam recibe
+		return viajesService.obtenerListaViajesConQueryParam(queryParams);
+	}
+	
+	@RequestMapping(value = "/viajes/{id}", method = RequestMethod.DELETE)
+	@PreAuthorize("hasAuthority('administrador')")
+	@ResponseStatus(HttpStatus.OK)
+	public void borrarActividad(@PathVariable("id") String id) {
+		viajesService.borrarViaje(id);
 	}
 }

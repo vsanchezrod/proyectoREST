@@ -12,5 +12,9 @@ public interface ViajesService {
 	
 	void crearViaje (ViajeVO viaje);	
 	
+	List<ViajeVO> obtenerListaViajesConQueryParam(Map<String, String> queryParams);
+	
 	TotalVO obtenerNumeroViajes();
+	
+	void borrarViaje(String id);
 }

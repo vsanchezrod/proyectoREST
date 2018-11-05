@@ -9,8 +9,16 @@ import es.vsanchezrod.proyectorest.persistencia.modelos.Viaje;
 
 public interface ViajesRepository extends MongoRepository<Viaje, String> {
 	
+	void deleteById(String id);
+	
 	List<Viaje> findByFechaInicioGreaterThanOrderByFechaInicioAsc(Date fecha);
 	
 	List<Viaje> findByFechaInicioLessThanOrderByFechaInicioDesc(Date fecha);
-
+	
+	List<Viaje> findByCategoriasCategoriaId(String idCategoria);
+	
+	List<Viaje> findByListaParticipantesAndFechaInicioLessThanOrderByFechaInicioDesc(String idParticipante, Date fecha);
+	
+	List<Viaje> findByListaParticipantesAndFechaInicioGreaterThanOrderByFechaInicioAsc(String idParticipante, Date fecha);
+	
 }
