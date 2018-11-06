@@ -16,7 +16,7 @@ public class Mensaje {
 	private String idUsuarioReceptor;
 	private Date fecha;
 	private String asunto;
-	private String mensaje;
+	private String cuerpoMensaje;
 	private boolean leido;
 
 	public Mensaje () {
@@ -63,12 +63,12 @@ public class Mensaje {
 		this.asunto = asunto;
 	}
 	
-	public String getMensaje() {
-		return mensaje;
+	public String getCuerpoMensaje() {
+		return cuerpoMensaje;
 	}
 	
-	public void setMensaje(String mensaje) {
-		this.mensaje = mensaje;
+	public void setCuerpoMensaje(String cuerpoMensaje) {
+		this.cuerpoMensaje = cuerpoMensaje;
 	}
 	
 	

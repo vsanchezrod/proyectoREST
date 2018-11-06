@@ -20,7 +20,7 @@ public class MensajesConverter {
 		mensaje.setIdUsuarioReceptor(mensajeVO.getIdUsuarioReceptor());
 		mensaje.setFecha(mensajeVO.getFecha());
 		mensaje.setAsunto(mensajeVO.getAsunto());
-		mensaje.setMensaje(mensajeVO.getMensaje());
+		mensaje.setCuerpoMensaje(mensajeVO.getCuerpoMensaje());
 		mensaje.setLeido(mensajeVO.getLeido());
 		
 		return mensaje;
@@ -35,7 +35,7 @@ public class MensajesConverter {
 		mensajeVO.setIdUsuarioReceptor(mensaje.getIdUsuarioReceptor());
 		mensajeVO.setFecha(mensaje.getFecha());
 		mensajeVO.setAsunto(mensaje.getAsunto());
-		mensajeVO.setMensaje(mensaje.getMensaje());
+		mensajeVO.setCuerpoMensaje(mensaje.getCuerpoMensaje());
 		mensajeVO.setLeido(mensaje.getLeido());
 		
 		return mensajeVO;
