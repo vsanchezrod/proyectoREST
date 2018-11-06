@@ -1,6 +1,7 @@
 package es.vsanchezrod.proyectorest.servicios;
 
 import java.util.List;
+import java.util.Map;
 
 import es.vsanchezrod.proyectorest.servicios.vo.TotalVO;
 import es.vsanchezrod.proyectorest.servicios.vo.UsuarioVO;
@@ -11,9 +12,7 @@ public interface UsuariosService {
 	
 	UsuarioVO obtenerUsuarioVOPorId(String id);
 	
-	List<UsuarioVO> obtenerUsuarios(String nombre);
-	
-	void borrarAmigoDeUsuario(String idUsuario, String idAmigo);
+	List<UsuarioVO> obtenerUsuarios(Map<String, String> queryParams);
 	
 	TotalVO obtenerNumeroUsuarios();
 	

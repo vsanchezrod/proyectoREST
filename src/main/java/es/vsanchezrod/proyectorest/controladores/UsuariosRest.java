@@ -1,6 +1,7 @@
 	package es.vsanchezrod.proyectorest.controladores;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -33,21 +34,14 @@ public class UsuariosRest {
 	@RequestMapping(value = "/usuarios", method = RequestMethod.GET)
 	@PreAuthorize("hasAuthority('usuario') OR hasAuthority('administrador')")
 	@ResponseStatus(HttpStatus.OK)
-	public List<UsuarioVO> obtenerUsuarios(@RequestParam("nombre") String nombre) {
-		return usuariosService.obtenerUsuarios(nombre);
+	public List<UsuarioVO> obtenerUsuarios(@RequestParam Map<String, String> queryParams) {
+		return usuariosService.obtenerUsuarios(queryParams);
 	}
 	
 	@RequestMapping(value = "/public/usuarios",  method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.CREATED)
 	public void crearUsuarioVO(@RequestBody UsuarioVO usuarioVO) {
 		usuariosService.crearUsuario(usuarioVO);
-	}
-	
-	@RequestMapping(value = "/usuarios/{idUsuario}/amigos/{idAmigo}", method = RequestMethod.DELETE)
-	@ResponseStatus(HttpStatus.NO_CONTENT)
-	@PreAuthorize("hasAuthority('usuario')")
-	public void borrarAmigo(@PathVariable("idUsuario") String idUsuario, @PathVariable("idAmigo") String idAmigo) {
-		// TODO MIRAR COMO ES ESTO
 	}
 	
 	@RequestMapping(value = "/usuarios/numero", method = RequestMethod.GET)

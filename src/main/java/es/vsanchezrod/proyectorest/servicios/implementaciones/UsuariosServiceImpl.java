@@ -1,6 +1,8 @@
 package es.vsanchezrod.proyectorest.servicios.implementaciones;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -46,14 +48,17 @@ public class UsuariosServiceImpl implements UsuariosService {
 	}
 
 	@Override
-	public List<UsuarioVO> obtenerUsuarios(String nombre) {
-		List<Usuario> usuarios = usuariosRepository.findByNombreIgnoreCase(nombre);
-		return usuariosConverter.convertirListaUsuariosAListaUsuariosVO(usuarios);
-	}
-
-	@Override
-	public void borrarAmigoDeUsuario(String idUsuario, String idAmigo) {
-		// TODO	IMPLEMENTAR FUNCIÓN QUE BORRE EL AMIGO DE LA LISTA
+	public List<UsuarioVO> obtenerUsuarios(Map<String, String> queryParams) {
+		
+		List<Usuario> listaUsuarios = new ArrayList<>();
+		
+		if(queryParams.containsKey("nombre")) {
+			listaUsuarios = usuariosRepository.findByNombreIgnoreCase(queryParams.get("nombre"));
+		}
+		else {
+			listaUsuarios = usuariosRepository.findAll();
+		}
+		return usuariosConverter.convertirListaUsuariosAListaUsuariosVO(listaUsuarios);
 	}
 
 	@Override

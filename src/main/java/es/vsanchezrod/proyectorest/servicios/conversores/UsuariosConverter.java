@@ -118,6 +118,10 @@ public class UsuariosConverter {
 		if(StringUtils.isNotBlank(usuarioVO.getAvatar())) {
 			usuario.setAvatar(usuarioVO.getAvatar());
 		}
+		
+		if(usuarioVO.getAmigos() != null) {
+			usuario.setAmigos(usuarioVO.getAmigos());
+		}
 				
 	}
 }
