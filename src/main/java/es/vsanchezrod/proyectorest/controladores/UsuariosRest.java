@@ -57,6 +57,13 @@ public class UsuariosRest {
 		usuariosService.actualizarUsuario(id, usuarioVO);
 	}
 	
+	@RequestMapping(value = "/usuario/{id}", method = RequestMethod.DELETE)
+	@PreAuthorize("hasAuthority('administrador')")
+	@ResponseStatus(HttpStatus.OK)
+	public void borrarCategoria(@PathVariable("id") String id) {
+		
+		usuariosService.borrarUsuario(id);
+	}
 	
 	
 }

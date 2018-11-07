@@ -17,5 +17,7 @@ public interface UsuariosService {
 	TotalVO obtenerNumeroUsuarios();
 	
 	void actualizarUsuario(String id, UsuarioVO usuarioVO);
+	
+	void borrarUsuario(String id);
 }
 

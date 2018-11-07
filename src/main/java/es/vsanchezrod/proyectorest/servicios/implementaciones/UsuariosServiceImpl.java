@@ -77,4 +77,10 @@ public class UsuariosServiceImpl implements UsuariosService {
 		usuariosConverter.actualizarModeloUsuario(usuario, usuarioVO);
 		usuariosRepository.save(usuario);
 	}
+
+	@Override
+	public void borrarUsuario(String id) {
+		usuariosRepository.deleteById(id);
+
+	}
 }
