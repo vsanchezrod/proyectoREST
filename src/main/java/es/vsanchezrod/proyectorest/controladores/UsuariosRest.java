@@ -64,5 +64,12 @@ public class UsuariosRest {
 		usuariosService.borrarUsuario(id);
 	}
 	
+	@RequestMapping(value = "/usuarios/{id}/mensajes/numero", method = RequestMethod.GET)
+	@PreAuthorize("hasAuthority('usuario') OR hasAuthority('administrador')")
+	@ResponseStatus(HttpStatus.OK)
+	public TotalVO obtenerNumeroMensajesNoLeidosDeUsuario(@PathVariable ("id") String id, @RequestParam Boolean estado)  {
+		return usuariosService.obtenerNumeroMensajesNoLeidosDeUsuario(id, estado);
+	}
+	
 	
 }

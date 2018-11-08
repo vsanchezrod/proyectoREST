@@ -11,4 +11,8 @@ public interface MensajesRepository extends MongoRepository<Mensaje, String> {
 	List<Mensaje> findByidUsuarioReceptor(String id);
 	
 	void deleteById(String id);
+	
+	Mensaje findById(String id);
+	
+	long countByidUsuarioReceptorAndLeido(String id, Boolean estado);
 }

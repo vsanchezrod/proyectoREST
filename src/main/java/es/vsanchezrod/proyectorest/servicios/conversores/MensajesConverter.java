@@ -51,4 +51,11 @@ public class MensajesConverter {
 		
 		return listaMensajesVO;
 	}
+	
+	public void actualizarModeloMensaje(Mensaje mensaje, MensajeVO mensajeVO) {
+
+		if(mensajeVO.getLeido()) {
+			mensaje.setLeido(mensajeVO.getLeido());
+		}
+	}
 }

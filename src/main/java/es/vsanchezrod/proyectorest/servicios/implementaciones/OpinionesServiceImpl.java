@@ -66,8 +66,10 @@ public class OpinionesServiceImpl implements OpinionesService {
 	@Override
 	public TotalVO obtenerNumeroOpiniones() {
 		final TotalVO totalVO = new TotalVO();
+		
 		totalVO.setTotal(opinionesRepository.count());
 		return totalVO;
+
 	}
 
 	

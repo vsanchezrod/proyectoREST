@@ -11,5 +11,8 @@ public interface MensajesService {
 	void crearMensaje(MensajeVO mensajeVO);
 	
 	void borrarMensaje(String id);
-		
+	
+	void actualizarMensaje(String id, MensajeVO mensajeVO);
+	
+
 }

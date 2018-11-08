@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
 
 import es.vsanchezrod.proyectorest.persistencia.modelos.Usuario;
+import es.vsanchezrod.proyectorest.persistencia.repositorios.MensajesRepository;
 import es.vsanchezrod.proyectorest.persistencia.repositorios.UsuariosRepository;
 import es.vsanchezrod.proyectorest.servicios.UsuariosService;
 import es.vsanchezrod.proyectorest.servicios.conversores.UsuariosConverter;
@@ -28,6 +29,9 @@ public class UsuariosServiceImpl implements UsuariosService {
 	
 	@Autowired
 	private PasswordEncoder passwordEncoder;
+		
+	@Autowired
+	private MensajesRepository mensajesRepository;
 
 	@Override
 	public void crearUsuario(UsuarioVO usuarioVO) {
@@ -81,6 +85,14 @@ public class UsuariosServiceImpl implements UsuariosService {
 	@Override
 	public void borrarUsuario(String id) {
 		usuariosRepository.deleteById(id);
+
+	}
+
+	@Override
+	public TotalVO obtenerNumeroMensajesNoLeidosDeUsuario(String id, Boolean estado) {
+		final TotalVO totalVO = new TotalVO();
+		totalVO.setTotal(mensajesRepository.countByidUsuarioReceptorAndLeido(id, estado));
+		return totalVO;
 
 	}
 }

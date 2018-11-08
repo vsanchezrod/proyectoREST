@@ -19,5 +19,7 @@ public interface UsuariosService {
 	void actualizarUsuario(String id, UsuarioVO usuarioVO);
 	
 	void borrarUsuario(String id);
+	
+	TotalVO obtenerNumeroMensajesNoLeidosDeUsuario(String id, Boolean estado);
 }
 
