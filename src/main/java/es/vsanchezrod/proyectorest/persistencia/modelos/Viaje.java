@@ -9,8 +9,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Viaje extends Actividad {
 
 	private Date fechaFin;
-	private int precio;
-	private int plazas;
+	private Integer precio;
+	private Integer plazas;
 
 	public Viaje() {
 		super();
@@ -24,19 +24,19 @@ public class Viaje extends Actividad {
 		this.fechaFin = fechaFin;
 	}
 
-	public int getPrecio() {
+	public Integer getPrecio() {
 		return precio;
 	}
 
-	public void setPrecio(int precio) {
+	public void setPrecio(Integer precio) {
 		this.precio = precio;
 	}
 	
-	public int getPlazas() {
+	public Integer getPlazas() {
 		return plazas;
 	}
 
-	public void setPlazas(int plazas) {
+	public void setPlazas(Integer plazas) {
 		this.plazas = plazas;
 	}
 

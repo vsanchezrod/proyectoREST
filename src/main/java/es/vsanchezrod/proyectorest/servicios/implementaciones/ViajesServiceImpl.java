@@ -11,8 +11,6 @@ import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Service;
 
-import com.mongodb.BasicDBList;
-
 import es.vsanchezrod.proyectorest.persistencia.modelos.Mensaje;
 import es.vsanchezrod.proyectorest.persistencia.modelos.Viaje;
 import es.vsanchezrod.proyectorest.persistencia.repositorios.MensajesRepository;
@@ -102,17 +100,25 @@ public class ViajesServiceImpl implements ViajesService {
 	public List<ViajeVO> obtenerListaViajesConQueryParam(Map<String, String> queryParams) {
 		
 		List<Viaje> listaViajes = new ArrayList<>();
-		if(queryParams.containsKey("participante") && queryParams.containsKey("realizadas")) {
+		
+		if(queryParams.containsKey("participante")) {
 			
-			if (BooleanUtils.toBoolean(queryParams.get("realizadas")) == true) {
-				listaViajes = viajesRepository.findByListaParticipantesAndFechaInicioLessThanOrderByFechaInicioDesc(queryParams.get("participante"), new Date());
+			if(queryParams.containsKey("participante") && queryParams.containsKey("realizadas")) {
+				
+				if (BooleanUtils.toBoolean(queryParams.get("realizadas")) == true) {
+					listaViajes = viajesRepository.findByListaParticipantesAndFechaInicioLessThanOrderByFechaInicioDesc(queryParams.get("participante"), new Date());
+				}
+				
+				if (BooleanUtils.toBoolean(queryParams.get("realizadas")) == false) {
+					listaViajes = viajesRepository.findByListaParticipantesAndFechaInicioGreaterThanOrderByFechaInicioAsc(queryParams.get("participante"), new Date());
+				}
 			}
 			
-			if (BooleanUtils.toBoolean(queryParams.get("realizadas")) == false) {
-				listaViajes = viajesRepository.findByListaParticipantesAndFechaInicioGreaterThanOrderByFechaInicioAsc(queryParams.get("participante"), new Date());
+			else {
+				listaViajes = viajesRepository.findByListaParticipantes(queryParams.get("participante"));
 			}
 		}
-		
+				
 		else {
 			// Identificar criterios de filtrado
 			final Example<Viaje> exampleViaje = identificarCriteriosDeFiltrado(queryParams);
@@ -133,16 +139,11 @@ public class ViajesServiceImpl implements ViajesService {
 		// Como son lista vacías y se inicializan a [], es necesario establecer como valor null para que no sean parámetros de filtrado de datos
 		viajeQuery.setCategorias(null);
 		viajeQuery.setListaParticipantes(null);
+		viajeQuery.setPrecio(null);
+		viajeQuery.setPlazas(null);
 				
 		if(queryParams.containsKey("creador")) {
 			viajeQuery.setIdUsuarioCreacion(queryParams.get("creador"));
-		}
-		
-		if(queryParams.containsKey("participante")) {
-			viajeMatcher.withMatcher("listaParticipantes", match -> match.transform(source -> ((BasicDBList) source).iterator().next()).caseSensitive());
-			final List<String> listaParticipantes = new ArrayList<>();
-			listaParticipantes.add(queryParams.get("participante"));
-			viajeQuery.setListaParticipantes(listaParticipantes);
 		}
 		
 		final Example<Viaje> exampleViaje = Example.of(viajeQuery, viajeMatcher);

@@ -11,8 +11,6 @@ import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Service;
 
-import com.mongodb.BasicDBList;
-
 import es.vsanchezrod.proyectorest.persistencia.modelos.Actividad;
 import es.vsanchezrod.proyectorest.persistencia.modelos.Mensaje;
 import es.vsanchezrod.proyectorest.persistencia.repositorios.ActividadesRepository;
@@ -100,14 +98,22 @@ public class ActividadesServiceImpl implements ActividadesService {
 	public List<ActividadVO> obtenerListaActividadesConQueryParam(Map<String, String> queryParams) {
 		
 		List<Actividad> listaActividades = new ArrayList<>();
-		if(queryParams.containsKey("participante") && queryParams.containsKey("realizadas")) {
+		
+		if(queryParams.containsKey("participante")) {
 			
-			if (BooleanUtils.toBoolean(queryParams.get("realizadas")) == true) {
-				listaActividades = actividadesRepository.findByListaParticipantesAndFechaInicioLessThanOrderByFechaInicioDesc(queryParams.get("participante"), new Date());
+			if(queryParams.containsKey("participante") && queryParams.containsKey("realizadas")) {
+				
+				if (BooleanUtils.toBoolean(queryParams.get("realizadas")) == true) {
+					listaActividades = actividadesRepository.findByListaParticipantesAndFechaInicioLessThanOrderByFechaInicioDesc(queryParams.get("participante"), new Date());
+				}
+				
+				if (BooleanUtils.toBoolean(queryParams.get("realizadas")) == false) {
+					listaActividades = actividadesRepository.findByListaParticipantesAndFechaInicioGreaterThanOrderByFechaInicioAsc(queryParams.get("participante"), new Date());
+				}
 			}
 			
-			if (BooleanUtils.toBoolean(queryParams.get("realizadas")) == false) {
-				listaActividades = actividadesRepository.findByListaParticipantesAndFechaInicioGreaterThanOrderByFechaInicioAsc(queryParams.get("participante"), new Date());
+			else {
+				listaActividades = actividadesRepository.findByListaParticipantes(queryParams.get("participante"));
 			}
 		}
 		
@@ -144,14 +150,7 @@ public class ActividadesServiceImpl implements ActividadesService {
 		if(queryParams.containsKey("creador")) {
 			actividadQuery.setIdUsuarioCreacion(queryParams.get("creador"));
 		}
-		
-		if(queryParams.containsKey("participante")) {
-			actividadMatcher.withMatcher("listaParticipantes", match -> match.transform(source -> ((BasicDBList) source).iterator().next()).caseSensitive());
-			final List<String> listaParticipantes = new ArrayList<>();
-			listaParticipantes.add(queryParams.get("participante"));
-			actividadQuery.setListaParticipantes(listaParticipantes);
-		}
-		
+				
 		final Example<Actividad> exampleActividad = Example.of(actividadQuery, actividadMatcher);
 		return exampleActividad;
 	}

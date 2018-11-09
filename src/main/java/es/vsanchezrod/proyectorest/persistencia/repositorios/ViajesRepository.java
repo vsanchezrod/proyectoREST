@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 
+import es.vsanchezrod.proyectorest.persistencia.modelos.Actividad;
 import es.vsanchezrod.proyectorest.persistencia.modelos.Viaje;
 
 public interface ViajesRepository extends MongoRepository<Viaje, String> {
@@ -21,5 +22,8 @@ public interface ViajesRepository extends MongoRepository<Viaje, String> {
 	
 	List<Viaje> findByListaParticipantesAndFechaInicioGreaterThanOrderByFechaInicioAsc(String idParticipante, Date fecha);
 
+	List<Viaje> findByListaParticipantes(String idParticipante);
+
 	Viaje findById(String id);
+	
 }

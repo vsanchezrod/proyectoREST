@@ -7,8 +7,8 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 public class ViajeVO extends ActividadVO {
 
 	private Date fechaFin;
-	private int precio;
-	private int plazas;
+	private Integer precio;
+	private Integer plazas;
 	
 	public ViajeVO() {
 		super();
@@ -22,19 +22,19 @@ public class ViajeVO extends ActividadVO {
 		this.fechaFin = fechaFin;
 	}
 
-	public int getPrecio() {
+	public Integer getPrecio() {
 		return precio;
 	}
 
-	public void setPrecio(int precio) {
+	public void setPrecio(Integer precio) {
 		this.precio = precio;
 	}
 
-	public int getPlazas() {
+	public Integer getPlazas() {
 		return plazas;
 	}
 
-	public void setPlazas(int plazas) {
+	public void setPlazas(Integer plazas) {
 		this.plazas = plazas;
 	}
 
