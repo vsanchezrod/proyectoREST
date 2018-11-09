@@ -14,7 +14,9 @@ import org.springframework.stereotype.Service;
 import com.mongodb.BasicDBList;
 
 import es.vsanchezrod.proyectorest.persistencia.modelos.Actividad;
+import es.vsanchezrod.proyectorest.persistencia.modelos.Mensaje;
 import es.vsanchezrod.proyectorest.persistencia.repositorios.ActividadesRepository;
+import es.vsanchezrod.proyectorest.persistencia.repositorios.MensajesRepository;
 import es.vsanchezrod.proyectorest.servicios.ActividadesService;
 import es.vsanchezrod.proyectorest.servicios.conversores.ActividadesConverter;
 import es.vsanchezrod.proyectorest.servicios.vo.ActividadVO;
@@ -28,6 +30,9 @@ public class ActividadesServiceImpl implements ActividadesService {
 	
 	@Autowired
 	private ActividadesRepository actividadesRepository;
+	
+	@Autowired
+	private MensajesRepository mensajesRepository;
 		
 	@Override
 	public void crearActividad(ActividadVO actividadVO) {
@@ -68,9 +73,28 @@ public class ActividadesServiceImpl implements ActividadesService {
 	}
 
 	@Override
-	public void borrarActividad(String id) {
+	public void borrarActividad(String id, String motivo, String idUsuarioBorradorActividad) {
+		Actividad actividad = actividadesRepository.findById(id);
+		
+		for (String idUsuarioReceptor: actividad.getListaParticipantes()) {
+			Mensaje mensaje = new Mensaje();
+			mensaje.setIdUsuarioEmisor(idUsuarioBorradorActividad);
+			mensaje.setIdUsuarioReceptor(idUsuarioReceptor);
+			mensaje.setFecha(new Date());
+			mensaje.setAsunto("Actividad Cancelada: " + actividad.getNombre());
+			mensaje.setCuerpoMensaje("Cancelada por: " + motivo);
+			mensaje.setLeido(false);
+			
+			mensajesRepository.save(mensaje);
+		}
+			
+		
 		actividadesRepository.deleteById(id);
 	}
+	
+	
+	
+	
 
 	@Override
 	public List<ActividadVO> obtenerListaActividadesConQueryParam(Map<String, String> queryParams) {

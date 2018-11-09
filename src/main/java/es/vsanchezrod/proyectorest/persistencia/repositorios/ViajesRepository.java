@@ -20,5 +20,6 @@ public interface ViajesRepository extends MongoRepository<Viaje, String> {
 	List<Viaje> findByListaParticipantesAndFechaInicioLessThanOrderByFechaInicioDesc(String idParticipante, Date fecha);
 	
 	List<Viaje> findByListaParticipantesAndFechaInicioGreaterThanOrderByFechaInicioAsc(String idParticipante, Date fecha);
-	
+
+	Viaje findById(String id);
 }

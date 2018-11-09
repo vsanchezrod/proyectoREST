@@ -8,12 +8,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import es.vsanchezrod.proyectorest.controladores.componentes.AuthorizationUtilComponent;
 import es.vsanchezrod.proyectorest.servicios.ActividadesService;
 import es.vsanchezrod.proyectorest.servicios.vo.ActividadVO;
 import es.vsanchezrod.proyectorest.servicios.vo.TotalVO;
@@ -23,6 +25,9 @@ public class ActividadesRest {
 	
 	@Autowired
 	private ActividadesService actividadesService;
+	
+	@Autowired
+	private AuthorizationUtilComponent authorizationUtilComponent;
 
 	@RequestMapping(value = "/public/actividades", method = RequestMethod.GET)
 	public List<ActividadVO> obtenerListaActividades(@RequestParam Map<String, String> queryParams){
@@ -37,10 +42,12 @@ public class ActividadesRest {
 	}
 	
 	@RequestMapping(value = "/actividades/{id}", method = RequestMethod.DELETE)
-	@PreAuthorize("hasAuthority('administrador')")
+	@PreAuthorize("hasAuthority('usuario') OR hasAuthority('administrador')")
 	@ResponseStatus(HttpStatus.OK)
-	public void borrarActividad(@PathVariable("id") String id) {
-		actividadesService.borrarActividad(id);
+	public void borrarActividad(@PathVariable("id") String idActividad,  @RequestHeader("X-Motivo") String motivo, @RequestHeader("Authorization") String token) {
+		
+		final String idUsuarioBorradorActividad = authorizationUtilComponent.obtenerUserName(token);
+		actividadesService.borrarActividad(idActividad, motivo, idUsuarioBorradorActividad);
 	}
 	
 	@RequestMapping(value = "/actividades", method = RequestMethod.GET)

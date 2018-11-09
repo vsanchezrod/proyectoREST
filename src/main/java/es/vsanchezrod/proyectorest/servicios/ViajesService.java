@@ -16,5 +16,5 @@ public interface ViajesService {
 	
 	TotalVO obtenerNumeroViajes();
 	
-	void borrarViaje(String id);
+	void borrarViaje(String id, String motivo, String idUsuarioBorradorViaje);
 }

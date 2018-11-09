@@ -23,4 +23,5 @@ public interface ActividadesRepository extends MongoRepository<Actividad, String
 	
 	List<Actividad> findByListaParticipantesAndFechaInicioGreaterThanOrderByFechaInicioAsc(String idParticipante, Date fecha);
 		
+	Actividad findById(String id);
 }

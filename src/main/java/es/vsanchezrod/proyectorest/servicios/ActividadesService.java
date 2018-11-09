@@ -12,7 +12,7 @@ public interface ActividadesService {
 	
 	List<ActividadVO> obtenerListaActividades(Map<String, String> queryParams);
 	
-	void borrarActividad(String id);
+	void borrarActividad(String id, String motivo, String idUsuarioBorradorActividad);
 	
 	List<ActividadVO> obtenerListaActividadesConQueryParam(Map<String, String> queryParams);
 	

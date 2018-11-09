@@ -13,7 +13,9 @@ import org.springframework.stereotype.Service;
 
 import com.mongodb.BasicDBList;
 
+import es.vsanchezrod.proyectorest.persistencia.modelos.Mensaje;
 import es.vsanchezrod.proyectorest.persistencia.modelos.Viaje;
+import es.vsanchezrod.proyectorest.persistencia.repositorios.MensajesRepository;
 import es.vsanchezrod.proyectorest.persistencia.repositorios.ViajesRepository;
 import es.vsanchezrod.proyectorest.servicios.ViajesService;
 import es.vsanchezrod.proyectorest.servicios.conversores.ViajesConverter;
@@ -28,6 +30,9 @@ public class ViajesServiceImpl implements ViajesService {
 	
 	@Autowired
 	private ViajesRepository viajesRepository;
+	
+	@Autowired
+	private MensajesRepository mensajesRepository;
 	
 	@Override
 	public void crearViaje(ViajeVO viajeVO) {
@@ -69,7 +74,20 @@ public class ViajesServiceImpl implements ViajesService {
 
 	
 	@Override
-	public void borrarViaje(String id) {
+	public void borrarViaje(String id, String motivo, String idUsuarioBorradorViaje) {
+		Viaje viaje = viajesRepository.findById(id);
+		
+		for (String idUsuarioReceptor: viaje.getListaParticipantes()) {
+			Mensaje mensaje = new Mensaje();
+			mensaje.setIdUsuarioEmisor(idUsuarioBorradorViaje);
+			mensaje.setIdUsuarioReceptor(idUsuarioReceptor);
+			mensaje.setFecha(new Date());
+			mensaje.setAsunto("Viaje Cancelado: " + viaje.getNombre());
+			mensaje.setCuerpoMensaje("Cancelado por: " + motivo);
+			mensaje.setLeido(false);
+			
+			mensajesRepository.save(mensaje);
+		}
 		viajesRepository.deleteById(id);
 	}
 
