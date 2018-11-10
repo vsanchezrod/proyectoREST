@@ -25,5 +25,5 @@ public interface ViajesRepository extends MongoRepository<Viaje, String> {
 	List<Viaje> findByListaParticipantes(String idParticipante);
 
 	Viaje findById(String id);
-	
+		
 }

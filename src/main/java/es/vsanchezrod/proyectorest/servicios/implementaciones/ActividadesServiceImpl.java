@@ -38,6 +38,12 @@ public class ActividadesServiceImpl implements ActividadesService {
 		final Actividad actividad = actividadesConverter.convertirActividadVOAActividad(actividadVO);
 		actividadesRepository.save(actividad);
 	}
+	
+	@Override
+	public ActividadVO obtenerActividad(String id) {
+		Actividad actividad = actividadesRepository.findById(id);
+		return actividadesConverter.convertirActividadAActividadVO(actividad);
+	}
 
 	@Override
 	public List<ActividadVO> obtenerListaActividades(Map<String, String> queryParams) {

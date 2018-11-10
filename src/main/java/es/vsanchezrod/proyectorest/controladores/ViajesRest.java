@@ -34,6 +34,11 @@ public class ViajesRest {
 		return viajesService.obtenerListaViajes(queryParams);
 	}
 	
+	@RequestMapping(value = "/public/viajes/{id}", method = RequestMethod.GET)
+	public ViajeVO obtenerViaje(@PathVariable("id") String id) {
+		return viajesService.obtenerViaje(id);
+	}
+	
 	@RequestMapping(value = "/viajes", method = RequestMethod.POST)
 	@PreAuthorize("hasAuthority('administrador')")
 	public void crearViaje(@RequestBody ViajeVO viajeVO) {

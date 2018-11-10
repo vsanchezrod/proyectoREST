@@ -37,6 +37,14 @@ public class ViajesServiceImpl implements ViajesService {
 		this.viajesRepository.save(this.viajesConverter.convertirViajeVOAViaje(viajeVO));
 	}
 	
+
+	@Override
+	public ViajeVO obtenerViaje(String id) {
+		
+		Viaje viaje = viajesRepository.findById(id);
+		return viajesConverter.convertirViajeAViajeVO(viaje);
+	}
+	
 	@Override
 	public List<ViajeVO> obtenerListaViajes(Map<String, String> queryParams) {
 		
@@ -149,5 +157,6 @@ public class ViajesServiceImpl implements ViajesService {
 		final Example<Viaje> exampleViaje = Example.of(viajeQuery, viajeMatcher);
 		return exampleViaje;
 	}
+
 
 }

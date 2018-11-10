@@ -34,6 +34,11 @@ public class ActividadesRest {
 		return actividadesService.obtenerListaActividades(queryParams);
 	}
 	
+	@RequestMapping(value = "/public/actividades/{id}", method = RequestMethod.GET)
+	public ActividadVO obtenerActividad(@PathVariable("id") String id) {
+		return actividadesService.obtenerActividad(id);
+	}
+	
 	@RequestMapping(value = "/actividades", method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.CREATED)
 	@PreAuthorize("hasAuthority('usuario')")

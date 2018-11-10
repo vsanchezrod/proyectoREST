@@ -17,4 +17,6 @@ public interface ActividadesService {
 	List<ActividadVO> obtenerListaActividadesConQueryParam(Map<String, String> queryParams);
 	
 	TotalVO obtenerNumeroActividades();
+	
+	ActividadVO obtenerActividad(String id);
 }
