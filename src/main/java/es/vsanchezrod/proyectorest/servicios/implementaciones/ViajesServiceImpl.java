@@ -61,7 +61,7 @@ public class ViajesServiceImpl implements ViajesService {
 		
 		if(queryParams.containsKey("categoria")) {
 			final String idCategoria = queryParams.get("categoria");
-			listaViajes = viajesRepository.findByCategoriasCategoriaId(idCategoria);
+			listaViajes = viajesRepository.findByCategoriasCategoriaIdAndFechaInicioGreaterThanOrderByFechaInicioAsc(idCategoria, new Date());
 		}
 			
 		if(queryParams.containsKey("realizadas")) {

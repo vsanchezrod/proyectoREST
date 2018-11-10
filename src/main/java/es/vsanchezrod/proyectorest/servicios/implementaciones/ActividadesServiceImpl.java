@@ -59,7 +59,7 @@ public class ActividadesServiceImpl implements ActividadesService {
 				
 		if(queryParams.containsKey("categoria")) {
 			final String idCategoria = queryParams.get("categoria");
-			listaActividades = actividadesRepository.findByCategoriasCategoriaId(idCategoria);
+			listaActividades = actividadesRepository.findByCategoriasCategoriaIdAndFechaInicioGreaterThanOrderByFechaInicioAsc(idCategoria, new Date());
 		}
 				
 		if(queryParams.containsKey("realizadas")) {
