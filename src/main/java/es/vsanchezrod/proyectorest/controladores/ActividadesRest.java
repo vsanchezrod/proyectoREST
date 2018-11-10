@@ -59,7 +59,6 @@ public class ActividadesRest {
 	@RequestMapping(value = "/actividades", method = RequestMethod.GET)
 	@PreAuthorize("hasAuthority('usuario') OR hasAuthority('administrador')")
 	public List<ActividadVO> obtenerListaActividadesConQueryParam(@RequestParam Map<String, String> queryParams) {
-		
 		// Se delega a la capa de negocio el valorar que queryParam recibe
 		return actividadesService.obtenerListaActividadesConQueryParam(queryParams);
 	}

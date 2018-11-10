@@ -25,6 +25,7 @@
 		<java.version>1.8</java.version>
 		<commons-lang3.version>3.8</commons-lang3.version>
 		<commons-text.version>1.6</commons-text.version>
+		<micrometer.version>1.0.5</micrometer.version>
 	</properties>
 
 	<dependencies>
@@ -77,11 +78,22 @@
 		</dependency>
 
 		<dependency>
+			<groupId>io.micrometer</groupId>
+			<artifactId>micrometer-spring-legacy</artifactId>
+			<version>${micrometer.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>io.micrometer</groupId>
+			<artifactId>micrometer-registry-prometheus</artifactId>
+			<version>${micrometer.version}</version>
+		</dependency>
+		
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-
 
 	</dependencies>
 
@@ -93,6 +105,5 @@
 			</plugin>
 		</plugins>
 	</build>
-
 
 </project>
