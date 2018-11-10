@@ -9,15 +9,20 @@ import org.apache.commons.lang3.BooleanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpClientErrorException;
 
 import es.vsanchezrod.proyectorest.persistencia.modelos.Actividad;
 import es.vsanchezrod.proyectorest.persistencia.modelos.Mensaje;
+import es.vsanchezrod.proyectorest.persistencia.modelos.Usuario;
 import es.vsanchezrod.proyectorest.persistencia.repositorios.ActividadesRepository;
 import es.vsanchezrod.proyectorest.persistencia.repositorios.MensajesRepository;
+import es.vsanchezrod.proyectorest.persistencia.repositorios.UsuariosRepository;
 import es.vsanchezrod.proyectorest.servicios.ActividadesService;
 import es.vsanchezrod.proyectorest.servicios.conversores.ActividadesConverter;
 import es.vsanchezrod.proyectorest.servicios.vo.ActividadVO;
+import es.vsanchezrod.proyectorest.servicios.vo.NuevoParticipanteVO;
 import es.vsanchezrod.proyectorest.servicios.vo.TotalVO;
 
 @Service
@@ -31,7 +36,10 @@ public class ActividadesServiceImpl implements ActividadesService {
 	
 	@Autowired
 	private MensajesRepository mensajesRepository;
-		
+	
+	@Autowired
+	private UsuariosRepository usuariosRepository;
+	
 	@Override
 	public void crearActividad(ActividadVO actividadVO) {
 		
@@ -96,10 +104,6 @@ public class ActividadesServiceImpl implements ActividadesService {
 		actividadesRepository.deleteById(id);
 	}
 	
-	
-	
-	
-
 	@Override
 	public List<ActividadVO> obtenerListaActividadesConQueryParam(Map<String, String> queryParams) {
 		
@@ -159,6 +163,30 @@ public class ActividadesServiceImpl implements ActividadesService {
 				
 		final Example<Actividad> exampleActividad = Example.of(actividadQuery, actividadMatcher);
 		return exampleActividad;
+	}
+
+	@Override
+	public void actualizarActividad(String idActividad, NuevoParticipanteVO nuevoParticipanteVO) {
+		final Actividad actividad = actividadesRepository.findById(idActividad);
+		if (actividad == null) {
+			throw new HttpClientErrorException(HttpStatus.NOT_FOUND, "La actividad no existe.");
+		}
+		
+		final Usuario usuario = usuariosRepository.findById(nuevoParticipanteVO.getIdParticipante());
+		
+		if (usuario == null) {
+			throw new HttpClientErrorException(HttpStatus.BAD_REQUEST, "El usuario no existe" );
+		}
+		
+		final List<String> listaParticipantesActividad = actividad.getListaParticipantes();
+		if (listaParticipantesActividad.contains(nuevoParticipanteVO.getIdParticipante())) {
+			throw new HttpClientErrorException(HttpStatus.BAD_REQUEST, "Participante ya inscrito");
+		}
+		
+		listaParticipantesActividad.add(nuevoParticipanteVO.getIdParticipante());
+		actividad.setListaParticipantes(listaParticipantesActividad);
+		actividadesRepository.save(actividad);
+		
 	}
 
 }

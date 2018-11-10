@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import es.vsanchezrod.proyectorest.controladores.componentes.AuthorizationUtilComponent;
 import es.vsanchezrod.proyectorest.servicios.ViajesService;
+import es.vsanchezrod.proyectorest.servicios.vo.NuevoParticipanteVO;
 import es.vsanchezrod.proyectorest.servicios.vo.TotalVO;
 import es.vsanchezrod.proyectorest.servicios.vo.ViajeVO;
 
@@ -66,5 +67,12 @@ public class ViajesRest {
 		
 		final String idUsuarioBorradorViaje = authorizationUtilComponent.obtenerUserName(token);
 		viajesService.borrarViaje(id, motivo, idUsuarioBorradorViaje);
+	}
+	
+	@RequestMapping(value = "/viajes/{id}/participantes", method = RequestMethod.PUT)
+	@PreAuthorize("hasAuthority('usuario') OR hasAuthority('administrador')")
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	public void actualizarViaje(@PathVariable("id") String idViaje, @RequestBody NuevoParticipanteVO nuevoParticipanteVO ) {
+		viajesService.actualizarViaje(idViaje, nuevoParticipanteVO);
 	}
 }

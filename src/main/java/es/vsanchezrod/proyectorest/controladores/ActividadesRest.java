@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import es.vsanchezrod.proyectorest.controladores.componentes.AuthorizationUtilComponent;
 import es.vsanchezrod.proyectorest.servicios.ActividadesService;
 import es.vsanchezrod.proyectorest.servicios.vo.ActividadVO;
+import es.vsanchezrod.proyectorest.servicios.vo.NuevoParticipanteVO;
 import es.vsanchezrod.proyectorest.servicios.vo.TotalVO;
 
 @RestController
@@ -67,6 +68,13 @@ public class ActividadesRest {
 	@PreAuthorize("hasAuthority('administrador')")
 	public TotalVO obtenerNumeroActividades() {
 		return actividadesService.obtenerNumeroActividades();
+	}
+	
+	@RequestMapping(value = "/actividades/{id}/participantes", method = RequestMethod.PUT)
+	@PreAuthorize("hasAuthority('usuario') OR hasAuthority('administrador')")
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	public void actualizarActivididad(@PathVariable("id") String idActividad, @RequestBody NuevoParticipanteVO nuevoParticipanteVO ) {
+		actividadesService.actualizarActividad(idActividad, nuevoParticipanteVO);
 	}
 	
 }

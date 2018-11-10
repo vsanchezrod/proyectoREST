@@ -3,6 +3,7 @@ package es.vsanchezrod.proyectorest.servicios;
 import java.util.List;
 import java.util.Map;
 
+import es.vsanchezrod.proyectorest.servicios.vo.NuevoParticipanteVO;
 import es.vsanchezrod.proyectorest.servicios.vo.TotalVO;
 import es.vsanchezrod.proyectorest.servicios.vo.ViajeVO;
 
@@ -19,4 +20,6 @@ public interface ViajesService {
 	void borrarViaje(String id, String motivo, String idUsuarioBorradorViaje);
 	
 	ViajeVO obtenerViaje(String id);
+	
+	void actualizarViaje(String idViaje, NuevoParticipanteVO nuevoParticipanteVO);
 }

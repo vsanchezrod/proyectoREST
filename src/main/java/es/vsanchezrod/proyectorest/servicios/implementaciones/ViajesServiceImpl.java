@@ -9,14 +9,20 @@ import org.apache.commons.lang3.BooleanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpClientErrorException;
 
+import es.vsanchezrod.proyectorest.persistencia.modelos.Actividad;
 import es.vsanchezrod.proyectorest.persistencia.modelos.Mensaje;
+import es.vsanchezrod.proyectorest.persistencia.modelos.Usuario;
 import es.vsanchezrod.proyectorest.persistencia.modelos.Viaje;
 import es.vsanchezrod.proyectorest.persistencia.repositorios.MensajesRepository;
+import es.vsanchezrod.proyectorest.persistencia.repositorios.UsuariosRepository;
 import es.vsanchezrod.proyectorest.persistencia.repositorios.ViajesRepository;
 import es.vsanchezrod.proyectorest.servicios.ViajesService;
 import es.vsanchezrod.proyectorest.servicios.conversores.ViajesConverter;
+import es.vsanchezrod.proyectorest.servicios.vo.NuevoParticipanteVO;
 import es.vsanchezrod.proyectorest.servicios.vo.TotalVO;
 import es.vsanchezrod.proyectorest.servicios.vo.ViajeVO;
 
@@ -31,6 +37,9 @@ public class ViajesServiceImpl implements ViajesService {
 	
 	@Autowired
 	private MensajesRepository mensajesRepository;
+	
+	@Autowired
+	private UsuariosRepository usuariosRepository;
 	
 	@Override
 	public void crearViaje(ViajeVO viajeVO) {
@@ -156,6 +165,37 @@ public class ViajesServiceImpl implements ViajesService {
 		
 		final Example<Viaje> exampleViaje = Example.of(viajeQuery, viajeMatcher);
 		return exampleViaje;
+	}
+
+
+	@Override
+	public void actualizarViaje(String idViaje, NuevoParticipanteVO nuevoParticipanteVO) {
+		
+		final Viaje viaje = viajesRepository.findById(idViaje);
+		if (viaje == null) {
+			throw new HttpClientErrorException(HttpStatus.NOT_FOUND, "El viaje no existe.");
+		}
+		
+		final Usuario usuario = usuariosRepository.findById(nuevoParticipanteVO.getIdParticipante());
+		
+		if (usuario == null) {
+			throw new HttpClientErrorException(HttpStatus.BAD_REQUEST, "El usuario no existe" );
+		}
+		
+		final List<String> listaParticipantesViaje = viaje.getListaParticipantes();
+		if (listaParticipantesViaje.contains(nuevoParticipanteVO.getIdParticipante())) {
+			throw new HttpClientErrorException(HttpStatus.BAD_REQUEST, "Participante ya inscrito");
+		}
+		
+		final Integer plazasViaje = viaje.getPlazas();
+		if (listaParticipantesViaje.size() >= plazasViaje) {
+			throw new HttpClientErrorException(HttpStatus.BAD_REQUEST, "El viaje no tiene plazas");
+		}
+		
+		listaParticipantesViaje.add(nuevoParticipanteVO.getIdParticipante());
+		viaje.setListaParticipantes(listaParticipantesViaje);
+		viajesRepository.save(viaje);
+		
 	}
 
 
