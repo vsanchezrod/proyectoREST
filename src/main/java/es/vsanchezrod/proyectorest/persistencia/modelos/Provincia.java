@@ -5,8 +5,10 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import es.vsanchezrod.proyectorest.persistencia.modelos.auditoria.AbstractAuditable;
+
 @Document(collection = "Provincias")
-public class Provincia {
+public class Provincia extends AbstractAuditable {
 
 	@Id
 	private String id;

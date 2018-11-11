@@ -69,7 +69,7 @@ public class ActividadVO {
 		this.nivel = nivel;
 	}
 
-	public int getDistancia() {
+	public Integer getDistancia() {
 		return distancia;
 	}
 

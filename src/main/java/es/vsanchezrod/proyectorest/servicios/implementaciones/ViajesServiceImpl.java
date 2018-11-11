@@ -73,10 +73,7 @@ public class ViajesServiceImpl implements ViajesService {
 			if (BooleanUtils.toBoolean(queryParams.get("realizadas")) == false) {
 				listaViajes = viajesRepository.findByFechaInicioGreaterThanOrderByFechaInicioAsc(new Date());
 			}
-			
-			if (listaViajes.isEmpty()) {
-				listaViajes = viajesRepository.findAll();
-			}
+
 		}
 		
 		if(queryParams.isEmpty()) {

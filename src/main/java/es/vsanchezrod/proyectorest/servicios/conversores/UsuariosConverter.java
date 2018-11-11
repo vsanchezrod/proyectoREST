@@ -122,10 +122,6 @@ public class UsuariosConverter {
 		if(usuarioVO.getAmigos() != null) {
 			usuario.setAmigos(usuarioVO.getAmigos());
 		}
-		
-		if(usuarioVO.getRoles() != null) {
-			usuario.setRoles(usuarioVO.getRoles());
-		}
 				
 	}
 }

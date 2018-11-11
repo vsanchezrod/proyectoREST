@@ -9,8 +9,10 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import es.vsanchezrod.proyectorest.persistencia.modelos.auditoria.AbstractAuditable;
+
 @Document(collection = "Actividades")
-public class Actividad {
+public class Actividad extends AbstractAuditable {
 
 	@Id
 	private String id;

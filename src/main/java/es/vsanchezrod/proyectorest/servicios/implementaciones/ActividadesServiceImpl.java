@@ -71,10 +71,7 @@ public class ActividadesServiceImpl implements ActividadesService {
 			if (BooleanUtils.toBoolean(queryParams.get("realizadas")) == false) {
 				listaActividades = actividadesRepository.findByFechaInicioGreaterThanOrderByFechaInicioAsc(new Date());
 			}
-			
-			if (listaActividades.isEmpty()) {
-				listaActividades = actividadesRepository.findAll();
-			}
+
 		}
 		
 		if(queryParams.isEmpty()) {
@@ -86,10 +83,13 @@ public class ActividadesServiceImpl implements ActividadesService {
 
 	@Override
 	public void borrarActividad(String id, String motivo, String idUsuarioBorradorActividad) {
-		Actividad actividad = actividadesRepository.findById(id);
+		final Actividad actividad = actividadesRepository.findById(id);
 		
+		if (actividad == null)  {
+			throw new HttpClientErrorException(HttpStatus.NOT_FOUND, "Actividad no encontrada");
+		}
 		for (String idUsuarioReceptor: actividad.getListaParticipantes()) {
-			Mensaje mensaje = new Mensaje();
+			final Mensaje mensaje = new Mensaje();
 			mensaje.setIdUsuarioEmisor(idUsuarioBorradorActividad);
 			mensaje.setIdUsuarioReceptor(idUsuarioReceptor);
 			mensaje.setFecha(new Date());
@@ -99,8 +99,7 @@ public class ActividadesServiceImpl implements ActividadesService {
 			
 			mensajesRepository.save(mensaje);
 		}
-			
-		
+					
 		actividadesRepository.deleteById(id);
 	}
 	
@@ -185,6 +184,30 @@ public class ActividadesServiceImpl implements ActividadesService {
 		
 		listaParticipantesActividad.add(nuevoParticipanteVO.getIdParticipante());
 		actividad.setListaParticipantes(listaParticipantesActividad);
+		actividadesRepository.save(actividad);
+		
+	}
+
+	@Override
+	public void editarActividad(String idActividad, ActividadVO actividadVO) {
+		final Actividad actividad = actividadesRepository.findById(idActividad);
+		if (actividad == null) {
+			throw new HttpClientErrorException(HttpStatus.NOT_FOUND, "La actividad no existe");
+		}
+		
+		for (String idUsuarioReceptor: actividad.getListaParticipantes()) {
+			final Mensaje mensaje = new Mensaje();
+			mensaje.setIdUsuarioEmisor(actividad.getIdUsuarioCreacion());
+			mensaje.setIdUsuarioReceptor(idUsuarioReceptor);
+			mensaje.setFecha(new Date());
+			mensaje.setAsunto("Actividad modificada: " + actividad.getNombre());
+			mensaje.setCuerpoMensaje("La actividad ha sido modificada. Consulta nueva información en nuestra web");
+			mensaje.setLeido(false);
+			
+			mensajesRepository.save(mensaje);
+		}
+		
+		actividadesConverter.actualizarModeloActividad(actividad, actividadVO);
 		actividadesRepository.save(actividad);
 		
 	}
