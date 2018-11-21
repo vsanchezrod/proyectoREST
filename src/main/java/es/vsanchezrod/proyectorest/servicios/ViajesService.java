@@ -21,5 +21,7 @@ public interface ViajesService {
 	
 	ViajeVO obtenerViaje(String id);
 	
-	void actualizarViaje(String idViaje, NuevoParticipanteVO nuevoParticipanteVO);
+	void actualizarParticipantesViaje(String idViaje, NuevoParticipanteVO nuevoParticipanteVO);
+	
+	void editarViaje(String idViaje, ViajeVO viajeVO);
 }

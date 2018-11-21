@@ -13,7 +13,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
 
-import es.vsanchezrod.proyectorest.persistencia.modelos.Actividad;
 import es.vsanchezrod.proyectorest.persistencia.modelos.Mensaje;
 import es.vsanchezrod.proyectorest.persistencia.modelos.Usuario;
 import es.vsanchezrod.proyectorest.persistencia.modelos.Viaje;
@@ -88,6 +87,10 @@ public class ViajesServiceImpl implements ViajesService {
 	@Override
 	public void borrarViaje(String id, String motivo, String idUsuarioBorradorViaje) {
 		Viaje viaje = viajesRepository.findById(id);
+		
+		if (viaje == null) {
+			throw new HttpClientErrorException(HttpStatus.NOT_FOUND, "El viaje no existe");
+		}
 		
 		for (String idUsuarioReceptor: viaje.getListaParticipantes()) {
 			Mensaje mensaje = new Mensaje();
@@ -166,7 +169,7 @@ public class ViajesServiceImpl implements ViajesService {
 
 
 	@Override
-	public void actualizarViaje(String idViaje, NuevoParticipanteVO nuevoParticipanteVO) {
+	public void actualizarParticipantesViaje(String idViaje, NuevoParticipanteVO nuevoParticipanteVO) {
 		
 		final Viaje viaje = viajesRepository.findById(idViaje);
 		if (viaje == null) {
@@ -195,5 +198,29 @@ public class ViajesServiceImpl implements ViajesService {
 		
 	}
 
+
+	@Override
+	public void editarViaje(String idViaje, ViajeVO viajeVO) {
+		final Viaje viaje = viajesRepository.findById(idViaje);
+		if (viaje == null) {
+			throw new HttpClientErrorException(HttpStatus.NOT_FOUND, "El viaje no existe");
+		}
+		
+		for (String idUsuarioReceptor: viaje.getListaParticipantes()) {
+			final Mensaje mensaje = new Mensaje();
+			mensaje.setIdUsuarioEmisor(viaje.getIdUsuarioCreacion());
+			mensaje.setIdUsuarioReceptor(idUsuarioReceptor);
+			mensaje.setFecha(new Date());
+			mensaje.setAsunto("Viaje modificado: " + viaje.getNombre());
+			mensaje.setCuerpoMensaje("El viaje ha sido modificado. Consulta nueva información en nuestra web");
+			mensaje.setLeido(false);
+			
+			mensajesRepository.save(mensaje);
+		}
+		
+		viajesConverter.actualizarModeloViaje(viaje, viajeVO);
+		viajesRepository.save(viaje);
+		
+	}
 
 }

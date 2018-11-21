@@ -72,7 +72,14 @@ public class ViajesRest {
 	@RequestMapping(value = "/viajes/{id}/participantes", method = RequestMethod.PUT)
 	@PreAuthorize("hasAuthority('usuario') OR hasAuthority('administrador')")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void actualizarViaje(@PathVariable("id") String idViaje, @RequestBody NuevoParticipanteVO nuevoParticipanteVO ) {
-		viajesService.actualizarViaje(idViaje, nuevoParticipanteVO);
+	public void actualizarParticpantesViaje(@PathVariable("id") String idViaje, @RequestBody NuevoParticipanteVO nuevoParticipanteVO ) {
+		viajesService.actualizarParticipantesViaje(idViaje, nuevoParticipanteVO);
+	}
+	
+	@RequestMapping(value = "/viajes/{id}", method = RequestMethod.PATCH)
+	@PreAuthorize("hasAuthority('administrador')")
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	public void actualizarActividad(@PathVariable("id") String idViaje, @RequestBody ViajeVO viajeVO) {
+		viajesService.editarViaje(idViaje, viajeVO);
 	}
 }

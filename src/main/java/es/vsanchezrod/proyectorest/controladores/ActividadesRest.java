@@ -20,7 +20,6 @@ import es.vsanchezrod.proyectorest.servicios.ActividadesService;
 import es.vsanchezrod.proyectorest.servicios.vo.ActividadVO;
 import es.vsanchezrod.proyectorest.servicios.vo.NuevoParticipanteVO;
 import es.vsanchezrod.proyectorest.servicios.vo.TotalVO;
-import es.vsanchezrod.proyectorest.servicios.vo.UsuarioVO;
 
 @RestController
 public class ActividadesRest {
@@ -73,8 +72,8 @@ public class ActividadesRest {
 	@RequestMapping(value = "/actividades/{id}/participantes", method = RequestMethod.PUT)
 	@PreAuthorize("hasAuthority('usuario') OR hasAuthority('administrador')")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void actualizarActivididad(@PathVariable("id") String idActividad, @RequestBody NuevoParticipanteVO nuevoParticipanteVO ) {
-		actividadesService.actualizarActividad(idActividad, nuevoParticipanteVO);
+	public void actualizarParticipantesActividad(@PathVariable("id") String idActividad, @RequestBody NuevoParticipanteVO nuevoParticipanteVO ) {
+		actividadesService.actualizarParticipantesActividad(idActividad, nuevoParticipanteVO);
 	}
 	
 	@RequestMapping(value = "/actividades/{id}", method = RequestMethod.PATCH)

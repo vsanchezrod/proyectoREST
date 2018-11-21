@@ -165,7 +165,7 @@ public class ActividadesServiceImpl implements ActividadesService {
 	}
 
 	@Override
-	public void actualizarActividad(String idActividad, NuevoParticipanteVO nuevoParticipanteVO) {
+	public void actualizarParticipantesActividad(String idActividad, NuevoParticipanteVO nuevoParticipanteVO) {
 		final Actividad actividad = actividadesRepository.findById(idActividad);
 		if (actividad == null) {
 			throw new HttpClientErrorException(HttpStatus.NOT_FOUND, "La actividad no existe.");

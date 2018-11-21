@@ -21,7 +21,7 @@ public interface ActividadesService {
 	
 	ActividadVO obtenerActividad(String id);
 	
-	void actualizarActividad(String idActividad, NuevoParticipanteVO nuevoParticipanteVO);
+	void actualizarParticipantesActividad(String idActividad, NuevoParticipanteVO nuevoParticipanteVO);
 	
 	void editarActividad(String idActividad, ActividadVO actividadVO);
 }

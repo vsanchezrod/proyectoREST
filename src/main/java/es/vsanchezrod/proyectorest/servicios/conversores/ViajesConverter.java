@@ -3,10 +3,14 @@ package es.vsanchezrod.proyectorest.servicios.conversores;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.text.WordUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import es.vsanchezrod.proyectorest.persistencia.modelos.ActividadCategoria;
 import es.vsanchezrod.proyectorest.persistencia.modelos.Viaje;
+import es.vsanchezrod.proyectorest.servicios.vo.ActividadCategoriaVO;
 import es.vsanchezrod.proyectorest.servicios.vo.ViajeVO;
 
 @Component
@@ -72,5 +76,55 @@ public class ViajesConverter {
 		
 		return listaViajesVO;
 	}
+	
+	public void actualizarModeloViaje(Viaje viaje, ViajeVO viajeVO) {
+			
+		if(StringUtils.isNoneBlank(viajeVO.getNombre())) {
+			final String nombre = WordUtils.capitalizeFully(StringUtils.trim(viajeVO.getNombre()));
+			viaje.setNombre(nombre);
+		}
+		
+		if(!viajeVO.getCategorias().isEmpty()) {
+			final List<ActividadCategoriaVO> categoriasVO = viajeVO.getCategorias();
+			final List<ActividadCategoria> categorias = actividadCategoriasConverter.convertirListaActividadCategoriasVOAListaActividadCategorias(categoriasVO);
+			viaje.setCategorias(categorias);
+		}
+		
+		if(StringUtils.isNoneBlank(viajeVO.getDescripcion())) {
+			final String descripcion = WordUtils.capitalizeFully(StringUtils.trim(viajeVO.getDescripcion()));
+			viaje.setDescripcion(descripcion);
+		}
+		
+		if(viajeVO.getNivel() != null) {
+			viaje.setNivel(viajeVO.getNivel());
+		}
+		
+		if(viajeVO.getDistancia() != null) {
+			viaje.setDistancia(viajeVO.getDistancia());
+		}
+		
+		if(viajeVO.getFechaInicio() != null) {
+			viaje.setFechaInicio(viajeVO.getFechaInicio());
+		}
+		
+		if(viajeVO.getFechaFin() != null) {
+			viaje.setFechaFin(viajeVO.getFechaFin());
+		}
+		
+		if(viajeVO.getPrecio() != null) {
+			viaje.setPrecio(viajeVO.getPrecio());
+		}
+		
+		if(viajeVO.getPlazas() != null) {
+			viaje.setPlazas(viajeVO.getPlazas());
+		}
+		
+		if(StringUtils.isNoneBlank(viajeVO.getImagen())) {
+			final String imagen = viajeVO.getImagen();
+			viaje.setImagen(imagen);
+		}
+			
+	}
+	
 
 }
