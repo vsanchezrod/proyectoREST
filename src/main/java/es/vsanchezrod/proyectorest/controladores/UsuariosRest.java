@@ -72,4 +72,10 @@ public class UsuariosRest {
 	}
 	
 	
+	@RequestMapping(value = "/usuarios/{id}/roles", method = RequestMethod.PUT)
+	@PreAuthorize("hasAuthority('administrador')")
+	@ResponseStatus(HttpStatus.OK)
+	public void modificarRolUsuario(@PathVariable("id") String idUsuario, @RequestBody UsuarioVO usuarioVO) {
+		usuariosService.modificarRolUsuario(idUsuario, usuarioVO);
+	}
 }

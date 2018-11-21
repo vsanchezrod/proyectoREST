@@ -127,4 +127,20 @@ public class UsuariosServiceImpl implements UsuariosService {
 			throw new HttpClientErrorException(HttpStatus.BAD_REQUEST, "El avatar del usuario es nulo.");
 		}
 	}
+
+	@Override
+	public void modificarRolUsuario(String idUsuario, UsuarioVO usuarioVO) {
+		
+		// TO DO Cambiar rol de un usuario
+		final Usuario usuario = usuariosRepository.findById(idUsuario);
+		
+		if (usuario == null) {
+			throw new HttpClientErrorException(HttpStatus.NOT_FOUND, "El usuario no existe");
+		}
+		
+		usuario.setRoles(usuarioVO.getRoles());
+
+		usuariosRepository.save(usuario);
+		
+	}
 }
