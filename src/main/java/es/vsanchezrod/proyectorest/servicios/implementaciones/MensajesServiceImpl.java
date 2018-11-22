@@ -24,7 +24,7 @@ public class MensajesServiceImpl implements MensajesService {
 	
 	@Override
 	public List<MensajeVO> obtenerMensajesVO(String id) {
-		return mensajesConverter.convertirListaMensajesAListaMensajesVO(mensajesRepository.findByidUsuarioReceptor(id));
+		return mensajesConverter.convertirListaMensajesAListaMensajesVO(mensajesRepository.findByidUsuarioReceptorOrderByFechaDesc(id));
 	}
 
 	@Override

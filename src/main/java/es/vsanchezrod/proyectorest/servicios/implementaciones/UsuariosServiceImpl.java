@@ -139,8 +139,6 @@ public class UsuariosServiceImpl implements UsuariosService {
 		}
 		
 		usuario.setRoles(usuarioVO.getRoles());
-
 		usuariosRepository.save(usuario);
-		
 	}
 }

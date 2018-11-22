@@ -8,7 +8,7 @@ import es.vsanchezrod.proyectorest.persistencia.modelos.Mensaje;
 
 public interface MensajesRepository extends MongoRepository<Mensaje, String> {
 
-	List<Mensaje> findByidUsuarioReceptor(String id);
+	List<Mensaje> findByidUsuarioReceptorOrderByFechaDesc(String id);
 	
 	void deleteById(String id);
 	
