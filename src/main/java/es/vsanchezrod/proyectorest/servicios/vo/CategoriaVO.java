@@ -2,12 +2,16 @@ package es.vsanchezrod.proyectorest.servicios.vo;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
+import org.hibernate.validator.constraints.NotBlank;
 
 public class CategoriaVO {
 
 	private String id;
+	@NotBlank(message = "El nombre de la categoría no puede estar vacío")
 	private String nombre;
+	@NotBlank(message = "La descripción de la categoría no puede estar vacío")
 	private String descripcion;
+	@NotBlank(message = "La imagen no puede estar vacío")
 	private String imagen;
 
 	public String getId() {

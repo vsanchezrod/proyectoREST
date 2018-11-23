@@ -4,21 +4,42 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.validation.constraints.Future;
+import javax.validation.constraints.NotNull;
+
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
+import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.NotEmpty;
 
 import es.vsanchezrod.proyectorest.persistencia.modelos.Coordenada;
 
 public class ActividadVO {
 
 	private String id;
+
+	@NotBlank(message = "El nombre no puede estar vacío")
 	private String nombre;
+		
+	@NotNull(message = "La lista de categorías no puede estar vacía")
 	private List<ActividadCategoriaVO> categorias; // id y nombre
+	
+	@NotEmpty(message = "La lista de categorías no puede estar vacía")
 	private String descripcion;
+	
+	@NotNull(message = "El nivel no puede estar vacío")
 	private Integer nivel;
+	
+	@NotNull(message = "La distancia no puede estar vacía")
 	private Integer distancia;
+	
+	@NotNull(message = "La fecha no puede estar vacía")
+	@Future(message = "La fecha debe ser futura")
 	private Date fechaInicio;
+	
+	@NotBlank(message = "Se debe seleccionar una imagen")
 	private String imagen;
+	
 	private Coordenada coordenadas;
 	private String idUsuarioCreacion;  // solo la id
 	private List<String> listaParticipantes; // id de los usuarios

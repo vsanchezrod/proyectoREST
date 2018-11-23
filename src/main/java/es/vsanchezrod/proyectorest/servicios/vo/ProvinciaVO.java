@@ -1,12 +1,16 @@
 package es.vsanchezrod.proyectorest.servicios.vo;
 
+import javax.validation.constraints.NotNull;
+
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
 public class ProvinciaVO {
 
 	private String id;
+	@NotNull(message = "El código de la provincia no puede estar vacío")
 	private int codigo;
+	@NotNull(message = "El nombre de la provincia no puede estar vacío")
 	private String nombre;
 	
 	public String getId() {

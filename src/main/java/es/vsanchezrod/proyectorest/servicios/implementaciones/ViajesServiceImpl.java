@@ -50,6 +50,9 @@ public class ViajesServiceImpl implements ViajesService {
 	public ViajeVO obtenerViaje(String id) {
 		
 		Viaje viaje = viajesRepository.findById(id);
+		if(viaje == null) {
+			throw new HttpClientErrorException(HttpStatus.NOT_FOUND, "El viaje no existe.");
+		}
 		return viajesConverter.convertirViajeAViajeVO(viaje);
 	}
 	

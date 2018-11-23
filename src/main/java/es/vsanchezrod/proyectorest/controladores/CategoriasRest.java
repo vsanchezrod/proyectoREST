@@ -2,6 +2,8 @@ package es.vsanchezrod.proyectorest.controladores;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -30,7 +32,7 @@ public class CategoriasRest {
 	@RequestMapping(value = "/categorias", method = RequestMethod.POST)
 	@PreAuthorize("hasAuthority('administrador')")
 	@ResponseStatus(HttpStatus.CREATED)
-	public void crearCategorias(@RequestBody CategoriaVO categoriaVO) {
+	public void crearCategorias(@Valid @RequestBody CategoriaVO categoriaVO) {
 		
 		categoriasService.crearCategoria(categoriaVO);
 		

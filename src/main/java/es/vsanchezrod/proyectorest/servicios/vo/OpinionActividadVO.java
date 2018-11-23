@@ -5,10 +5,12 @@ import java.util.List;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
+import org.hibernate.validator.constraints.NotBlank;
 
 public class OpinionActividadVO {
 
 	private String id;
+	@NotBlank(message = "El nombre no puede estar vacío")
 	private String nombre;
 	private List<ActividadCategoriaVO> categorias;
 	

@@ -50,6 +50,9 @@ public class ActividadesServiceImpl implements ActividadesService {
 	@Override
 	public ActividadVO obtenerActividad(String id) {
 		Actividad actividad = actividadesRepository.findById(id);
+		if(actividad == null) {
+			throw new HttpClientErrorException(HttpStatus.NOT_FOUND, "La actividad no existe.");
+		}
 		return actividadesConverter.convertirActividadAActividadVO(actividad);
 	}
 

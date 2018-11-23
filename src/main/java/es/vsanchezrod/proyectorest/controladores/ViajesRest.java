@@ -3,6 +3,8 @@ package es.vsanchezrod.proyectorest.controladores;
 import java.util.List;
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -42,7 +44,7 @@ public class ViajesRest {
 	
 	@RequestMapping(value = "/viajes", method = RequestMethod.POST)
 	@PreAuthorize("hasAuthority('administrador')")
-	public void crearViaje(@RequestBody ViajeVO viajeVO) {
+	public void crearViaje(@Valid @RequestBody ViajeVO viajeVO) {
 		viajesService.crearViaje(viajeVO);
 	}
 	
@@ -72,14 +74,14 @@ public class ViajesRest {
 	@RequestMapping(value = "/viajes/{id}/participantes", method = RequestMethod.PUT)
 	@PreAuthorize("hasAuthority('usuario') OR hasAuthority('administrador')")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void actualizarParticpantesViaje(@PathVariable("id") String idViaje, @RequestBody NuevoParticipanteVO nuevoParticipanteVO ) {
+	public void actualizarParticpantesViaje(@PathVariable("id") String idViaje, @Valid @RequestBody NuevoParticipanteVO nuevoParticipanteVO ) {
 		viajesService.actualizarParticipantesViaje(idViaje, nuevoParticipanteVO);
 	}
 	
 	@RequestMapping(value = "/viajes/{id}", method = RequestMethod.PATCH)
 	@PreAuthorize("hasAuthority('administrador')")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void actualizarActividad(@PathVariable("id") String idViaje, @RequestBody ViajeVO viajeVO) {
+	public void actualizarActividad(@PathVariable("id") String idViaje, @Valid @RequestBody ViajeVO viajeVO) {
 		viajesService.editarViaje(idViaje, viajeVO);
 	}
 }

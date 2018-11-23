@@ -2,10 +2,12 @@ package es.vsanchezrod.proyectorest.servicios.vo;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
+import org.hibernate.validator.constraints.NotBlank;
 
 public class ActividadCategoriaVO {
 
 	private String id;
+	@NotBlank(message = "El nombre no puede estar vacío")
 	private String nombre;
 	
 	public String getId() {

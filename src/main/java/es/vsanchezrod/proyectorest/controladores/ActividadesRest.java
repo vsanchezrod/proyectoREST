@@ -3,6 +3,8 @@
 import java.util.List;
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -43,7 +45,7 @@ public class ActividadesRest {
 	@RequestMapping(value = "/actividades", method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.CREATED)
 	@PreAuthorize("hasAuthority('usuario')")
-	public void crearActividadVO(@RequestBody ActividadVO actividadVO) {
+	public void crearActividadVO(@Valid @RequestBody ActividadVO actividadVO) {
 		actividadesService.crearActividad(actividadVO);
 	}
 	
@@ -72,14 +74,14 @@ public class ActividadesRest {
 	@RequestMapping(value = "/actividades/{id}/participantes", method = RequestMethod.PUT)
 	@PreAuthorize("hasAuthority('usuario') OR hasAuthority('administrador')")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void actualizarParticipantesActividad(@PathVariable("id") String idActividad, @RequestBody NuevoParticipanteVO nuevoParticipanteVO ) {
+	public void actualizarParticipantesActividad(@PathVariable("id") String idActividad, @Valid @RequestBody NuevoParticipanteVO nuevoParticipanteVO ) {
 		actividadesService.actualizarParticipantesActividad(idActividad, nuevoParticipanteVO);
 	}
 	
 	@RequestMapping(value = "/actividades/{id}", method = RequestMethod.PATCH)
 	@PreAuthorize("hasAuthority('usuario') OR hasAuthority('administrador')")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void actualizarActividad(@PathVariable("id") String idActividad, @RequestBody ActividadVO actividadVO) {
+	public void actualizarActividad(@PathVariable("id") String idActividad, @Valid @RequestBody ActividadVO actividadVO) {
 		actividadesService.editarActividad(idActividad, actividadVO);
 	}
 	

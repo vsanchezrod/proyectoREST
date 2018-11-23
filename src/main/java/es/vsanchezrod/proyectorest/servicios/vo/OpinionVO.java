@@ -2,19 +2,30 @@ package es.vsanchezrod.proyectorest.servicios.vo;
 
 import java.util.Date;
 
+import javax.validation.constraints.NotNull;
+
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
+import org.hibernate.validator.constraints.NotBlank;
 
 public class OpinionVO {
 
 	private String id;
+	
+	@NotNull(message = "La actividad no puede estar vacía")
 	private OpinionActividadVO actividad; // id, nombre act y lista categorias
+	@NotBlank(message = "El título no puede estar vacío")
 	private String titulo;
+	@NotBlank(message = "El detalle no puede estar vacío")
 	private String detalle;
+	@NotNull(message = "La fecha no puede estar vacía")
 	private Date fecha;
+	@NotNull(message = "La valoración no puede estar vacía")
 	private int organizacionValoracion;
+	@NotNull(message = "La valoración no puede estar vacía")
 	private int ambienteValoracion;
-	private int recorridoValoracion;	
+	@NotNull(message = "La valoración no puede estar vacía")
+	private int recorridoValoracion;
 	private String usuarioOpinion; // id
 	
 	public OpinionVO() {

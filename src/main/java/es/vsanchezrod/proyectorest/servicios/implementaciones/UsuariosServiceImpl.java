@@ -36,7 +36,6 @@ public class UsuariosServiceImpl implements UsuariosService {
 	@Override
 	public void crearUsuario(UsuarioVO usuarioVO) {
 		
-		comprobarDatosUsuarioSinNull(usuarioVO);
 		// Encriptación de password
 		usuarioVO.setPassword(passwordEncoder.encode(usuarioVO.getPassword()));
 		
@@ -50,6 +49,9 @@ public class UsuariosServiceImpl implements UsuariosService {
 	@Override
 	public UsuarioVO obtenerUsuarioVOPorId(String id) {
 		Usuario usuario = usuariosRepository.findById(id);
+		if(usuario == null) {
+			throw new HttpClientErrorException(HttpStatus.NOT_FOUND, "La actividad no existe.");
+		}
 		return usuariosConverter.convertirUsuarioAUsuarioVO(usuario);
 	}
 
@@ -96,36 +98,6 @@ public class UsuariosServiceImpl implements UsuariosService {
 		totalVO.setTotal(mensajesRepository.countByidUsuarioReceptorAndLeido(id, estado));
 		return totalVO;
 
-	}
-	
-	private void comprobarDatosUsuarioSinNull(UsuarioVO usuarioVO) {
-		if (usuarioVO.getNombre() == null) {
-			throw new HttpClientErrorException(HttpStatus.BAD_REQUEST, "El nombre del usuario es nulo.");
-		}
-		if (usuarioVO.getApellido() == null) {
-			throw new HttpClientErrorException(HttpStatus.BAD_REQUEST, "El apellido del usuario es nulo.");
-		}
-		if (usuarioVO.getTerminos() == false) {
-			throw new HttpClientErrorException(HttpStatus.BAD_REQUEST, "El usuario no ha aceptado los términos.");
-		}
-		if (usuarioVO.getEmail() == null) {
-			throw new HttpClientErrorException(HttpStatus.BAD_REQUEST, "El email del usuario es nulo.");
-		}
-		if (usuarioVO.getFechaNacimiento() == null) {
-			throw new HttpClientErrorException(HttpStatus.BAD_REQUEST, "La fecha de nacimiento del usuario es nula.");
-		}
-		if (usuarioVO.getPassword() == null) {
-			throw new HttpClientErrorException(HttpStatus.BAD_REQUEST, "El password del usuario es nulo.");
-		}
-		if(usuarioVO.getProvincia() == null) {
-			throw new HttpClientErrorException(HttpStatus.BAD_REQUEST, "La provincia del usuario es nula.");
-		}
-		if(usuarioVO.getSexo() == null) {
-			throw new HttpClientErrorException(HttpStatus.BAD_REQUEST, "El sexo del usuario es nulo.");
-		}
-		if(usuarioVO.getAvatar() == null) {
-			throw new HttpClientErrorException(HttpStatus.BAD_REQUEST, "El avatar del usuario es nulo.");
-		}
 	}
 
 	@Override

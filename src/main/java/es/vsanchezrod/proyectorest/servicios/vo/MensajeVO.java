@@ -2,16 +2,24 @@ package es.vsanchezrod.proyectorest.servicios.vo;
 
 import java.util.Date;
 
+import javax.validation.constraints.NotNull;
+
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
+import org.hibernate.validator.constraints.NotBlank;
 
 public class MensajeVO {
 
 	private String id;
 	private String idUsuarioEmisor;
+	@NotBlank(message = "El usuario receptor no puede estar vacío")
 	private String idUsuarioReceptor;
+	@NotNull(message = "La fecha no puede estar vacía")
 	private Date fecha;
+	
+	@NotBlank(message = "El asunto no puede estar vacío")
 	private String asunto;
+	@NotBlank(message = "El mensaje no puede estar vacío")
 	private String cuerpoMensaje;
 	private boolean leido;
 	

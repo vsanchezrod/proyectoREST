@@ -1,7 +1,9 @@
-	package es.vsanchezrod.proyectorest.controladores;
+package es.vsanchezrod.proyectorest.controladores;
 
 import java.util.List;
 import java.util.Map;
+
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -40,7 +42,7 @@ public class UsuariosRest {
 	
 	@RequestMapping(value = "/public/usuarios",  method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.CREATED)
-	public void crearUsuarioVO(@RequestBody UsuarioVO usuarioVO) {
+	public void crearUsuarioVO(@Valid @RequestBody UsuarioVO usuarioVO) {
 		usuariosService.crearUsuario(usuarioVO);
 	}
 	
@@ -53,7 +55,7 @@ public class UsuariosRest {
 	@RequestMapping(value = "/usuarios/{id}", method = RequestMethod.PATCH)
 	@PreAuthorize("hasAuthority('usuario') OR hasAuthority('administrador')")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void actualizarUsuario(@PathVariable("id") String id, @RequestBody UsuarioVO usuarioVO ) {
+	public void actualizarUsuario(@PathVariable("id") String id, @Valid @RequestBody UsuarioVO usuarioVO ) {
 		usuariosService.actualizarUsuario(id, usuarioVO);
 	}
 	
@@ -75,7 +77,7 @@ public class UsuariosRest {
 	@RequestMapping(value = "/usuarios/{id}/roles", method = RequestMethod.PUT)
 	@PreAuthorize("hasAuthority('administrador')")
 	@ResponseStatus(HttpStatus.OK)
-	public void modificarRolUsuario(@PathVariable("id") String idUsuario, @RequestBody UsuarioVO usuarioVO) {
+	public void modificarRolUsuario(@PathVariable("id") String idUsuario, @Valid @RequestBody UsuarioVO usuarioVO) {
 		usuariosService.modificarRolUsuario(idUsuario, usuarioVO);
 	}
 }

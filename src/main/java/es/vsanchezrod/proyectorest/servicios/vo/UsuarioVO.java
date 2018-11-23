@@ -4,22 +4,36 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.validation.constraints.NotNull;
+
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotBlank;
 
 public class UsuarioVO {
 
 	private String id;
+	@NotBlank(message = "El nombre no puede estar vacío")
 	private String nombre;
+	@NotBlank(message = "El apellido no puede estar vacío")
 	private String apellido;
+	@Email(message = "El email no es válido")
+	@NotBlank(message = "El email no puede estar vacío")
 	private String email;
+	@NotBlank(message = "El password no puede estar vacío")
 	private String password;
+	@NotNull(message = "La fecha no puede estar vacía")
 	private Date fechaNacimiento;
+	@NotBlank(message = "El sexo no puede estar vacío")
 	private String sexo;
+	@NotNull(message = "La provincia no puede estar vacía")
 	private ProvinciaVO provincia;
+	@NotBlank(message = "El avatar no puede estar vacío")
 	private String avatar;
 	private String info;
 	private List<ActividadCategoriaVO> intereses;  // id y nombre
+	@NotNull(message = "Los términos no puedes estar vacíos")
 	private boolean terminos;
 	private Double valoracion;
 	private Integer valoracionTotal;

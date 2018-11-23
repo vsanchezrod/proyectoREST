@@ -2,6 +2,8 @@ package es.vsanchezrod.proyectorest.controladores;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -25,7 +27,7 @@ public class OpinionesRest {
 	@RequestMapping(value = "/opiniones", method = RequestMethod.POST)
 	@PreAuthorize("hasAuthority('usuario')")
 	@ResponseStatus(HttpStatus.CREATED)
-	public void guardarOpinion(@RequestBody OpinionVO opinionVO) {
+	public void guardarOpinion(@Valid @RequestBody OpinionVO opinionVO) {
 		opinionesService.guardarOpinion(opinionVO);
 	}
 	

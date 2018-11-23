@@ -2,6 +2,8 @@ package es.vsanchezrod.proyectorest.controladores;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -29,7 +31,7 @@ public class MensajesRest {
 	
 	@RequestMapping(value = "/mensajes", method = RequestMethod.POST)
 	@PreAuthorize("hasAuthority('administrador') OR hasAuthority('usuario')")
-	public void enviarMensaje(@RequestBody MensajeVO mensajeVO) {
+	public void enviarMensaje(@Valid @RequestBody MensajeVO mensajeVO) {
 		mensajesService.crearMensaje(mensajeVO);
 	}
 	
@@ -42,7 +44,7 @@ public class MensajesRest {
 	@RequestMapping(value = "/mensajes/{id}", method = RequestMethod.PATCH)
 	@PreAuthorize("hasAuthority('usuario') OR hasAuthority('administrador')")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void actualizarMensaje(@PathVariable("id") String id, @RequestBody MensajeVO mensajeVO ) {
+	public void actualizarMensaje(@PathVariable("id") String id, @Valid @RequestBody MensajeVO mensajeVO ) {
 		mensajesService.actualizarMensaje(id, mensajeVO);
 	}
 }
