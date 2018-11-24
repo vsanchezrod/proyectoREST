@@ -22,12 +22,11 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 	private UsuariosRepository usuariosRepository;
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
     	
-    	// username ==> usuario.email
-    	final Usuario usuario = usuariosRepository.findByEmail(username);    	    	
+    	final Usuario usuario = usuariosRepository.findByEmail(email);    	    	
         if(usuario == null) {
-            throw new UsernameNotFoundException(String.format("El usuario '%s' no existe", username));
+            throw new UsernameNotFoundException(String.format("El usuario '%s' no existe", email));
         }
         
         final List<GrantedAuthority> authorities = new ArrayList<>();

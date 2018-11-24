@@ -24,7 +24,7 @@ public class ActividadVO {
 	@NotNull(message = "La lista de categorías no puede estar vacía")
 	private List<ActividadCategoriaVO> categorias; // id y nombre
 	
-	@NotEmpty(message = "La lista de categorías no puede estar vacía")
+	@NotEmpty(message = "La lista de descripción no puede estar vacía")
 	private String descripcion;
 	
 	@NotNull(message = "El nivel no puede estar vacío")
