@@ -21,7 +21,7 @@ public class UsuarioVO {
 	@Email(message = "El email no es válido")
 	@NotBlank(message = "El email no puede estar vacío")
 	private String email;
-	@NotBlank(message = "El password no puede estar vacío")
+	//@NotBlank(message = "El password no puede estar vacío")
 	private String password;
 	@NotNull(message = "La fecha no puede estar vacía")
 	private Date fechaNacimiento;
